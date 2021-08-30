@@ -7,7 +7,22 @@ const {
 /**
  * 
  * 
- * {
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ {
+
+  [db]
+dialect=hana
+driver=hdbcli
+host=97e2d91f-04c6-4cd1-a51f-4ba9ed343bfd.hana.trial-us10.hanacloud.ondemand.com
+port=443
+user=ED3823079C34467CA8872262EC61F4AE_4X3IVKV7DO0FNB12UPGUG4GWE_RT
+password=Dm9w0MIcMvsTv9pHKMxrv19EN5VvKnhVEEHjUHRyRasZtpoZCvHY4pp6aceSY_cklNutYZl8ge0FZw_1QeI1HCAPdzGKBQWzmJLXtB0NNuUNDzIdB_SHXTMTpihyias0
+schema=ED3823079C34467CA8872262EC61F4AE
   "host": "97e2d91f-04c6-4cd1-a51f-4ba9ed343bfd.hana.trial-us10.hanacloud.ondemand.com",
   "port": "443",
   "driver": "com.sap.db.jdbc.Driver",
@@ -24,8 +39,8 @@ const connectionParams = {
     //serverNode :"zeus.hana.prod.us-east-1.whitney.dbaas.ondemand.com:21022?encrypt=true&validateCertificate=true&currentschema=3B460A731E5149CC840083ED52394A18",
     host: "97e2d91f-04c6-4cd1-a51f-4ba9ed343bfd.hana.trial-us10.hanacloud.ondemand.com",
     port: "443",
-    uid: "ED3823079C34467CA8872262EC61F4AE_EV8TPDSQI4WH3C4E1OI57HFDM_RT",
-    pwd: "Xg7c0_ttQ_D8T9IFUBvpiUBKshnfGJKFZJoNY2G-C7C1xNn8oGDx-Xu1PrU1ZycHs1v4.6LbiFn7FvgBBrsNyQuetpC0gL1Ay5DcTambshOOBa_JVLYU0mlos3qhDY8T",
+    uid: "ED3823079C34467CA8872262EC61F4AE_4X3IVKV7DO0FNB12UPGUG4GWE_RT",
+    pwd: "Dm9w0MIcMvsTv9pHKMxrv19EN5VvKnhVEEHjUHRyRasZtpoZCvHY4pp6aceSY_cklNutYZl8ge0FZw_1QeI1HCAPdzGKBQWzmJLXtB0NNuUNDzIdB_SHXTMTpihyias0",
     databaseName: "H00",
     currentSchema: "ED3823079C34467CA8872262EC61F4AE",
     sslValidateCertificate: "false",

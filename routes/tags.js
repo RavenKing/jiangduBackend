@@ -4,6 +4,7 @@ var router = express.Router();
 const {
     ohana
 } = require('ohana-node-orm');
+const tableName="SAP_JIANGDU_TAGS";
 
 /** */
 function checkData(res,data)
@@ -17,9 +18,8 @@ if(data==null)
 }
 /* GET users listing. */
 router.get('/', function (req, res, next) {
-    const policy = new ohana('SAP_JIANGDU_POLICYS'); // new ohana('table_name');
-    policy.find(["POLICY_ID","POLICY_TITLE","CREATED_AT","UPDATED_AT"]).then((result) => {
-      //  console.log(result)
+    const policy = new ohana(tableName); // new ohana('table_name');
+    policy.find().then((result) => {
         res.send(result)
     });
 });
@@ -29,7 +29,6 @@ router.put('/',function(req,res,next){
     checkData(res,req.body.data)
     const {data} = req.body;
     console.log(data);
-
     updatePolicy(data).then((result)=>{
         console.log(result);
         if(result ==1 )
@@ -42,12 +41,10 @@ router.put('/',function(req,res,next){
     }).catch((err)=>{
         console.log(err);
     })
-
-
 });
 
 
-/** insert policys */
+/** insert tags */
 router.post('/', function (req, res, next) {
      console.log(req.body)
      const {data} = req.body;
@@ -80,7 +77,7 @@ router.post('/', function (req, res, next) {
 
 
 async function insertData(body) {
-    const policy = new ohana('SAP_JIANGDU_POLICYS'); // new ohana('table_name');
+    const policy = new ohana(tableName); // new ohana('table_name');
     const result = await policy.insert(body);
     return result;
 }
@@ -106,13 +103,13 @@ router.delete('/',function(req,res,next){
 
 
 async function updatePolicy(body) {
-    const policy = new ohana('SAP_JIANGDU_POLICYS'); // new ohana('table_name');
+    const policy = new ohana(tableName); // new ohana('table_name');
     const result = await policy.update({POLICY_ID:body.POLICY_ID},body);
     return result;
 }
 async function deletePolicy(body) {
-    const policy = new ohana('SAP_JIANGDU_POLICYS'); // new ohana('table_name');
-   const result = await policy.raw("delete from \"SAP_JIANGDU_POLICYS\" where POLICY_ID = '"+body.POLICY_ID+"'");
+    const policy = new ohana(tableName); // new ohana('table_name');
+   const result = await policy.raw("delete from \"SAP_JIANGDU_tags\" where POLICY_ID = '"+body.POLICY_ID+"'");
     return result;
 }
 
