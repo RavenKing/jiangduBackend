@@ -104,12 +104,12 @@ router.delete('/',function(req,res,next){
 
 async function updatePolicy(body) {
     const policy = new ohana(tableName); // new ohana('table_name');
-    const result = await policy.update({POLICY_ID:body.POLICY_ID},body);
+    const result = await policy.update({TAG_ID:body.TAG_ID},body);
     return result;
 }
 async function deletePolicy(body) {
     const policy = new ohana(tableName); // new ohana('table_name');
-   const result = await policy.raw("delete from \"SAP_JIANGDU_tags\" where POLICY_ID = '"+body.POLICY_ID+"'");
+   const result = await policy.raw("delete from \"SAP_JIANGDU_tags\" where TAG_ID = '"+body.TAG_ID+"'");
     return result;
 }
 
