@@ -19,10 +19,8 @@ router.post('/', function (req, res, next) {
   const {data} = req.body;
   //console.log(uunewid.v4())
   data.USER_ID=uunewid.v4();
-  data.CREATEDAT="2021-08-25 07:59:07.747000000";
   data.CREATED_AT="2021-08-25 07:59:07.747000000";
   data.UPDATED_AT="2021-08-25 07:59:07.747000000";
-  data.MODIFIEDAT = "2021-08-25 07:59:07.747000000";
   data.LOG_DATE = "2021-08-25 07:59:07.747000000";
   data.VALIDATEDATE = "2021-08-25 07:59:07.747000000";
   data.HEZHUN_TIME ="2021-08-25 07:59:07.747000000";

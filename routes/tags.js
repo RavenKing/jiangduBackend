@@ -50,7 +50,7 @@ router.post('/', function (req, res, next) {
      const {data} = req.body;
      console.log(data);
      //console.log(uunewid.v4())
-     data.POLICY_ID=uunewid.v4();
+     data.TAG_ID=uunewid.v4();
     insertData(data).then((result)=>{
         console.log(result);
         if(result ==1 )
