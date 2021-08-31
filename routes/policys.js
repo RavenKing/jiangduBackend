@@ -6,40 +6,43 @@ const {
 } = require('ohana-node-orm');
 
 /** */
-function checkData(res,data)
-{
-if(data==null)
-{
-    res.send(500)
+function checkData(res, data) {
+    if (data == null) {
+        res.send(500)
 
-}
+    }
 
 }
 /* GET users listing. */
 router.get('/', function (req, res, next) {
-    const policy = new ohana('SAP_JIANGDU_POLICYS'); // new ohana('table_name');
-    policy.find(["POLICY_ID","POLICY_TITLE","CREATED_AT","UPDATED_AT"]).then((result) => {
-      //  console.log(result)
-        res.send(result)
-    });
+
+    getPolicy().then((result) => {
+        //console.log(result);
+        res.send(result);
+        //return res.send(result)
+    }).catch((err) => {
+        console.log(err);
+    })
+
 });
 
 /**update policy  */
-router.put('/',function(req,res,next){
-    checkData(res,req.body.data)
-    const {data} = req.body;
+router.put('/', function (req, res, next) {
+    checkData(res, req.body.data)
+    const {
+        data
+    } = req.body;
     console.log(data);
 
-    updatePolicy(data).then((result)=>{
+    updatePolicy(data).then((result) => {
         console.log(result);
-        if(result ==1 )
-        {
-             res.sendStatus(200)
-        }else{
+        if (result == 1) {
+            res.sendStatus(200)
+        } else {
             res.send(500)
         }
         //return res.send(result)
-    }).catch((err)=>{
+    }).catch((err) => {
         console.log(err);
     })
 
@@ -49,33 +52,24 @@ router.put('/',function(req,res,next){
 
 /** insert policys */
 router.post('/', function (req, res, next) {
-     console.log(req.body)
-     const {data} = req.body;
-     console.log(data);
-     //console.log(uunewid.v4())
-     data.POLICY_ID=uunewid.v4();
-    insertData(data).then((result)=>{
+    console.log(req.body)
+    const {
+        data
+    } = req.body;
+    console.log(data);
+    //console.log(uunewid.v4())
+    data.POLICY_ID = uunewid.v4();
+    insertData(data).then((result) => {
         console.log(result);
-        if(result ==1 )
-        {
-             res.sendStatus(200)
-        }else{
+        if (result == 1) {
+            res.sendStatus(200)
+        } else {
             res.send(500)
         }
         //return res.send(result)
-    }).catch((err)=>{
+    }).catch((err) => {
         console.log(err);
     })
-
-    // .then(
-    //     (result) => {
-    //         console.log(result);
-    //          res.writeHead(200);
-    //         return res.send(result);
-    //     }
-    // ).catch((err)=>{
-    //     res.send(err);
-    // });
 });
 
 
@@ -86,33 +80,64 @@ async function insertData(body) {
 }
 
 /**delete policy  */
-router.delete('/',function(req,res,next){
-    checkData(res,req.body.data);
-    const {data} = req.body;
-    deletePolicy(data).then((result)=>{
+router.delete('/', function (req, res, next) {
+    checkData(res, req.body.data);
+    const {
+        data
+    } = req.body;
+    deletePolicy(data).then((result) => {
         console.log(result);
-        if(result ==1 )
-        {
-             res.sendStatus(200)
-        }else{
+        if (result == 1) {
+            res.sendStatus(200)
+        } else {
             res.send(500)
         }
         //return res.send(result)
-    }).catch((err)=>{
+    }).catch((err) => {
         console.log(err);
     })
 
 })
 
 
+async function getPolicy() {
+
+    const policy = new ohana('SAP_JIANGDU_POLICYS'); // new ohana('table_name');
+ //    const result = await policy.find(["POLICY_ID", "POLICY_TITLE", "CREATED_AT", "UPDATED_AT"]);
+    const result = await policy.raw(
+        "SELECT TOP 5      \"POLICY_ID\",  \"POLICY_TITLE\", \"CREATED_AT\", \"UPDATED_AT\" FROM \"SAP_JIANGDU_POLICYS\""
+    )
+    // if(result.length>10)
+    // {
+    //     result.
+    // }
+    for (var i = 0; i < result.length; i++) {
+        result[i].tags =
+            await policy.raw(
+                "select \"TAG_ID\", \"TAG_NAME\",\"TAG_VALUE\" from \"SAP_JIANGDU_TAGS\" where \"TAG_ID\" in (Select \"TAG_ID_TAG_ID\" from \"SAP_JIANGDU_TAG_POLICYS\" where \"POLICY_ID_POLICY_ID\" = '" + result[i].POLICY_ID + "' )"
+            );
+    }
+    return result;
+
+}
+
+// async function getPolicyTags(policyTag) {
+//     const policy = new ohana('SAP_JIANGDU_POLICYS'); // new ohana('table_name');
+//     const result = await policy.raw(
+//         "select * from \"SAP_JIANGDU_TAGS\" where \"TAG_ID\" in (Select \"TAG_ID_TAG_ID\" from \"SAP_JIANGDU_TAG_POLICYS\" where \"POLICY_ID_POLICY_ID\" = '" + policyTag + "' )"
+//     );
+//     return result;
+//}
 async function updatePolicy(body) {
     const policy = new ohana('SAP_JIANGDU_POLICYS'); // new ohana('table_name');
-    const result = await policy.update({POLICY_ID:body.POLICY_ID},body);
+    const result = await policy.update({
+        POLICY_ID: body.POLICY_ID
+    }, body);
     return result;
 }
 async function deletePolicy(body) {
     const policy = new ohana('SAP_JIANGDU_POLICYS'); // new ohana('table_name');
-   const result = await policy.raw("delete from \"SAP_JIANGDU_POLICYS\" where POLICY_ID = '"+body.POLICY_ID+"'");
+    const result = await policy.raw("delete from \"SAP_JIANGDU_POLICYS\" where POLICY_ID = '" + body.POLICY_ID + "'");
     return result;
 }
 
