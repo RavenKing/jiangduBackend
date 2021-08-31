@@ -109,7 +109,7 @@ async function updatePolicy(body) {
 }
 async function deletePolicy(body) {
     const policy = new ohana(tableName); // new ohana('table_name');
-   const result = await policy.raw("delete from \"SAP_JIANGDU_tags\" where TAG_ID = '"+body.TAG_ID+"'");
+   const result = await policy.raw("delete from \"SAP_JIANGDU_TAGS\" where TAG_ID = '"+body.TAG_ID+"'");
     return result;
 }
 
