@@ -78,7 +78,7 @@ router.post('/', function (req, res, next) {
     const {
         data
     } = req.body;
-    console.log(data);
+ //   console.log(data);
     //console.log(uunewid.v4())
     data.POLICY_ID = uunewid.v4();
     insertData(data).then((result) => {
@@ -132,7 +132,7 @@ async function getPolicy() {
     for (var i = 0; i < result.length; i++) {
         result[i].tags =
             await policy.raw(
-                "select \"TAG_ID\", \"TAG_NAME\",\"TAG_VALUE\" from \"SAP_JIANGDU_TAGS\" where \"TAG_ID\" in (Select \"TAG_ID_TAG_ID\" from \"SAP_JIANGDU_TAG_POLICYS\" where \"POLICY_ID_POLICY_ID\" = '" + result[i].POLICY_ID + "' )"
+                "select \"TAG_ID\", \"TAG_NAME\",\"TAG_VALUE\" ,\"TAG_CATEGORY\" from \"SAP_JIANGDU_TAGS\" where \"TAG_ID\" in (Select \"TAG_ID_TAG_ID\" from \"SAP_JIANGDU_TAG_POLICYS\" where \"POLICY_ID_POLICY_ID\" = '" + result[i].POLICY_ID + "' )"
             );
     }
     return result;
