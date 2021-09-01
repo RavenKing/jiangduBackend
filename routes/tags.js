@@ -31,7 +31,6 @@ router.get('/', function (req, res, next) {
             res.send(result)
         });
     }
-
 });
 
 /**update policy  */

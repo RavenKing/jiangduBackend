@@ -9,13 +9,10 @@ const {
 function checkData(res, data) {
     if (data == null) {
         res.send(500)
-
     }
-
 }
 /* GET users listing. */
 router.get('/', function (req, res, next) {
-
     getPolicy().then((result) => {
         //console.log(result);
         res.send(result);
@@ -23,7 +20,6 @@ router.get('/', function (req, res, next) {
     }).catch((err) => {
         console.log(err);
     })
-
 });
 
 /**update policy  */
@@ -32,8 +28,6 @@ router.put('/', function (req, res, next) {
     const {
         data
     } = req.body;
-    console.log(data);
-
     updatePolicy(data).then((result) => {
         console.log(result);
         if (result == 1) {
@@ -45,14 +39,42 @@ router.put('/', function (req, res, next) {
     }).catch((err) => {
         console.log(err);
     })
-
-
 });
 
+router.post('/policyTags',function(req,res,next){
+    const {
+        data
+    } = req.body;
+    insertPolicyData(data).then((result) => {
+        //console.log(result);
+        if (result == 1) {
+            res.sendStatus(200)
+        } else {
+            res.send(500)
+        }
+        //return res.send(result)
+    }).catch((err) => {
+        console.log(err);
+    })
+});
+
+router.post('/deleteTags',function(req,res,next){
+    const {
+        data
+    } = req.body;
+    deletaPolicyTag(data).then((result) => {
+        if (result == 1) {
+            res.sendStatus(200)
+        } else {
+            res.send(500)
+        }
+    }).catch((err) => {
+        console.log(err);
+    })
+});
 
 /** insert policys */
 router.post('/', function (req, res, next) {
-    console.log(req.body)
     const {
         data
     } = req.body;
@@ -107,10 +129,6 @@ async function getPolicy() {
     const result = await policy.raw(
         "SELECT TOP 5      \"POLICY_ID\",  \"POLICY_TITLE\", \"CREATED_AT\", \"UPDATED_AT\" FROM \"SAP_JIANGDU_POLICYS\""
     )
-    // if(result.length>10)
-    // {
-    //     result.
-    // }
     for (var i = 0; i < result.length; i++) {
         result[i].tags =
             await policy.raw(
@@ -138,6 +156,20 @@ async function updatePolicy(body) {
 async function deletePolicy(body) {
     const policy = new ohana('SAP_JIANGDU_POLICYS'); // new ohana('table_name');
     const result = await policy.raw("delete from \"SAP_JIANGDU_POLICYS\" where POLICY_ID = '" + body.POLICY_ID + "'");
+    return result;
+}
+
+async function insertPolicyData(data)
+{
+    const policyTag = new ohana('SAP_JIANGDU_TAG_POLICYS'); // new ohana('table_name');
+    const result = await policyTag.insert(data);
+    return result;
+}
+
+async function deletaPolicyTag(data)
+{
+    const policyTag = new ohana('SAP_JIANGDU_TAG_POLICYS'); // new ohana('table_name');
+    const result = await policyTag.raw("delete from \"SAP_JIANGDU_TAG_POLICYS\" where POLICY_ID_POLICY_ID = '" + data.POLICY_ID_POLICY_ID + "' and TAG_ID_TAG_ID = '"+data.TAG_ID_TAG_ID+"'");
     return result;
 }
 

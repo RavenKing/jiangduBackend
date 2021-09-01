@@ -27,8 +27,7 @@ router.post('/', function (req, res, next) {
   data.TOKEN="2313122"; 
   data.COMPANY_CODE="12312312";
   console.log(data);
-
- insertData(data).then((result)=>{
+  insertData(data).then((result)=>{
      if(result ==1 )
      {
           res.sendStatus(200)
