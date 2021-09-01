@@ -5,6 +5,13 @@ const {
   ohana
 } = require('ohana-node-orm');
 
+/** */
+function checkData(res, data) {
+  if (data == null) {
+      res.send(500)
+  }
+}
+
 const tableName="SAP_JIANGDU_USERS";
 /* GET users listing. */
 router.get('/', function (req, res, next) {
@@ -14,7 +21,23 @@ router.get('/', function (req, res, next) {
   });
 });
 
-/** insert policys */
+
+router.get('/getCompanyInfo', function(req, res, next){
+  checkData(res,req.body);
+  getCompanyInfo(req.body).then((result)=>{
+      //console.log(result);
+      if(result !== undefined)
+      {
+          res.send(result)
+      }else{
+          res.send(500)
+      }
+      //return res.send(result)
+  }).catch((err)=>{
+      console.log(err);
+  })
+})
+
 router.post('/', function (req, res, next) {
   const {data} = req.body;
   //console.log(uunewid.v4())
@@ -41,11 +64,23 @@ router.post('/', function (req, res, next) {
  });
 });
 
-
 async function insertData(body) {
  const user = new ohana(tableName); // new ohana('table_name');
  const result = await user.insert(body);
  return result;
+}
+
+/**
+ * 127.0.0.1:4000/api/users/getCompanyInfo
+ * @param {*} body 
+ * @returns 
+ */
+async function getCompanyInfo(body) {
+  const user = new ohana(tableName); // new ohana('table_name');
+  const result = await user.raw(
+      "SELECT \"USER_ID\",  \"COMPANY_NAME\", \"COMPANY_CODE\", \"COMPANY_TYPE\" FROM \""+ tableName + "\""
+    )
+    return result;
 }
 
 module.exports = router;
