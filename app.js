@@ -13,6 +13,7 @@ var policysRouter = require('./routes/policys');
 var tagsRouter = require('./routes/tags');
 var talentsRouter = require('./routes/talents');
 var recommendListsRouter = require('./routes/recommendLists')
+var historicalRouter = require('./routes/historical')
 
 var app = express();
 
@@ -33,6 +34,7 @@ app.use('/api/policys', policysRouter);
 app.use('/api/tags', tagsRouter);
 app.use('/api/talents', talentsRouter);
 app.use('/api/recommendLists', recommendListsRouter);
+app.use('/api/historical', historicalRouter);
 
 //configure JWT service
 var secret_private_key = "hello jiangdu"
@@ -41,7 +43,7 @@ app.use(expressJwt({
   secret: secret_private_key,
   algorithms: ['HS256']
 }).unless({
-  path: ['/api/users', '/api/policys', '/api/tags', '/api/talents'] //添加不需要验证的路由
+  path: ['/api/users', '/api/policys', '/api/tags', '/api/talents', '/api/historical'] //添加不需要验证的路由
 }))
 
 // catch 404 and forward to error handler
