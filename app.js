@@ -11,6 +11,7 @@ var policysRouter = require('./routes/policys');
 var tagsRouter = require('./routes/tags');
 var talentsRouter = require('./routes/talents');
 var recommendListsRouter = require('./routes/recommendLists')
+var blackListRouter = require('./routes/blackList')
 
 
 var app = express();
@@ -32,6 +33,7 @@ app.use('/api/policys', policysRouter);
 app.use('/api/tags', tagsRouter);
 app.use('/api/talents', talentsRouter);
 app.use('/api/recommendLists', recommendListsRouter);
+app.use('/api/blackLists', blackListRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
