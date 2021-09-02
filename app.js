@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var db = require('./db/db')
+var expressJwt = require('express-jwt')
+var {PRIVITE_KEY,EXPIRESD} = require('./utils/store')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -13,6 +15,7 @@ var talentsRouter = require('./routes/talents');
 var recommendListsRouter = require('./routes/recommendLists')
 var blackListRouter = require('./routes/blackList')
 
+var historicalRouter = require('./routes/historical')
 
 var app = express();
 
@@ -34,6 +37,17 @@ app.use('/api/tags', tagsRouter);
 app.use('/api/talents', talentsRouter);
 app.use('/api/recommendLists', recommendListsRouter);
 app.use('/api/blackLists', blackListRouter);
+app.use('/api/historical', historicalRouter);
+
+//configure JWT service
+var secret_private_key = "hello jiangdu"
+app.use(expressJwt({
+  credentialsRequired: false,
+  secret: secret_private_key,
+  algorithms: ['HS256']
+}).unless({
+  path: ['/api/users', '/api/policys', '/api/tags', '/api/talents', '/api/historical'] //添加不需要验证的路由
+}))
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
