@@ -25,7 +25,7 @@ router.post('/', function (req, res, next) {
     })
     insertData(data).then((result) => {
       console.log(result)
-      if (result == 4) {
+      if (result == 4 || result == 1 ) {
         res.sendStatus(200)
       } else {
         console.log(result)
