@@ -40,10 +40,9 @@ app.use('/api/blackLists', blackListRouter);
 app.use('/api/historical', historicalRouter);
 
 //configure JWT service
-var secret_private_key = "hello jiangdu"
 app.use(expressJwt({
   credentialsRequired: false,
-  secret: secret_private_key,
+  secret: PRIVITE_KEY,
   algorithms: ['HS256']
 }).unless({
   path: ['/api/users', '/api/policys', '/api/tags', '/api/talents', '/api/historical','/api/blackLists'] //添加不需要验证的路由

@@ -145,6 +145,48 @@ async function insertData(body) {
 }
 
 /**
+ * Get the company by criterian
+ */
+ router.post('/search', function (req, res, next) {
+
+  const queryData = req.query;
+  const user = new ohana(tableName); // new ohana('table_name');
+  if (queryData == null) {
+    user.find().then((result) => {
+          res.send(result)
+      });
+  } else {
+    user.find(queryData).then((result) => {
+          res.send(result)
+      });
+  }
+});
+
+/**
+ * Update COMMENTS, STATUS by USER_ID
+ * @param {*} body 
+ * @returns 
+ */
+router.put('/updateStatus', async (req, res, next) =>{
+  const data = req.body;
+  console.log(data);
+  const user = new ohana(tableName);
+  console.log("UPDATE SAP_JIANGDU_USERS SET COMMENTS='"+ data.COMMENTS + "', STATUS='" + data.STATUS + "' WHERE USER_ID='"+data.USER_ID+"'")
+  try{
+    const result = await user.raw(
+      "UPDATE SAP_JIANGDU_USERS SET COMMENTS='"+ data.COMMENTS + "', STATUS='" + data.STATUS + "' WHERE USER_ID='"+data.USER_ID+"'"
+    )
+    if (result == 1) {
+      res.sendStatus(200)
+    } else {
+        res.send(500)
+    }
+  } catch(err){
+    console.log(err);
+  }
+})
+
+/**
  * 127.0.0.1:4000/api/users/getCompanyInfo
  * @param {*} body 
  * @returns 
