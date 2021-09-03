@@ -12,8 +12,11 @@ function checkData(res, data) {
     }
 }
 /* GET users listing. */
-router.get('/', function (req, res, next) {
-    getPolicy().then((result) => {
+router.post('/', function (req, res, next) {
+    const {
+        data
+    } = req.body;
+    getPolicy(data).then((result) => {
         //console.log(result);
         res.send(result);
         //return res.send(result)
@@ -41,7 +44,7 @@ router.put('/', function (req, res, next) {
     })
 });
 
-router.post('/policyTags',function(req,res,next){
+router.post('/policyTags', function (req, res, next) {
     const {
         data
     } = req.body;
@@ -58,7 +61,7 @@ router.post('/policyTags',function(req,res,next){
     })
 });
 
-router.post('/deleteTags',function(req,res,next){
+router.post('/deleteTags', function (req, res, next) {
     const {
         data
     } = req.body;
@@ -78,7 +81,7 @@ router.post('/', function (req, res, next) {
     const {
         data
     } = req.body;
- //   console.log(data);
+    //   console.log(data);
     //console.log(uunewid.v4())
     data.POLICY_ID = uunewid.v4();
     insertData(data).then((result) => {
@@ -122,13 +125,20 @@ router.delete('/', function (req, res, next) {
 })
 
 
-async function getPolicy() {
-
+async function getPolicy(condition) {
+    let result = [];
     const policy = new ohana('SAP_JIANGDU_POLICYS'); // new ohana('table_name');
- //    const result = await policy.find(["POLICY_ID", "POLICY_TITLE", "CREATED_AT", "UPDATED_AT"]);
-    const result = await policy.raw(
-        "SELECT TOP 5      \"POLICY_ID\",  \"POLICY_TITLE\", \"CREATED_AT\", \"UPDATED_AT\" FROM \"SAP_JIANGDU_POLICYS\""
-    )
+
+    if (!condition) {
+        //    const result = await policy.find(["POLICY_ID", "POLICY_TITLE", "CREATED_AT", "UPDATED_AT"]);
+        result = await policy.raw(
+            "SELECT TOP 5      \"POLICY_ID\",  \"POLICY_TITLE\", \"CREATED_AT\", \"UPDATED_AT\" FROM \"SAP_JIANGDU_POLICYS\""
+        )
+    } else {
+        result = await policy.raw(
+            "SELECT TOP 5      \"POLICY_ID\",  \"POLICY_TITLE\", \"CREATED_AT\", \"UPDATED_AT\" FROM \"SAP_JIANGDU_POLICYS\" where \"POLICY_TITLE\" LIKE \'%" + condition.searchString + "%\'"
+        )
+    }
     for (var i = 0; i < result.length; i++) {
         result[i].tags =
             await policy.raw(
@@ -159,17 +169,15 @@ async function deletePolicy(body) {
     return result;
 }
 
-async function insertPolicyData(data)
-{
+async function insertPolicyData(data) {
     const policyTag = new ohana('SAP_JIANGDU_TAG_POLICYS'); // new ohana('table_name');
     const result = await policyTag.insert(data);
     return result;
 }
 
-async function deletaPolicyTag(data)
-{
+async function deletaPolicyTag(data) {
     const policyTag = new ohana('SAP_JIANGDU_TAG_POLICYS'); // new ohana('table_name');
-    const result = await policyTag.raw("delete from \"SAP_JIANGDU_TAG_POLICYS\" where POLICY_ID_POLICY_ID = '" + data.POLICY_ID_POLICY_ID + "' and TAG_ID_TAG_ID = '"+data.TAG_ID_TAG_ID+"'");
+    const result = await policyTag.raw("delete from \"SAP_JIANGDU_TAG_POLICYS\" where POLICY_ID_POLICY_ID = '" + data.POLICY_ID_POLICY_ID + "' and TAG_ID_TAG_ID = '" + data.TAG_ID_TAG_ID + "'");
     return result;
 }
 
