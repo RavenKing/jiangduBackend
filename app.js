@@ -46,7 +46,7 @@ app.use(expressJwt({
   secret: secret_private_key,
   algorithms: ['HS256']
 }).unless({
-  path: ['/api/users', '/api/policys', '/api/tags', '/api/talents', '/api/historical'] //添加不需要验证的路由
+  path: ['/api/users', '/api/policys', '/api/tags', '/api/talents', '/api/historical','/api/blackLists'] //添加不需要验证的路由
 }))
 
 // catch 404 and forward to error handler
