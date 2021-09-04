@@ -163,7 +163,6 @@ async function get_talent_tag(tag_id){
 
 async function getTalentTags(body) {
     const t_talent = new ohana('SAP_JIANGDU_TAG_TALENTS');
-    //console.log(body)
     //fisrt get tag ids attached with target talent by talent id
     const tag_ids = await t_talent.findOne({
         TALENT_ID_TALENT_ID:body.TALENT_ID_TALENT_ID
@@ -185,7 +184,7 @@ async function insertTalentData(data) {
 
 async function deletaTalentTag(data) {
     const t_talentTags = new ohana('SAP_JIANGDU_TAG_TALENTS'); // new ohana('table_name');
-    const result = await    .raw("delete from \"SAP_JIANGDU_TAG_TALENTS\" where TALENT_ID_TALENT_ID = '" + data.TALENT_ID_TALENT_ID + "' and TAG_ID_TAG_ID = '" + data.TAG_ID_TAG_ID + "'");
+    const result = await t_talentTags.raw("delete from \"SAP_JIANGDU_TAG_TALENTS\" where TALENT_ID_TALENT_ID = '" + data.TALENT_ID_TALENT_ID + "' and TAG_ID_TAG_ID = '" + data.TAG_ID_TAG_ID + "'");
     return result;
 }
 
