@@ -45,6 +45,54 @@ router.put('/',function(req,res,next){
     })
 });
 
+router.get('/tags', function(req, res, next){
+    checkData(res,req.query);
+    getTalentTags(req.query).then((result)=>{
+        //console.log(result);
+        if(result !== undefined)
+        {
+            res.send(result)
+        }else{
+            res.send(500)
+        }
+        //return res.send(result)
+    }).catch((err)=>{
+        console.log(err);
+    })
+})
+
+router.post('/addTags', function (req, res, next) {
+    const {
+        data
+    } = req.body;
+    insertTalentData(data).then((result) => {
+        //console.log(result);
+        if (result == 1) {
+            res.sendStatus(200)
+        } else {
+            res.send(500)
+        }
+        //return res.send(result)
+    }).catch((err) => {
+        console.log(err);
+    })
+});
+
+router.post('/deleteTags', function (req, res, next) {
+    const {
+        data
+    } = req.body;
+    deletaTalentTag(data).then((result) => {
+        if (result == 1) {
+            res.sendStatus(200)
+        } else {
+            res.send(500)
+        }
+    }).catch((err) => {
+        console.log(err);
+    })
+});
+
 /** insert talent */
 router.post('/', function (req, res, next) {
     console.log(req.body)
@@ -85,22 +133,6 @@ router.delete('/',function(req,res,next){
 
 })
 
-router.get('/tags', function(req, res, next){
-    checkData(res,req.query);
-    getTalentTags(req.query).then((result)=>{
-        //console.log(result);
-        if(result !== undefined)
-        {
-            res.send(result)
-        }else{
-            res.send(500)
-        }
-        //return res.send(result)
-    }).catch((err)=>{
-        console.log(err);
-    })
-})
-
 async function insertData(body) {
    const t_talent = new ohana('SAP_JIANGDU_TALENTS'); // new ohana('table_name');
    const result = await t_talent.insert(body);
@@ -129,7 +161,6 @@ async function get_talent_tag(tag_id){
 
 async function getTalentTags(body) {
     const t_talent = new ohana('SAP_JIANGDU_TAG_TALENTS');
-
     //console.log(body)
     //fisrt get tag ids attached with target talent by talent id
     const tag_ids = await t_talent.findOne({
@@ -142,7 +173,18 @@ async function getTalentTags(body) {
         tags.push(tag[0])
     }
     return tags
+}
 
+async function insertTalentData(data) {
+    const t_talentTags = new ohana('SAP_JIANGDU_TAG_TALENTS'); // new ohana('table_name');
+    const result = await t_talentTags.insert(data);
+    return result;
+}
+
+async function deletaTalentTag(data) {
+    const t_talentTags = new ohana('SAP_JIANGDU_TAG_TALENTS'); // new ohana('table_name');
+    const result = await t_talentTags.raw("delete from \"SAP_JIANGDU_TAG_TALENTS\" where TALENT_ID_TALENT_ID = '" + data.TALENT_ID_TALENT_ID + "' and TAG_ID_TAG_ID = '" + data.TAG_ID_TAG_ID + "'");
+    return result;
 }
 
 module.exports = router;
