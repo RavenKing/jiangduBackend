@@ -168,10 +168,10 @@ async function insertData(body) {
  * @returns 
  */
 router.put('/updateStatus', async (req, res, next) =>{
-  const data = req.body;
-  console.log(data);
+  const {data} = req.body;
+
   const user = new ohana(tableName);
-  console.log("UPDATE SAP_JIANGDU_USERS SET COMMENTS='"+ data.COMMENTS + "', STATUS='" + data.STATUS + "' WHERE USER_ID='"+data.USER_ID+"'")
+  //console.log("UPDATE SAP_JIANGDU_USERS SET COMMENTS='"+ data.COMMENTS + "', STATUS='" + data.STATUS + "' WHERE USER_ID='"+data.USER_ID+"'")
   try{
     const result = await user.raw(
       "UPDATE SAP_JIANGDU_USERS SET COMMENTS='"+ data.COMMENTS + "', STATUS='" + data.STATUS + "' WHERE USER_ID='"+data.USER_ID+"'"
