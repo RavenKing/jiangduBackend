@@ -45,9 +45,11 @@ router.put('/',function(req,res,next){
     })
 });
 
-router.get('/tags', function(req, res, next){
-    checkData(res,req.query);
-    getTalentTags(req.query).then((result)=>{
+router.post('/tags', function(req, res, next){
+    const {
+        data
+    } = req.body;
+    getTalentTags(data).then((result)=>{
         //console.log(result);
         if(result !== undefined)
         {
@@ -183,7 +185,7 @@ async function insertTalentData(data) {
 
 async function deletaTalentTag(data) {
     const t_talentTags = new ohana('SAP_JIANGDU_TAG_TALENTS'); // new ohana('table_name');
-    const result = await t_talentTags.raw("delete from \"SAP_JIANGDU_TAG_TALENTS\" where TALENT_ID_TALENT_ID = '" + data.TALENT_ID_TALENT_ID + "' and TAG_ID_TAG_ID = '" + data.TAG_ID_TAG_ID + "'");
+    const result = await    .raw("delete from \"SAP_JIANGDU_TAG_TALENTS\" where TALENT_ID_TALENT_ID = '" + data.TALENT_ID_TALENT_ID + "' and TAG_ID_TAG_ID = '" + data.TAG_ID_TAG_ID + "'");
     return result;
 }
 
