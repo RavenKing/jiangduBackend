@@ -18,6 +18,7 @@ var blackListRouter = require('./routes/blackList')
 var historicalRouter = require('./routes/historical')
 
 var finRouter = require('./routes/fin')
+var assetRouter = require('./routes/assets')
 
 var app = express();
 
@@ -41,6 +42,7 @@ app.use('/api/recommendLists', recommendListsRouter);
 app.use('/api/blackLists', blackListRouter);
 app.use('/api/historical', historicalRouter);
 app.use('/api/fins', finRouter);
+app.use('/api/assets', assetRouter);
 
 //configure JWT service
 app.use(expressJwt({
