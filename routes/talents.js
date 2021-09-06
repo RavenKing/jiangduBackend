@@ -181,7 +181,7 @@ async function get_talent_tag(tag_id){
 
 async function getAllTags(data) {
     const t_talentTags = new ohana('SAP_JIANGDU_TAG_TALENTS'); // new ohana('table_name');
-    const result = await t_talentTags.raw("SELECT A1.*, A2.TAG_NAME, A2.TAG_VALUE, A2.TYPE, A2. TAG_CATEGORY, A2.DESCRIPTION from \"SAP_JIANGDU_TAG_TALENTS\" as A1 LEFT JOIN \"SAP_JIANGDU_TAGS\" as A2 on A1.TAG_ID_TAG_ID = A2.TAG_ID");
+    const result = await t_talentTags.raw("SELECT A1.*, A2.TAG_NAME, A2.TAG_VALUE, A2.TYPE, A2.TAG_CATEGORY, A2.DESCRIPTION from \"SAP_JIANGDU_TAG_TALENTS\" as A1 LEFT JOIN \"SAP_JIANGDU_TAGS\" as A2 on A1.TAG_ID_TAG_ID = A2.TAG_ID");
     return result;
 }
 
