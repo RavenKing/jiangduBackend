@@ -63,7 +63,7 @@ router.post('/tags', function(req, res, next){
     })
 })
 
-router.post('/gs', function(req, res, next){
+router.post('/allTags', function(req, res, next){
     const {
         data
     } = req.body;
