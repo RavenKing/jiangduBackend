@@ -17,6 +17,8 @@ var blackListRouter = require('./routes/blackList')
 
 var historicalRouter = require('./routes/historical')
 
+var finRouter = require('./routes/fin')
+
 var app = express();
 
 // view engine setup
@@ -38,6 +40,7 @@ app.use('/api/talents', talentsRouter);
 app.use('/api/recommendLists', recommendListsRouter);
 app.use('/api/blackLists', blackListRouter);
 app.use('/api/historical', historicalRouter);
+app.use('/api/fins', finRouter);
 
 //configure JWT service
 app.use(expressJwt({

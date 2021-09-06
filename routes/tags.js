@@ -15,7 +15,7 @@ function checkData(res, data) {
         res.send(500)
 
     }
-
+ 
 }
 /* GET users listing. */
 router.get('/', function (req, res, next) {
