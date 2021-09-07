@@ -4,6 +4,7 @@ var router = express.Router();
 /* GET home page. */
 router.get("/", function (req, res, next) {
   // #swagger.tags = ['Home']
+  // #swagger.summary = '获取HomePage'
   res.render("index", { title: "Express" });
 });
 

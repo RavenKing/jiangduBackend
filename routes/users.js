@@ -17,6 +17,8 @@ const tableName = "SAP_JIANGDU_USERS";
 /* GET users listing. */
 router.get("/", function (req, res, next) {
   // #swagger.tags = ['Users']
+  // #swagger.summary = '获取User信息'
+  // #swagger.description = '这个API能获取User的一个列表'
   const user = new ohana(tableName); // new ohana('table_name');
   user.find().then((result) => {
     res.send(result);
@@ -26,6 +28,17 @@ router.get("/", function (req, res, next) {
 // 注册接口
 router.post("/register", async (req, res, next) => {
   // #swagger.tags = ['Users']
+  // #swagger.summary = '注册User'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/user_register"
+                    }  
+                },
+            }
+    } */
   const user = new ohana(tableName);
   const { data } = req.body;
   username = data.USER_NAME;
@@ -59,6 +72,17 @@ router.post("/register", async (req, res, next) => {
 
 router.post("/login", async function (req, res, next) {
   // #swagger.tags = ['Users']
+  // #swagger.summary = '登录'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/user_login"
+                    }  
+                },
+            }
+    } */
   const user = new ohana(tableName);
   username = data.USER_NAME;
   password = data.PASSWORD;
@@ -179,7 +203,17 @@ router.post("/search", function (req, res, next) {
 router.put("/updateStatus", async (req, res, next) => {
   // #swagger.tags = ['Users']
   const { data } = req.body;
-
+  // #swagger.summary = "企业加入白名单/黑名单"
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/user_updateStatus"
+                    }  
+                },
+            }
+    } */
   const user = new ohana(tableName);
   //console.log("UPDATE SAP_JIANGDU_USERS SET COMMENTS='"+ data.COMMENTS + "', STATUS='" + data.STATUS + "' WHERE USER_ID='"+data.USER_ID+"'")
   try {

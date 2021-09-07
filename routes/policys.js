@@ -3,20 +3,27 @@ var uunewid = require("uuid");
 var router = express.Router();
 const { ohana } = require("ohana-node-orm");
 
-/** */
 function checkData(res, data) {
   if (data == null) {
     res.send(500);
   }
 }
-/**
- * @swagger
- * /api/policys:
- *   post:
- *     description:  获取policy
- */
+
 router.post("/", function (req, res, next) {
   // #swagger.tags = ['Policy']
+  // #swagger.summary = '获取政策列表'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $name: 'Jhon Doe',
+                    $age: 29,
+                    about: ''
+                    }  
+                },
+            }
+    } */
   const { data } = req.body;
   getPolicy(data)
     .then((result) => {
@@ -32,6 +39,7 @@ router.post("/", function (req, res, next) {
 /**update policy  */
 router.put("/", function (req, res, next) {
   // #swagger.tags = ['Policy']
+  // #swagger.summary = '修改政策'
   checkData(res, req.body.data);
   const { data } = req.body;
   updatePolicy(data)
@@ -51,6 +59,7 @@ router.put("/", function (req, res, next) {
 
 router.post("/policyTags", function (req, res, next) {
   // #swagger.tags = ['Policy']
+  // #swagger.summary = '获取某一政策的标签列表'
   const { data } = req.body;
   insertPolicyData(data)
     .then((result) => {
@@ -69,6 +78,7 @@ router.post("/policyTags", function (req, res, next) {
 
 router.post("/deleteTags", function (req, res, next) {
   // #swagger.tags = ['Policy']
+  // #swagger.summary = '删除Tag'
   const { data } = req.body;
   deletaPolicyTag(data)
     .then((result) => {
@@ -86,6 +96,7 @@ router.post("/deleteTags", function (req, res, next) {
 /** insert policys */
 router.post("/", function (req, res, next) {
   // #swagger.tags = ['Policy']
+  // #swagger.summary = '插入新政策'
   const { data } = req.body;
   //   console.log(data);
   //console.log(uunewid.v4())
@@ -114,6 +125,7 @@ async function insertData(body) {
 /**delete policy  */
 router.delete("/", function (req, res, next) {
   // #swagger.tags = ['Policy']
+  // #swagger.summary = '删除政策'
   checkData(res, req.body.data);
   const { data } = req.body;
   deletePolicy(data)

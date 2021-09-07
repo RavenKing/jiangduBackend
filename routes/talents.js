@@ -45,6 +45,18 @@ router.put("/", function (req, res, next) {
 
 router.post("/tags", function (req, res, next) {
   // #swagger.tags = ['Talent']
+  // #swagger.summary = '获取某个talent下全部tag'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/talents_tags"
+                    }  
+                },
+            }
+    } */
+
   const { data } = req.body;
   getTalentTags(data)
     .then((result) => {
@@ -81,6 +93,17 @@ router.post("/allTags", function (req, res, next) {
 
 router.post("/addTags", function (req, res, next) {
   // #swagger.tags = ['Talent']
+  // #swagger.summary = '给某个talent添加tag'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/talents_tags"
+                    }  
+                },
+            }
+    } */
   const { data } = req.body;
   insertTalentData(data)
     .then((result) => {
@@ -99,6 +122,17 @@ router.post("/addTags", function (req, res, next) {
 
 router.post("/deleteTags", function (req, res, next) {
   // #swagger.tags = ['Talent']
+  // #swagger.summary = '给某个talent删除tag'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/talents_tags"
+                    }  
+                },
+            }
+    } */
   const { data } = req.body;
   deletaTalentTag(data)
     .then((result) => {

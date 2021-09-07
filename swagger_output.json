@@ -1,5 +1,5 @@
 {
-  "swagger": "2.0",
+  "openapi": "3.0.0",
   "info": {
     "title": "江都 API",
     "description": "小程序+管理后台共用接口api",
@@ -19,6 +19,7 @@
         "tags": [
           "Home"
         ],
+        "summary": "获取HomePage",
         "description": "",
         "parameters": [],
         "responses": {}
@@ -29,7 +30,8 @@
         "tags": [
           "Users"
         ],
-        "description": "",
+        "summary": "获取User信息",
+        "description": "这个API能获取User的一个列表",
         "parameters": [],
         "responses": {}
       },
@@ -60,22 +62,20 @@
         "tags": [
           "Users"
         ],
+        "summary": "注册User",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/user_register"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       }
     },
     "/api/users/login": {
@@ -83,9 +83,20 @@
         "tags": [
           "Users"
         ],
+        "summary": "登录",
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/user_login"
+              }
+            }
+          }
+        }
       }
     },
     "/api/users/getCompanyInfo": {
@@ -113,22 +124,20 @@
         "tags": [
           "Users"
         ],
+        "summary": "企业加入白名单/黑名单",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/user_updateStatus"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       }
     },
     "/api/policys/": {
@@ -136,6 +145,7 @@
         "tags": [
           "Policy"
         ],
+        "summary": "插入新政策",
         "description": "",
         "parameters": [
           {
@@ -157,6 +167,7 @@
         "tags": [
           "Policy"
         ],
+        "summary": "修改政策",
         "description": "",
         "parameters": [
           {
@@ -178,6 +189,7 @@
         "tags": [
           "Policy"
         ],
+        "summary": "删除政策",
         "description": "",
         "parameters": [
           {
@@ -201,6 +213,7 @@
         "tags": [
           "Policy"
         ],
+        "summary": "获取某一政策的标签列表",
         "description": "",
         "parameters": [
           {
@@ -224,6 +237,7 @@
         "tags": [
           "Policy"
         ],
+        "summary": "删除Tag",
         "description": "",
         "parameters": [
           {
@@ -393,22 +407,20 @@
         "tags": [
           "Talent"
         ],
+        "summary": "获取某个talent下全部tag",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/talents_tags"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       }
     },
     "/api/talents/allTags": {
@@ -439,22 +451,20 @@
         "tags": [
           "Talent"
         ],
+        "summary": "给某个talent添加tag",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/talents_tags"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       }
     },
     "/api/talents/deleteTags": {
@@ -462,22 +472,20 @@
         "tags": [
           "Talent"
         ],
+        "summary": "给某个talent删除tag",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/talents_tags"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       }
     },
     "/api/recommendLists/": {
@@ -948,5 +956,78 @@
       }
     }
   },
-  "definitions": {}
+  "definitions": {
+    "user_login": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "username": {
+              "type": "string",
+              "example": "admin"
+            },
+            "password": {
+              "type": "string",
+              "example": "123456"
+            }
+          }
+        }
+      }
+    },
+    "user_register": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "username": {
+              "type": "string",
+              "example": "admin1"
+            },
+            "password": {
+              "type": "string",
+              "example": "1234561"
+            }
+          }
+        }
+      }
+    },
+    "user_updateStatus": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "USER_ID": {
+              "type": "string",
+              "example": "aa303c63-0a25-11ec-8516-342eb7e2a2ec"
+            },
+            "COMMENTS": {
+              "type": "string",
+              "example": "评价6798"
+            },
+            "STATUS": {
+              "type": "string",
+              "example": "黑名单"
+            }
+          }
+        }
+      }
+    },
+    "talents_tags": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "TALENT_ID_TALENT_ID": {
+              "type": "string",
+              "example": "020d921e-0a36-11ec-82f5-90ccdf01187c"
+            }
+          }
+        }
+      }
+    }
+  }
 }
