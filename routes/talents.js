@@ -188,10 +188,10 @@ async function getAllTags(data) {
 async function getTalentTags(body) {
     const t_talent = new ohana('SAP_JIANGDU_TAG_TALENTS');
     //fisrt get tag ids attached with target talent by talent id
-    const tag_ids = await t_talent.findOne({
+    const tag_ids = await t_talent.find({
         TALENT_ID_TALENT_ID:body.TALENT_ID_TALENT_ID
     }); 
-    console.log(tag_ids)
+    //console.log(tag_ids)
     let tags = []
     for (var i = 0; i < tag_ids.length; i++) {
         const tag = await get_talent_tag(tag_ids[i].TAG_ID_TAG_ID);
