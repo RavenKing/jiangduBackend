@@ -2,6 +2,8 @@ var express = require('express');
 var uunewid = require('uuid');
 var router = express.Router();
 
+
+
 const {
   ohana
 } = require('ohana-node-orm');
@@ -19,6 +21,23 @@ function checkData(res, data) {
 const tableName="SAP_JIANGDU_ASSETS";
 const tagTableName="SAP_JIANGDU_TAG_ASSETS";
 /* GET users listing. */
+
+
+/**
+ * @swagger
+ * /api/assets:
+ *   post:
+ *     description:  Endpoint for everything
+ *   responses:
+ *        200:
+ *          description: successful operation
+ *          schema:
+ *            ref: #/definitions/Order
+ *        400:
+ *          description: Invalid ID supplied
+ *        404:
+ *          description: Order not found
+ */
 router.post('/', function (req, res, next) {
   const user = new ohana(tableName); // new ohana('table_name');
   user.find().then((result) => {
@@ -26,7 +45,15 @@ router.post('/', function (req, res, next) {
   });
 });
 
-
+/**
+ * @swagger
+ *  /api/assets/add:
+ *   post:
+ *      tags:
+ *      - 测试
+ *      description:  Endpoint for all variations of scatter plots
+ *      parameters:
+ */
 router.post('/add', function (req, res, next) {
   const {data} = req.body;
   //console.log(uunewid.v4())
