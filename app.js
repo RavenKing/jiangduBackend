@@ -20,7 +20,10 @@ var historicalRouter = require('./routes/historical')
 var finRouter = require('./routes/fin')
 var assetRouter = require('./routes/assets')
 
+// 使用swagger API 文档
+var swaggerInstall = require('./utils/swagger')
 var app = express();
+swaggerInstall(app)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
