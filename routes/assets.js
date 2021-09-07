@@ -45,15 +45,6 @@ router.post('/', function (req, res, next) {
   });
 });
 
-/**
- * @swagger
- *  /api/assets/add:
- *   post:
- *      tags:
- *      - 测试
- *      description:  Endpoint for all variations of scatter plots
- *      parameters:
- */
 router.post('/add', function (req, res, next) {
   const {data} = req.body;
   //console.log(uunewid.v4())

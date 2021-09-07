@@ -2,6 +2,7 @@ const path = require('path')
 const express = require('express')
 const swaggerUI = require('swagger-ui-express')
 const swaggerDoc = require('swagger-jsdoc')
+const swaggerFile = require('../../swagger_output.json')
 //配置swagger-jsdoc
   const options = {
     definition: {
@@ -30,5 +31,6 @@ const swaggerDoc = require('swagger-jsdoc')
     app.get('/swagger.json', swaggerJson);
     // 使用 swaggerSpec 生成 swagger 文档页面，并开放在指定路由
     app.use('/swagger', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
+    app.use('/doc', swaggerUI.serve, swaggerUI.setup(swaggerFile));
   }
   module.exports = swaggerInstall 
