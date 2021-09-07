@@ -16,6 +16,7 @@ router.post('/', function (req, res, next) {
     const {
         data
     } = req.body;
+    console.log(data);
     getPolicy(data).then((result) => {
         //console.log(result);
         res.send(result);
@@ -129,7 +130,7 @@ async function getPolicy(condition) {
     let result = [];
     const policy = new ohana('SAP_JIANGDU_POLICYS'); // new ohana('table_name');
 
-    if (!condition) {
+    if (!condition.searchString) {
         //    const result = await policy.find(["POLICY_ID", "POLICY_TITLE", "CREATED_AT", "UPDATED_AT"]);
         result = await policy.raw(
             "SELECT TOP 5      \"POLICY_ID\",  \"POLICY_TITLE\", \"CREATED_AT\", \"UPDATED_AT\" FROM \"SAP_JIANGDU_POLICYS\""

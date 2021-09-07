@@ -19,6 +19,7 @@ var historicalRouter = require('./routes/historical')
 
 var finRouter = require('./routes/fin')
 var assetRouter = require('./routes/assets')
+var techRouter=require('./routes/techs')
 
 // 使用swagger API 文档
 var swaggerInstall = require('./utils/swagger')
@@ -46,6 +47,7 @@ app.use('/api/blackLists', blackListRouter);
 app.use('/api/historical', historicalRouter);
 app.use('/api/fins', finRouter);
 app.use('/api/assets', assetRouter);
+app.use('/api/techs', techRouter);
 
 //configure JWT service
 app.use(expressJwt({
