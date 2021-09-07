@@ -1,12 +1,12 @@
 const swaggerAutogen = require("swagger-autogen")();
 
 const outputFile = "./swagger_output.json";
-const routesURL = "routes/";
-let endpointsFiles = ['app.js'];
 
-let fs = require("fs");
-let path = require("path");
-let myurl = "/Users/youhao/jiangduBackend/routes";
+let endpointsFiles = ['app.js'];
+// const routesURL = "routes/";
+// let fs = require("fs");
+// let path = require("path");
+// let myurl = "/Users/youhao/jiangduBackend/routes";
 
 const doc = {
   info: {

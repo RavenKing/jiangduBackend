@@ -16,6 +16,7 @@ function checkData(res, data) {
  *     description:  获取policy
  */
 router.post("/", function (req, res, next) {
+  // #swagger.tags = ['Policy']
   const { data } = req.body;
   getPolicy(data)
     .then((result) => {
@@ -30,6 +31,7 @@ router.post("/", function (req, res, next) {
 
 /**update policy  */
 router.put("/", function (req, res, next) {
+  // #swagger.tags = ['Policy']
   checkData(res, req.body.data);
   const { data } = req.body;
   updatePolicy(data)
@@ -48,6 +50,7 @@ router.put("/", function (req, res, next) {
 });
 
 router.post("/policyTags", function (req, res, next) {
+  // #swagger.tags = ['Policy']
   const { data } = req.body;
   insertPolicyData(data)
     .then((result) => {
@@ -65,6 +68,7 @@ router.post("/policyTags", function (req, res, next) {
 });
 
 router.post("/deleteTags", function (req, res, next) {
+  // #swagger.tags = ['Policy']
   const { data } = req.body;
   deletaPolicyTag(data)
     .then((result) => {
@@ -81,6 +85,7 @@ router.post("/deleteTags", function (req, res, next) {
 
 /** insert policys */
 router.post("/", function (req, res, next) {
+  // #swagger.tags = ['Policy']
   const { data } = req.body;
   //   console.log(data);
   //console.log(uunewid.v4())
@@ -108,6 +113,7 @@ async function insertData(body) {
 
 /**delete policy  */
 router.delete("/", function (req, res, next) {
+  // #swagger.tags = ['Policy']
   checkData(res, req.body.data);
   const { data } = req.body;
   deletePolicy(data)

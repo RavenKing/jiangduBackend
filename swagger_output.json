@@ -16,7 +16,9 @@
   "paths": {
     "/": {
       "get": {
-        "tags": [],
+        "tags": [
+          "Home"
+        ],
         "description": "",
         "parameters": [],
         "responses": {}
@@ -24,13 +26,17 @@
     },
     "/api/users/": {
       "get": {
-        "tags": [],
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "parameters": [],
         "responses": {}
       },
       "post": {
-        "tags": [],
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "parameters": [
           {
@@ -51,7 +57,9 @@
     },
     "/api/users/register": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "parameters": [
           {
@@ -72,7 +80,9 @@
     },
     "/api/users/login": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "parameters": [],
         "responses": {}
@@ -80,7 +90,9 @@
     },
     "/api/users/getCompanyInfo": {
       "get": {
-        "tags": [],
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "parameters": [],
         "responses": {}
@@ -88,7 +100,9 @@
     },
     "/api/users/search": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "parameters": [],
         "responses": {}
@@ -96,7 +110,9 @@
     },
     "/api/users/updateStatus": {
       "put": {
-        "tags": [],
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "parameters": [
           {
@@ -117,7 +133,9 @@
     },
     "/api/policys/": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Policy"
+        ],
         "description": "",
         "parameters": [
           {
@@ -136,7 +154,9 @@
         "responses": {}
       },
       "put": {
-        "tags": [],
+        "tags": [
+          "Policy"
+        ],
         "description": "",
         "parameters": [
           {
@@ -155,7 +175,9 @@
         "responses": {}
       },
       "delete": {
-        "tags": [],
+        "tags": [
+          "Policy"
+        ],
         "description": "",
         "parameters": [
           {
@@ -176,7 +198,9 @@
     },
     "/api/policys/policyTags": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Policy"
+        ],
         "description": "",
         "parameters": [
           {
@@ -197,7 +221,9 @@
     },
     "/api/policys/deleteTags": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Policy"
+        ],
         "description": "",
         "parameters": [
           {
@@ -218,13 +244,17 @@
     },
     "/api/tags/": {
       "get": {
-        "tags": [],
+        "tags": [
+          "Tag"
+        ],
         "description": "",
         "parameters": [],
         "responses": {}
       },
       "put": {
-        "tags": [],
+        "tags": [
+          "Tag"
+        ],
         "description": "",
         "parameters": [
           {
@@ -243,7 +273,9 @@
         "responses": {}
       },
       "post": {
-        "tags": [],
+        "tags": [
+          "Tag"
+        ],
         "description": "",
         "parameters": [
           {
@@ -262,7 +294,9 @@
         "responses": {}
       },
       "delete": {
-        "tags": [],
+        "tags": [
+          "Tag"
+        ],
         "description": "",
         "parameters": [
           {
@@ -283,13 +317,17 @@
     },
     "/api/talents/": {
       "get": {
-        "tags": [],
+        "tags": [
+          "Talent"
+        ],
         "description": "",
         "parameters": [],
         "responses": {}
       },
       "put": {
-        "tags": [],
+        "tags": [
+          "Talent"
+        ],
         "description": "",
         "parameters": [
           {
@@ -308,7 +346,9 @@
         "responses": {}
       },
       "post": {
-        "tags": [],
+        "tags": [
+          "Talent"
+        ],
         "description": "",
         "parameters": [
           {
@@ -327,7 +367,9 @@
         "responses": {}
       },
       "delete": {
-        "tags": [],
+        "tags": [
+          "Talent"
+        ],
         "description": "",
         "parameters": [
           {
@@ -348,7 +390,9 @@
     },
     "/api/talents/tags": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Talent"
+        ],
         "description": "",
         "parameters": [
           {
@@ -358,7 +402,7 @@
               "type": "object",
               "properties": {
                 "data": {
-                  "example": "{TALENT_ID_TALENT_ID}"
+                  "example": "any"
                 }
               }
             }
@@ -369,7 +413,9 @@
     },
     "/api/talents/allTags": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Talent"
+        ],
         "description": "",
         "parameters": [
           {
@@ -390,7 +436,9 @@
     },
     "/api/talents/addTags": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Talent"
+        ],
         "description": "",
         "parameters": [
           {
@@ -411,7 +459,9 @@
     },
     "/api/talents/deleteTags": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Talent"
+        ],
         "description": "",
         "parameters": [
           {
@@ -432,13 +482,17 @@
     },
     "/api/recommendLists/": {
       "get": {
-        "tags": [],
+        "tags": [
+          "RecommendList"
+        ],
         "description": "",
         "parameters": [],
         "responses": {}
       },
       "post": {
-        "tags": [],
+        "tags": [
+          "RecommendList"
+        ],
         "description": "",
         "parameters": [
           {
@@ -457,7 +511,9 @@
         "responses": {}
       },
       "put": {
-        "tags": [],
+        "tags": [
+          "RecommendList"
+        ],
         "description": "",
         "parameters": [
           {
@@ -478,7 +534,9 @@
     },
     "/api/recommendLists/notices": {
       "post": {
-        "tags": [],
+        "tags": [
+          "RecommendList"
+        ],
         "description": "",
         "parameters": [],
         "responses": {}
@@ -486,13 +544,17 @@
     },
     "/api/blackLists/": {
       "get": {
-        "tags": [],
+        "tags": [
+          "blacklist"
+        ],
         "description": "",
         "parameters": [],
         "responses": {}
       },
       "post": {
-        "tags": [],
+        "tags": [
+          "blacklist"
+        ],
         "description": "",
         "parameters": [
           {
@@ -513,7 +575,9 @@
     },
     "/api/blackLists/getCompanyInfo": {
       "get": {
-        "tags": [],
+        "tags": [
+          "blacklist"
+        ],
         "description": "",
         "parameters": [],
         "responses": {}
@@ -521,7 +585,9 @@
     },
     "/api/historical/latest/policy/companies": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Historical"
+        ],
         "description": "",
         "parameters": [],
         "responses": {}
@@ -529,13 +595,17 @@
     },
     "/api/fins/": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Fin"
+        ],
         "description": "",
         "parameters": [],
         "responses": {}
       },
       "put": {
-        "tags": [],
+        "tags": [
+          "Fin"
+        ],
         "description": "",
         "parameters": [
           {
@@ -554,7 +624,9 @@
         "responses": {}
       },
       "delete": {
-        "tags": [],
+        "tags": [
+          "Fin"
+        ],
         "description": "",
         "parameters": [
           {
@@ -575,7 +647,9 @@
     },
     "/api/fins/add": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Fin"
+        ],
         "description": "",
         "parameters": [
           {
@@ -596,7 +670,9 @@
     },
     "/api/fins/search": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Fin"
+        ],
         "description": "",
         "parameters": [],
         "responses": {}
@@ -604,7 +680,9 @@
     },
     "/api/fins/finTags": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Fin"
+        ],
         "description": "",
         "parameters": [
           {
@@ -625,7 +703,9 @@
     },
     "/api/fins/addTags": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Fin"
+        ],
         "description": "",
         "parameters": [
           {
@@ -646,7 +726,9 @@
     },
     "/api/fins/deleteTags": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Fin"
+        ],
         "description": "",
         "parameters": [
           {
@@ -667,7 +749,9 @@
     },
     "/api/fins/updateStatus": {
       "put": {
-        "tags": [],
+        "tags": [
+          "Fin"
+        ],
         "description": "",
         "parameters": [
           {
@@ -688,13 +772,17 @@
     },
     "/api/assets/": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Asset"
+        ],
         "description": "",
         "parameters": [],
         "responses": {}
       },
       "put": {
-        "tags": [],
+        "tags": [
+          "Asset"
+        ],
         "description": "",
         "parameters": [
           {
@@ -713,7 +801,9 @@
         "responses": {}
       },
       "delete": {
-        "tags": [],
+        "tags": [
+          "Asset"
+        ],
         "description": "",
         "parameters": [
           {
@@ -734,7 +824,9 @@
     },
     "/api/assets/add": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Asset"
+        ],
         "description": "",
         "parameters": [
           {
@@ -755,7 +847,9 @@
     },
     "/api/assets/search": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Asset"
+        ],
         "description": "",
         "parameters": [],
         "responses": {}
@@ -763,7 +857,9 @@
     },
     "/api/assets/AssetTags": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Asset"
+        ],
         "description": "",
         "parameters": [
           {
@@ -784,7 +880,9 @@
     },
     "/api/assets/addTags": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Asset"
+        ],
         "description": "",
         "parameters": [
           {
@@ -805,7 +903,9 @@
     },
     "/api/assets/deleteTags": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Asset"
+        ],
         "description": "",
         "parameters": [
           {
@@ -826,7 +926,9 @@
     },
     "/api/assets/updateStatus": {
       "put": {
-        "tags": [],
+        "tags": [
+          "Asset"
+        ],
         "description": "",
         "parameters": [
           {
