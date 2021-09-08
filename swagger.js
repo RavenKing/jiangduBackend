@@ -28,6 +28,19 @@ const doc = {
     talents_tags: {
       data: { TALENT_ID_TALENT_ID: "020d921e-0a36-11ec-82f5-90ccdf01187c" },
     },
+    policy: { data: {}, token: "4836f6e1-2e8b-4b45-b903-9cf88d990901" },
+    policy_add: {
+      data: {
+        POLICY_ID: "",
+        POLICY_TITLE: "ddd",
+        CDATA: "ddd",
+        CREATED_AT: "2021-09-08T03:22:17.848Z",
+        UPDATED_AT: "2021-09-08T03:22:17.848Z",
+        POLICY_URL: " ",
+        USER_USER_ID: "2200",
+      },
+      token: "4836f6e1-2e8b-4b45-b903-9cf88d990901",
+    },
   },
 };
 swaggerAutogen(outputFile, endpointsFiles, doc);

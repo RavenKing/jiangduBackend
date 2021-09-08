@@ -145,23 +145,20 @@
         "tags": [
           "Policy"
         ],
-        "summary": "插入新政策",
+        "summary": "获取政策列表",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/policy"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       },
       "put": {
         "tags": [
@@ -254,6 +251,27 @@
           }
         ],
         "responses": {}
+      }
+    },
+    "/api/policys/add": {
+      "post": {
+        "tags": [
+          "Policy"
+        ],
+        "summary": "插入新政策",
+        "description": "",
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/policy_add"
+              }
+            }
+          }
+        }
       }
     },
     "/api/tags/": {
@@ -954,6 +972,165 @@
         ],
         "responses": {}
       }
+    },
+    "/api/techs/": {
+      "post": {
+        "tags": [],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      },
+      "put": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {}
+      },
+      "delete": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/techs/add": {
+      "post": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/techs/search": {
+      "post": {
+        "tags": [],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api/techs/techTags": {
+      "post": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/techs/addTags": {
+      "post": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/techs/deleteTags": {
+      "post": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/techs/updateStatus": {
+      "put": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {}
+      }
     }
   },
   "definitions": {
@@ -1026,6 +1203,61 @@
               "example": "020d921e-0a36-11ec-82f5-90ccdf01187c"
             }
           }
+        }
+      }
+    },
+    "policy": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {}
+        },
+        "token": {
+          "type": "string",
+          "example": "4836f6e1-2e8b-4b45-b903-9cf88d990901"
+        }
+      }
+    },
+    "policy_add": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "POLICY_ID": {
+              "type": "string",
+              "example": ""
+            },
+            "POLICY_TITLE": {
+              "type": "string",
+              "example": "ddd"
+            },
+            "CDATA": {
+              "type": "string",
+              "example": "ddd"
+            },
+            "CREATED_AT": {
+              "type": "string",
+              "example": "2021-09-08T03:22:17.848Z"
+            },
+            "UPDATED_AT": {
+              "type": "string",
+              "example": "2021-09-08T03:22:17.848Z"
+            },
+            "POLICY_URL": {
+              "type": "string",
+              "example": " "
+            },
+            "USER_USER_ID": {
+              "type": "string",
+              "example": "2200"
+            }
+          }
+        },
+        "token": {
+          "type": "string",
+          "example": "4836f6e1-2e8b-4b45-b903-9cf88d990901"
         }
       }
     }

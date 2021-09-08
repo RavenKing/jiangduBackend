@@ -17,10 +17,8 @@ router.post("/", function (req, res, next) {
             content: {
                 "application/json": {
                     schema: {
-                        $name: 'Jhon Doe',
-                    $age: 29,
-                    about: ''
-                    }  
+                        $ref: "#/definitions/policy"
+                    }    
                 },
             }
     } */
@@ -97,6 +95,16 @@ router.post("/deleteTags", function (req, res, next) {
 router.post("/add", function (req, res, next) {
   // #swagger.tags = ['Policy']
   // #swagger.summary = '插入新政策'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/policy_add"
+                    }    
+                },
+            }
+    } */
   const { data } = req.body;
   //   console.log(data);
   //console.log(uunewid.v4())
@@ -144,27 +152,29 @@ router.delete("/", function (req, res, next) {
 });
 
 async function getPolicy(condition) {
-    let result = [];
-    const policy = new ohana('SAP_JIANGDU_POLICYS'); // new ohana('table_name');
+  let result = [];
+  const policy = new ohana("SAP_JIANGDU_POLICYS"); // new ohana('table_name');
 
-    if (!condition.searchString) {
-        //    const result = await policy.find(["POLICY_ID", "POLICY_TITLE", "CREATED_AT", "UPDATED_AT"]);
-        result = await policy.raw(
-            "SELECT TOP 5      \"POLICY_ID\",  \"POLICY_TITLE\", \"CREATED_AT\", \"UPDATED_AT\" FROM \"SAP_JIANGDU_POLICYS\""
-        )
-    } else {
-        result = await policy.raw(
-            "SELECT TOP 5      \"POLICY_ID\",  \"POLICY_TITLE\", \"CREATED_AT\", \"UPDATED_AT\" FROM \"SAP_JIANGDU_POLICYS\" where \"POLICY_TITLE\" LIKE \'%" + condition.searchString + "%\'"
-        )
-    }
-    for (var i = 0; i < result.length; i++) {
-        result[i].tags =
-            await policy.raw(
-                "select \"TAG_ID\", \"TAG_NAME\",\"TAG_VALUE\" ,\"TAG_CATEGORY\" from \"SAP_JIANGDU_TAGS\" where \"TAG_ID\" in (Select \"TAG_ID_TAG_ID\" from \"SAP_JIANGDU_TAG_POLICYS\" where \"POLICY_ID_POLICY_ID\" = '" + result[i].POLICY_ID + "' )"
-            );
-    }
-    return result;
-
+  if (!condition.searchString) {
+    //    const result = await policy.find(["POLICY_ID", "POLICY_TITLE", "CREATED_AT", "UPDATED_AT"]);
+    result = await policy.raw(
+      'SELECT TOP 5      "POLICY_ID",  "POLICY_TITLE", "CREATED_AT", "UPDATED_AT" FROM "SAP_JIANGDU_POLICYS"'
+    );
+  } else {
+    result = await policy.raw(
+      'SELECT TOP 5      "POLICY_ID",  "POLICY_TITLE", "CREATED_AT", "UPDATED_AT" FROM "SAP_JIANGDU_POLICYS" where "POLICY_TITLE" LIKE \'%' +
+        condition.searchString +
+        "%'"
+    );
+  }
+  for (var i = 0; i < result.length; i++) {
+    result[i].tags = await policy.raw(
+      'select "TAG_ID", "TAG_NAME","TAG_VALUE" ,"TAG_CATEGORY" from "SAP_JIANGDU_TAGS" where "TAG_ID" in (Select "TAG_ID_TAG_ID" from "SAP_JIANGDU_TAG_POLICYS" where "POLICY_ID_POLICY_ID" = \'' +
+        result[i].POLICY_ID +
+        "' )"
+    );
+  }
+  return result;
 }
 
 // async function getPolicyTags(policyTag) {
