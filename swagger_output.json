@@ -1,5 +1,5 @@
 {
-  "swagger": "2.0",
+  "openapi": "3.0.0",
   "info": {
     "title": "江都 API",
     "description": "小程序+管理后台共用接口api",
@@ -16,7 +16,10 @@
   "paths": {
     "/": {
       "get": {
-        "tags": [],
+        "tags": [
+          "Home"
+        ],
+        "summary": "获取HomePage",
         "description": "",
         "parameters": [],
         "responses": {}
@@ -24,13 +27,18 @@
     },
     "/api/users/": {
       "get": {
-        "tags": [],
-        "description": "",
+        "tags": [
+          "Users"
+        ],
+        "summary": "获取User信息",
+        "description": "这个API能获取User的一个列表",
         "parameters": [],
         "responses": {}
       },
       "post": {
-        "tags": [],
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "parameters": [
           {
@@ -51,36 +59,51 @@
     },
     "/api/users/register": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Users"
+        ],
+        "summary": "注册User",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/user_register"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       }
     },
     "/api/users/login": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Users"
+        ],
+        "summary": "登录",
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/user_login"
+              }
+            }
+          }
+        }
       }
     },
     "/api/users/getCompanyInfo": {
       "get": {
-        "tags": [],
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "parameters": [],
         "responses": {}
@@ -88,7 +111,9 @@
     },
     "/api/users/search": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "parameters": [],
         "responses": {}
@@ -96,28 +121,31 @@
     },
     "/api/users/updateStatus": {
       "put": {
-        "tags": [],
+        "tags": [
+          "Users"
+        ],
+        "summary": "企业加入白名单/黑名单",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/user_updateStatus"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       }
     },
     "/api/policys/": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Policy"
+        ],
+        "summary": "插入新政策",
         "description": "",
         "parameters": [
           {
@@ -136,7 +164,10 @@
         "responses": {}
       },
       "put": {
-        "tags": [],
+        "tags": [
+          "Policy"
+        ],
+        "summary": "修改政策",
         "description": "",
         "parameters": [
           {
@@ -155,7 +186,10 @@
         "responses": {}
       },
       "delete": {
-        "tags": [],
+        "tags": [
+          "Policy"
+        ],
+        "summary": "删除政策",
         "description": "",
         "parameters": [
           {
@@ -176,7 +210,10 @@
     },
     "/api/policys/policyTags": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Policy"
+        ],
+        "summary": "获取某一政策的标签列表",
         "description": "",
         "parameters": [
           {
@@ -197,7 +234,10 @@
     },
     "/api/policys/deleteTags": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Policy"
+        ],
+        "summary": "删除Tag",
         "description": "",
         "parameters": [
           {
@@ -218,13 +258,17 @@
     },
     "/api/tags/": {
       "get": {
-        "tags": [],
+        "tags": [
+          "Tag"
+        ],
         "description": "",
         "parameters": [],
         "responses": {}
       },
       "put": {
-        "tags": [],
+        "tags": [
+          "Tag"
+        ],
         "description": "",
         "parameters": [
           {
@@ -243,7 +287,9 @@
         "responses": {}
       },
       "post": {
-        "tags": [],
+        "tags": [
+          "Tag"
+        ],
         "description": "",
         "parameters": [
           {
@@ -262,7 +308,9 @@
         "responses": {}
       },
       "delete": {
-        "tags": [],
+        "tags": [
+          "Tag"
+        ],
         "description": "",
         "parameters": [
           {
@@ -283,13 +331,17 @@
     },
     "/api/talents/": {
       "get": {
-        "tags": [],
+        "tags": [
+          "Talent"
+        ],
         "description": "",
         "parameters": [],
         "responses": {}
       },
       "put": {
-        "tags": [],
+        "tags": [
+          "Talent"
+        ],
         "description": "",
         "parameters": [
           {
@@ -308,7 +360,9 @@
         "responses": {}
       },
       "post": {
-        "tags": [],
+        "tags": [
+          "Talent"
+        ],
         "description": "",
         "parameters": [
           {
@@ -327,7 +381,9 @@
         "responses": {}
       },
       "delete": {
-        "tags": [],
+        "tags": [
+          "Talent"
+        ],
         "description": "",
         "parameters": [
           {
@@ -348,28 +404,30 @@
     },
     "/api/talents/tags": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Talent"
+        ],
+        "summary": "获取某个talent下全部tag",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "{TALENT_ID_TALENT_ID}"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/talents_tags"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       }
     },
     "/api/talents/allTags": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Talent"
+        ],
         "description": "",
         "parameters": [
           {
@@ -390,55 +448,59 @@
     },
     "/api/talents/addTags": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Talent"
+        ],
+        "summary": "给某个talent添加tag",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/talents_tags"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       }
     },
     "/api/talents/deleteTags": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Talent"
+        ],
+        "summary": "给某个talent删除tag",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/talents_tags"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       }
     },
     "/api/recommendLists/": {
       "get": {
-        "tags": [],
+        "tags": [
+          "RecommendList"
+        ],
         "description": "",
         "parameters": [],
         "responses": {}
       },
       "post": {
-        "tags": [],
+        "tags": [
+          "RecommendList"
+        ],
         "description": "",
         "parameters": [
           {
@@ -457,7 +519,9 @@
         "responses": {}
       },
       "put": {
-        "tags": [],
+        "tags": [
+          "RecommendList"
+        ],
         "description": "",
         "parameters": [
           {
@@ -478,7 +542,9 @@
     },
     "/api/recommendLists/notices": {
       "post": {
-        "tags": [],
+        "tags": [
+          "RecommendList"
+        ],
         "description": "",
         "parameters": [],
         "responses": {}
@@ -486,13 +552,17 @@
     },
     "/api/blackLists/": {
       "get": {
-        "tags": [],
+        "tags": [
+          "blacklist"
+        ],
         "description": "",
         "parameters": [],
         "responses": {}
       },
       "post": {
-        "tags": [],
+        "tags": [
+          "blacklist"
+        ],
         "description": "",
         "parameters": [
           {
@@ -513,7 +583,9 @@
     },
     "/api/blackLists/getCompanyInfo": {
       "get": {
-        "tags": [],
+        "tags": [
+          "blacklist"
+        ],
         "description": "",
         "parameters": [],
         "responses": {}
@@ -521,7 +593,9 @@
     },
     "/api/historical/latest/policy/companies": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Historical"
+        ],
         "description": "",
         "parameters": [],
         "responses": {}
@@ -529,13 +603,17 @@
     },
     "/api/fins/": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Fin"
+        ],
         "description": "",
         "parameters": [],
         "responses": {}
       },
       "put": {
-        "tags": [],
+        "tags": [
+          "Fin"
+        ],
         "description": "",
         "parameters": [
           {
@@ -554,7 +632,9 @@
         "responses": {}
       },
       "delete": {
-        "tags": [],
+        "tags": [
+          "Fin"
+        ],
         "description": "",
         "parameters": [
           {
@@ -575,7 +655,9 @@
     },
     "/api/fins/add": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Fin"
+        ],
         "description": "",
         "parameters": [
           {
@@ -596,7 +678,9 @@
     },
     "/api/fins/search": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Fin"
+        ],
         "description": "",
         "parameters": [],
         "responses": {}
@@ -604,7 +688,9 @@
     },
     "/api/fins/finTags": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Fin"
+        ],
         "description": "",
         "parameters": [
           {
@@ -625,7 +711,9 @@
     },
     "/api/fins/addTags": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Fin"
+        ],
         "description": "",
         "parameters": [
           {
@@ -646,7 +734,9 @@
     },
     "/api/fins/deleteTags": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Fin"
+        ],
         "description": "",
         "parameters": [
           {
@@ -667,7 +757,9 @@
     },
     "/api/fins/updateStatus": {
       "put": {
-        "tags": [],
+        "tags": [
+          "Fin"
+        ],
         "description": "",
         "parameters": [
           {
@@ -688,13 +780,17 @@
     },
     "/api/assets/": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Asset"
+        ],
         "description": "",
         "parameters": [],
         "responses": {}
       },
       "put": {
-        "tags": [],
+        "tags": [
+          "Asset"
+        ],
         "description": "",
         "parameters": [
           {
@@ -713,7 +809,9 @@
         "responses": {}
       },
       "delete": {
-        "tags": [],
+        "tags": [
+          "Asset"
+        ],
         "description": "",
         "parameters": [
           {
@@ -734,7 +832,9 @@
     },
     "/api/assets/add": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Asset"
+        ],
         "description": "",
         "parameters": [
           {
@@ -755,7 +855,9 @@
     },
     "/api/assets/search": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Asset"
+        ],
         "description": "",
         "parameters": [],
         "responses": {}
@@ -763,7 +865,9 @@
     },
     "/api/assets/AssetTags": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Asset"
+        ],
         "description": "",
         "parameters": [
           {
@@ -784,7 +888,9 @@
     },
     "/api/assets/addTags": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Asset"
+        ],
         "description": "",
         "parameters": [
           {
@@ -805,7 +911,9 @@
     },
     "/api/assets/deleteTags": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Asset"
+        ],
         "description": "",
         "parameters": [
           {
@@ -826,7 +934,9 @@
     },
     "/api/assets/updateStatus": {
       "put": {
-        "tags": [],
+        "tags": [
+          "Asset"
+        ],
         "description": "",
         "parameters": [
           {
@@ -846,5 +956,78 @@
       }
     }
   },
-  "definitions": {}
+  "definitions": {
+    "user_login": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "username": {
+              "type": "string",
+              "example": "admin"
+            },
+            "password": {
+              "type": "string",
+              "example": "123456"
+            }
+          }
+        }
+      }
+    },
+    "user_register": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "username": {
+              "type": "string",
+              "example": "admin1"
+            },
+            "password": {
+              "type": "string",
+              "example": "1234561"
+            }
+          }
+        }
+      }
+    },
+    "user_updateStatus": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "USER_ID": {
+              "type": "string",
+              "example": "aa303c63-0a25-11ec-8516-342eb7e2a2ec"
+            },
+            "COMMENTS": {
+              "type": "string",
+              "example": "评价6798"
+            },
+            "STATUS": {
+              "type": "string",
+              "example": "黑名单"
+            }
+          }
+        }
+      }
+    },
+    "talents_tags": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "TALENT_ID_TALENT_ID": {
+              "type": "string",
+              "example": "020d921e-0a36-11ec-82f5-90ccdf01187c"
+            }
+          }
+        }
+      }
+    }
+  }
 }
