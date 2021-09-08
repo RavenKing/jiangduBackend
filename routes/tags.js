@@ -5,15 +5,19 @@ const { ohana } = require("ohana-node-orm");
 const { query } = require("express");
 const tableName = "SAP_JIANGDU_TAGS";
 
-/** */
 function checkData(res, data) {
   if (data == null) {
     res.send(500);
   }
 }
-/* GET users listing. */
+
 router.get("/", function (req, res, next) {
   // #swagger.tags = ['Tag']
+  // #swagger.summary = '获取Tag列表'
+  /*  #swagger.parameters['TYPE'] = {
+                in: 'query',
+                description: '标签类别 PO/FI/TA...'
+        } */
   const queryData = req.query;
   const policy = new ohana(tableName); // new ohana('table_name');
   if (queryData == null) {
@@ -27,9 +31,20 @@ router.get("/", function (req, res, next) {
   }
 });
 
-/**update policy  */
+
 router.put("/", function (req, res, next) {
   // #swagger.tags = ['Tag']
+  // #swagger.summary = '修改Tag'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/tag_update"
+                    }  
+                },
+            }
+    } */
   checkData(res, req.body.data);
   const { data } = req.body;
   console.log(data);
@@ -51,6 +66,17 @@ router.put("/", function (req, res, next) {
 /** insert tags */
 router.post("/", function (req, res, next) {
   // #swagger.tags = ['Tag']
+  // #swagger.summary = '新建Tag'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/tag_add"
+                    }  
+                },
+            }
+    } */
   console.log(req.body);
   const { data } = req.body;
   console.log(data);
@@ -90,6 +116,17 @@ async function insertData(body) {
 /**delete policy  */
 router.delete("/", function (req, res, next) {
   // #swagger.tags = ['Tag']
+  // #swagger.summary = '删除Tag'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/tag_delete"
+                    }  
+                },
+            }
+    } */
   checkData(res, req.body.data);
   const { data } = req.body;
   deletePolicy(data)

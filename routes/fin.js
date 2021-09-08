@@ -19,6 +19,7 @@ const tagTableName = "SAP_JIANGDU_TAG_FINS";
 /* GET users listing. */
 router.post("/", function (req, res, next) {
   // #swagger.tags = ['Fin']
+  // #swagger.summary = '获取Fin'
   const user = new ohana(tableName); // new ohana('table_name');
   user.find().then((result) => {
     res.send(result);
@@ -27,6 +28,17 @@ router.post("/", function (req, res, next) {
 
 router.post("/add", function (req, res, next) {
   // #swagger.tags = ['Fin']
+  // #swagger.summary = '新建fin'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/fin_add"
+                    }  
+                },
+            }
+    } */
   const { data } = req.body;
   //console.log(uunewid.v4())
   data.FIN_ID = uunewid.v4();
@@ -57,6 +69,17 @@ async function insertData(body) {
  */
 router.post("/search", function (req, res, next) {
   // #swagger.tags = ['Fin']
+  // #swagger.summary = '注册User'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/user_register"
+                    }  
+                },
+            }
+    } */
   const queryData = req.query;
   const user = new ohana(tableName); // new ohana('table_name');
   if (queryData == null) {
@@ -73,6 +96,17 @@ router.post("/search", function (req, res, next) {
 /**update fins  */
 router.put("/", function (req, res, next) {
   // #swagger.tags = ['Fin']
+  // #swagger.summary = '注册User'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/user_register"
+                    }  
+                },
+            }
+    } */
   //   checkData(res, req.body.data)
   const { data } = req.body;
   //  console.log(data);
@@ -93,6 +127,17 @@ router.put("/", function (req, res, next) {
 /*delete something*/
 router.delete("/", function (req, res, next) {
   // #swagger.tags = ['Fin']
+  // #swagger.summary = '注册User'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/user_register"
+                    }  
+                },
+            }
+    } */
   checkData(res, req.body.data);
   const { data } = req.body;
   deletePolicy(data)
@@ -133,6 +178,17 @@ async function deletePolicy(body) {
 
 router.post("/finTags", function (req, res, next) {
   // #swagger.tags = ['Fin']
+  // #swagger.summary = '注册User'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/user_register"
+                    }  
+                },
+            }
+    } */
   const { data } = req.body;
   getFinTag(data)
     .then((result) => {
@@ -153,6 +209,17 @@ router.post("/finTags", function (req, res, next) {
 
 router.post("/addTags", function (req, res, next) {
   // #swagger.tags = ['Fin']
+  // #swagger.summary = '注册User'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/user_register"
+                    }  
+                },
+            }
+    } */
   const { data } = req.body;
   insertFinData(data)
     .then((result) => {
@@ -171,6 +238,17 @@ router.post("/addTags", function (req, res, next) {
 
 router.post("/deleteTags", function (req, res, next) {
   // #swagger.tags = ['Fin']
+  // #swagger.summary = '注册User'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/user_register"
+                    }  
+                },
+            }
+    } */
   const { data } = req.body;
   deletaFinTag(data)
     .then((result) => {
@@ -191,6 +269,17 @@ router.post("/deleteTags", function (req, res, next) {
  */
 router.put("/updateStatus", async (req, res, next) => {
   // #swagger.tags = ['Fin']
+  // #swagger.summary = '注册User'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/user_register"
+                    }  
+                },
+            }
+    } */
   const { data } = req.body;
 
   const user = new ohana(tableName);

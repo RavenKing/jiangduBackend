@@ -17,8 +17,8 @@ const tableName = "SAP_JIANGDU_USERS";
 /* GET users listing. */
 router.get("/", function (req, res, next) {
   // #swagger.tags = ['Users']
-  // #swagger.summary = '获取User信息'
-  // #swagger.description = '这个API能获取User的一个列表'
+  // #swagger.summary = '获取User信息列表'
+  // #swagger.description = '这个API能获取所有User的列表'
   const user = new ohana(tableName); // new ohana('table_name');
   user.find().then((result) => {
     res.send(result);
@@ -127,6 +127,7 @@ router.post("/login", async function (req, res, next) {
 
 router.get("/getCompanyInfo", function (req, res, next) {
   // #swagger.tags = ['Users']
+  // #swagger.summary = '获取企业信息列表'
   checkData(res, req.body);
   getCompanyInfo(req.body)
     .then((result) => {
@@ -145,6 +146,7 @@ router.get("/getCompanyInfo", function (req, res, next) {
 
 router.post("/", function (req, res, next) {
   // #swagger.tags = ['Users']
+  // #swagger.summary = '插入新的企业数据，需要哪些字段未知'
   const { data } = req.body;
   //console.log(uunewid.v4())
   data.USER_ID = uunewid.v4();
@@ -182,6 +184,17 @@ async function insertData(body) {
  */
 router.post("/search", function (req, res, next) {
   // #swagger.tags = ['Users']
+  // #swagger.summary = '搜索企业 需要参数未知'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/user_search"
+                    }  
+                },
+            }
+    } */
   const queryData = req.query;
   const user = new ohana(tableName); // new ohana('table_name');
   if (queryData == null) {

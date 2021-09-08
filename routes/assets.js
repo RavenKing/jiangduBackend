@@ -4,10 +4,6 @@ var router = express.Router();
 
 const { ohana } = require("ohana-node-orm");
 
-/**
- *
- *
- */
 function checkData(res, data) {
   if (data == null) {
     res.send(500);
@@ -18,23 +14,19 @@ const tableName = "SAP_JIANGDU_ASSETS";
 const tagTableName = "SAP_JIANGDU_TAG_ASSETS";
 /* GET users listing. */
 
-/**
- * @swagger
- * /api/assets:
- *   post:
- *     description:  Endpoint for everything
- *   responses:
- *        200:
- *          description: successful operation
- *          schema:
- *            ref: #/definitions/Order
- *        400:
- *          description: Invalid ID supplied
- *        404:
- *          description: Order not found
- */
 router.post("/", function (req, res, next) {
   // #swagger.tags = ['Asset']
+  // #swagger.summary = '获取asset'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        "data":{}
+                    }  
+                },
+            }
+    } */
   const user = new ohana(tableName); // new ohana('table_name');
   user.find().then((result) => {
     res.send(result);
@@ -43,6 +35,17 @@ router.post("/", function (req, res, next) {
 
 router.post("/add", function (req, res, next) {
   // #swagger.tags = ['Asset']
+  // #swagger.summary = '注册User'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/user_register"
+                    }  
+                },
+            }
+    } */
   const { data } = req.body;
   //console.log(uunewid.v4())
   data.ASSET_ID = uunewid.v4();
@@ -73,6 +76,17 @@ async function insertData(body) {
  */
 router.post("/search", function (req, res, next) {
   // #swagger.tags = ['Asset']
+  // #swagger.summary = '注册User'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/user_register"
+                    }  
+                },
+            }
+    } */
   const queryData = req.query;
   const user = new ohana(tableName); // new ohana('table_name');
   if (queryData == null) {
@@ -89,6 +103,17 @@ router.post("/search", function (req, res, next) {
 /**update Assets  */
 router.put("/", function (req, res, next) {
   // #swagger.tags = ['Asset']
+  // #swagger.summary = '注册User'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/user_register"
+                    }  
+                },
+            }
+    } */
   //   checkData(res, req.body.data)
   const { data } = req.body;
   //  console.log(data);
@@ -109,6 +134,17 @@ router.put("/", function (req, res, next) {
 /*delete something*/
 router.delete("/", function (req, res, next) {
   // #swagger.tags = ['Asset']
+  // #swagger.summary = '注册User'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/user_register"
+                    }  
+                },
+            }
+    } */
   checkData(res, req.body.data);
   const { data } = req.body;
   deletePolicy(data)
@@ -149,6 +185,17 @@ async function deletePolicy(body) {
 
 router.post("/AssetTags", function (req, res, next) {
   // #swagger.tags = ['Asset']
+  // #swagger.summary = '注册User'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/user_register"
+                    }  
+                },
+            }
+    } */
   const { data } = req.body;
   getAssetTag(data)
     .then((result) => {
@@ -169,6 +216,17 @@ router.post("/AssetTags", function (req, res, next) {
 
 router.post("/addTags", function (req, res, next) {
   // #swagger.tags = ['Asset']
+  // #swagger.summary = '注册User'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/user_register"
+                    }  
+                },
+            }
+    } */
   const { data } = req.body;
   insertAssetData(data)
     .then((result) => {
@@ -187,6 +245,17 @@ router.post("/addTags", function (req, res, next) {
 
 router.post("/deleteTags", function (req, res, next) {
   // #swagger.tags = ['Asset']
+  // #swagger.summary = '注册User'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/user_register"
+                    }  
+                },
+            }
+    } */
   const { data } = req.body;
   deletaAssetTag(data)
     .then((result) => {
@@ -207,6 +276,17 @@ router.post("/deleteTags", function (req, res, next) {
  */
 router.put("/updateStatus", async (req, res, next) => {
   // #swagger.tags = ['Asset']
+  // #swagger.summary = '注册User'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/user_register"
+                    }  
+                },
+            }
+    } */
   const { data } = req.body;
 
   const user = new ohana(tableName);

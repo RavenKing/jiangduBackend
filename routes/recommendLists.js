@@ -7,6 +7,7 @@ const tableName = "SAP_JIANGDU_RECOMMENDED_LIST";
 /* GET users listing. */
 router.get("/", function (req, res, next) {
   // #swagger.tags = ['RecommendList']
+  // #swagger.summary = '获取推荐列表'
   const user = new ohana(tableName); // new ohana('table_name');
   user.find().then((result) => {
     res.send(result);
@@ -15,6 +16,17 @@ router.get("/", function (req, res, next) {
 
 router.post("/", function (req, res, next) {
   // #swagger.tags = ['RecommendList']
+  // #swagger.summary = '新建推荐列表'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/recommendList"
+                    }  
+                },
+            }
+    } */
   const { data } = req.body;
   if (data.length > 0) {
     data.map((one) => {
@@ -41,6 +53,17 @@ router.post("/", function (req, res, next) {
 
 router.post("/notices", function (req, res, next) {
   // #swagger.tags = ['RecommendList']
+  // #swagger.summary = '??????'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/recommendList"
+                    }  
+                },
+            }
+    } */
   console.log("here!");
   const queryData = req.query;
   const recommendLists = new ohana(tableName); // new ohana('table_name');
@@ -66,6 +89,17 @@ router.post("/notices", function (req, res, next) {
 
 router.put("/", function (req, res, next) {
   // #swagger.tags = ['RecommendList']
+  // #swagger.summary = '修改列表'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/recommendList"
+                    }  
+                },
+            }
+    } */
   checkData(res, req.body.data);
   const { data } = req.body;
   updateMessage(data)

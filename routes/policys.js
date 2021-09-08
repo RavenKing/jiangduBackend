@@ -38,6 +38,16 @@ router.post("/", function (req, res, next) {
 router.put("/", function (req, res, next) {
   // #swagger.tags = ['Policy']
   // #swagger.summary = '修改政策'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/policy_update"
+                    }  
+                },
+            }
+    } */
   checkData(res, req.body.data);
   const { data } = req.body;
   updatePolicy(data)
@@ -57,7 +67,17 @@ router.put("/", function (req, res, next) {
 
 router.post("/policyTags", function (req, res, next) {
   // #swagger.tags = ['Policy']
-  // #swagger.summary = '获取某一政策的标签列表'
+  // #swagger.summary = '给某一政策增加标签'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/policy_policyTags"
+                    }  
+                },
+            }
+    } */
   const { data } = req.body;
   insertPolicyData(data)
     .then((result) => {
@@ -76,7 +96,17 @@ router.post("/policyTags", function (req, res, next) {
 
 router.post("/deleteTags", function (req, res, next) {
   // #swagger.tags = ['Policy']
-  // #swagger.summary = '删除Tag'
+  // #swagger.summary = '给某一个政策删除Tag'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/policy_deleteTags"
+                    }  
+                },
+            }
+    } */
   const { data } = req.body;
   deletaPolicyTag(data)
     .then((result) => {
@@ -134,6 +164,16 @@ async function insertData(body) {
 router.delete("/", function (req, res, next) {
   // #swagger.tags = ['Policy']
   // #swagger.summary = '删除政策'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/policy_delete"
+                    }  
+                },
+            }
+    } */
   checkData(res, req.body.data);
   const { data } = req.body;
   deletePolicy(data)

@@ -30,8 +30,8 @@
         "tags": [
           "Users"
         ],
-        "summary": "获取User信息",
-        "description": "这个API能获取User的一个列表",
+        "summary": "获取User信息列表",
+        "description": "这个API能获取所有User的列表",
         "parameters": [],
         "responses": {}
       },
@@ -39,6 +39,7 @@
         "tags": [
           "Users"
         ],
+        "summary": "插入新的企业数据，需要哪些字段未知",
         "description": "",
         "parameters": [
           {
@@ -104,6 +105,7 @@
         "tags": [
           "Users"
         ],
+        "summary": "获取企业信息列表",
         "description": "",
         "parameters": [],
         "responses": {}
@@ -114,9 +116,20 @@
         "tags": [
           "Users"
         ],
+        "summary": "搜索企业 需要参数未知",
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/user_search"
+              }
+            }
+          }
+        }
       }
     },
     "/api/users/updateStatus": {
@@ -166,21 +179,18 @@
         ],
         "summary": "修改政策",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/policy_update"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       },
       "delete": {
         "tags": [
@@ -188,21 +198,18 @@
         ],
         "summary": "删除政策",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/policy_delete"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       }
     },
     "/api/policys/policyTags": {
@@ -210,23 +217,20 @@
         "tags": [
           "Policy"
         ],
-        "summary": "获取某一政策的标签列表",
+        "summary": "给某一政策增加标签",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/policy_policyTags"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       }
     },
     "/api/policys/deleteTags": {
@@ -234,23 +238,20 @@
         "tags": [
           "Policy"
         ],
-        "summary": "删除Tag",
+        "summary": "给某一个政策删除Tag",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/policy_deleteTags"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       }
     },
     "/api/policys/add": {
@@ -279,72 +280,74 @@
         "tags": [
           "Tag"
         ],
+        "summary": "获取Tag列表",
         "description": "",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "TYPE",
+            "in": "query",
+            "description": "标签类别 PO/FI/TA...",
+            "type": "string"
+          }
+        ],
         "responses": {}
       },
       "put": {
         "tags": [
           "Tag"
         ],
+        "summary": "修改Tag",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/tag_update"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       },
       "post": {
         "tags": [
           "Tag"
         ],
+        "summary": "新建Tag",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/tag_add"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       },
       "delete": {
         "tags": [
           "Tag"
         ],
+        "summary": "删除Tag",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/tag_delete"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       }
     },
     "/api/talents/": {
@@ -352,6 +355,7 @@
         "tags": [
           "Talent"
         ],
+        "summary": "获取人才",
         "description": "",
         "parameters": [],
         "responses": {}
@@ -360,64 +364,58 @@
         "tags": [
           "Talent"
         ],
+        "summary": "修改人才信息",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/talent_update"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       },
       "post": {
         "tags": [
           "Talent"
         ],
+        "summary": "注册User",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/user_register"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       },
       "delete": {
         "tags": [
           "Talent"
         ],
+        "summary": "删除人才",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/talent_delete"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       }
     },
     "/api/talents/tags": {
@@ -446,6 +444,7 @@
         "tags": [
           "Talent"
         ],
+        "summary": "应该是个废弃的接口了",
         "description": "",
         "parameters": [
           {
@@ -478,7 +477,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/definitions/talents_tags"
+                "$ref": "#/definitions/talent_addTags"
               }
             }
           }
@@ -499,7 +498,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/definitions/talents_tags"
+                "$ref": "#/definitions/talent_deleteTags"
               }
             }
           }
@@ -511,6 +510,7 @@
         "tags": [
           "RecommendList"
         ],
+        "summary": "获取推荐列表",
         "description": "",
         "parameters": [],
         "responses": {}
@@ -519,43 +519,39 @@
         "tags": [
           "RecommendList"
         ],
+        "summary": "新建推荐列表",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/recommendList"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       },
       "put": {
         "tags": [
           "RecommendList"
         ],
+        "summary": "修改列表",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/recommendList"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       }
     },
     "/api/recommendLists/notices": {
@@ -563,9 +559,20 @@
         "tags": [
           "RecommendList"
         ],
+        "summary": "??????",
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/recommendList"
+              }
+            }
+          }
+        }
       }
     },
     "/api/blackLists/": {
@@ -573,6 +580,7 @@
         "tags": [
           "blacklist"
         ],
+        "summary": "获取黑白名单",
         "description": "",
         "parameters": [],
         "responses": {}
@@ -581,22 +589,20 @@
         "tags": [
           "blacklist"
         ],
+        "summary": "新建，删除，修改黑白名单用的是users/updateStatus，这个接口没用",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/blacklist"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       }
     },
     "/api/blackLists/getCompanyInfo": {
@@ -604,6 +610,7 @@
         "tags": [
           "blacklist"
         ],
+        "summary": "只要了\"USER_ID\", \"COMPANY_NAME\", \"COMPANY_CODE\", \"COMPANY_TYPE\"四个字段",
         "description": "",
         "parameters": [],
         "responses": {}
@@ -614,9 +621,20 @@
         "tags": [
           "Historical"
         ],
+        "summary": "常用公司历史数据",
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/historical"
+              }
+            }
+          }
+        }
       }
     },
     "/api/fins/": {
@@ -624,6 +642,7 @@
         "tags": [
           "Fin"
         ],
+        "summary": "获取Fin",
         "description": "",
         "parameters": [],
         "responses": {}
@@ -632,43 +651,39 @@
         "tags": [
           "Fin"
         ],
+        "summary": "注册User",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/user_register"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       },
       "delete": {
         "tags": [
           "Fin"
         ],
+        "summary": "注册User",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/user_register"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       }
     },
     "/api/fins/add": {
@@ -676,22 +691,20 @@
         "tags": [
           "Fin"
         ],
+        "summary": "新建fin",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/fin_add"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       }
     },
     "/api/fins/search": {
@@ -699,9 +712,20 @@
         "tags": [
           "Fin"
         ],
+        "summary": "注册User",
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/user_register"
+              }
+            }
+          }
+        }
       }
     },
     "/api/fins/finTags": {
@@ -709,22 +733,20 @@
         "tags": [
           "Fin"
         ],
+        "summary": "注册User",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/user_register"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       }
     },
     "/api/fins/addTags": {
@@ -732,22 +754,20 @@
         "tags": [
           "Fin"
         ],
+        "summary": "注册User",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/user_register"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       }
     },
     "/api/fins/deleteTags": {
@@ -755,22 +775,20 @@
         "tags": [
           "Fin"
         ],
+        "summary": "注册User",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/user_register"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       }
     },
     "/api/fins/updateStatus": {
@@ -778,22 +796,20 @@
         "tags": [
           "Fin"
         ],
+        "summary": "注册User",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/user_register"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       }
     },
     "/api/assets/": {
@@ -801,51 +817,58 @@
         "tags": [
           "Asset"
         ],
+        "summary": "获取asset",
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "data": {}
+              }
+            }
+          }
+        }
       },
       "put": {
         "tags": [
           "Asset"
         ],
+        "summary": "注册User",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/user_register"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       },
       "delete": {
         "tags": [
           "Asset"
         ],
+        "summary": "注册User",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/user_register"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       }
     },
     "/api/assets/add": {
@@ -853,22 +876,20 @@
         "tags": [
           "Asset"
         ],
+        "summary": "注册User",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/user_register"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       }
     },
     "/api/assets/search": {
@@ -876,9 +897,20 @@
         "tags": [
           "Asset"
         ],
+        "summary": "注册User",
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/user_register"
+              }
+            }
+          }
+        }
       }
     },
     "/api/assets/AssetTags": {
@@ -886,22 +918,20 @@
         "tags": [
           "Asset"
         ],
+        "summary": "注册User",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/user_register"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       }
     },
     "/api/assets/addTags": {
@@ -909,22 +939,20 @@
         "tags": [
           "Asset"
         ],
+        "summary": "注册User",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/user_register"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       }
     },
     "/api/assets/deleteTags": {
@@ -932,22 +960,20 @@
         "tags": [
           "Asset"
         ],
+        "summary": "注册User",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/user_register"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       }
     },
     "/api/assets/updateStatus": {
@@ -955,181 +981,205 @@
         "tags": [
           "Asset"
         ],
+        "summary": "注册User",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/user_register"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       }
     },
     "/api/techs/": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Tech"
+        ],
+        "summary": "注册User",
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/user_register"
+              }
+            }
+          }
+        }
       },
       "put": {
-        "tags": [],
+        "tags": [
+          "Tech"
+        ],
+        "summary": "注册User",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/user_register"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       },
       "delete": {
-        "tags": [],
+        "tags": [
+          "Tech"
+        ],
+        "summary": "注册User",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/user_register"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       }
     },
     "/api/techs/add": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Tech"
+        ],
+        "summary": "注册User",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/user_register"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       }
     },
     "/api/techs/search": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Tech"
+        ],
+        "summary": "注册User",
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/user_register"
+              }
+            }
+          }
+        }
       }
     },
     "/api/techs/techTags": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Tech"
+        ],
+        "summary": "注册User",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/user_register"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       }
     },
     "/api/techs/addTags": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Tech"
+        ],
+        "summary": "注册User",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/user_register"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       }
     },
     "/api/techs/deleteTags": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Tech"
+        ],
+        "summary": "注册User",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/user_register"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       }
     },
     "/api/techs/updateStatus": {
       "put": {
-        "tags": [],
+        "tags": [
+          "Tech"
+        ],
+        "summary": "注册User",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/user_register"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       }
     }
   },
@@ -1192,17 +1242,12 @@
         }
       }
     },
-    "talents_tags": {
+    "user_search": {
       "type": "object",
       "properties": {
         "data": {
           "type": "object",
-          "properties": {
-            "TALENT_ID_TALENT_ID": {
-              "type": "string",
-              "example": "020d921e-0a36-11ec-82f5-90ccdf01187c"
-            }
-          }
+          "properties": {}
         }
       }
     },
@@ -1258,6 +1303,531 @@
         "token": {
           "type": "string",
           "example": "4836f6e1-2e8b-4b45-b903-9cf88d990901"
+        }
+      }
+    },
+    "policy_update": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "POLICY_ID": {
+              "type": "string",
+              "example": "2cd0894c-0a25-11ec-a6b8-342eb7e2a2ec"
+            },
+            "POLICY_TITLE": {
+              "type": "string",
+              "example": "市政府关于印发《扬州市地方储备粮管理办法》的通知"
+            },
+            "CREATED_AT": {
+              "type": "string",
+              "example": "1970-01-01"
+            },
+            "UPDATED_AT": {
+              "type": "string",
+              "example": "1970-01-01"
+            },
+            "tags": {
+              "type": "array",
+              "example": [],
+              "items": {}
+            },
+            "CDATA": {
+              "type": "string",
+              "example": "ddd"
+            }
+          }
+        }
+      }
+    },
+    "policy_delete": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string",
+              "example": "是否要删除市政府关于印发《扬州市公共安全视频图像信息系统管理办法》的通知(ID: 2cd0894d-0a25-11ec-9af9-342eb7e2a2ec)?"
+            },
+            "id": {
+              "type": "string",
+              "example": "2cd0894d-0a25-11ec-9af9-342eb7e2a2ec"
+            },
+            "type": {
+              "type": "string",
+              "example": "policy"
+            },
+            "POLICY_ID": {
+              "type": "string",
+              "example": "2cd0894d-0a25-11ec-9af9-342eb7e2a2ec"
+            }
+          }
+        }
+      }
+    },
+    "policy_policyTags": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "POLICY_ID_POLICY_ID": {
+              "type": "string",
+              "example": "2cd03b48-0a25-11ec-96a4-342eb7e2a2ec"
+            },
+            "TAG_ID_TAG_ID": {
+              "type": "string",
+              "example": "3af9ddba-0a25-11ec-be60-90ccdf01187c"
+            }
+          }
+        },
+        "token": {
+          "type": "string",
+          "example": "4836f6e1-2e8b-4b45-b903-9cf88d990901"
+        }
+      }
+    },
+    "policy_deleteTags": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "POLICY_ID_POLICY_ID": {
+              "type": "string",
+              "example": "2cd03b48-0a25-11ec-96a4-342eb7e2a2ec"
+            },
+            "TAG_ID_TAG_ID": {
+              "type": "string",
+              "example": "3af9ddba-0a25-11ec-be60-90ccdf01187c"
+            }
+          }
+        },
+        "token": {
+          "type": "string",
+          "example": "4836f6e1-2e8b-4b45-b903-9cf88d990901"
+        }
+      }
+    },
+    "tag_add": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "TAG_ID": {
+              "type": "string",
+              "example": ""
+            },
+            "TAG_NAME": {
+              "type": "string",
+              "example": "dfd"
+            },
+            "TAG_VALUE": {
+              "type": "string",
+              "example": "fd"
+            },
+            "TYPE": {
+              "type": "string",
+              "example": "AS"
+            },
+            "DESCRIPTION": {
+              "type": "string",
+              "example": "fdfdfd"
+            },
+            "TAG_CATEGORY": {
+              "type": "string",
+              "example": "dfd"
+            },
+            "CREATED_AT": {
+              "type": "string",
+              "example": "2021-09-08T09:12:12.624Z"
+            },
+            "UPDATED_AT": {
+              "type": "string",
+              "example": "2021-09-08T09:12:12.624Z"
+            },
+            "USER_ID_USER_ID": {
+              "type": "string",
+              "example": "2200"
+            }
+          }
+        },
+        "token": {
+          "type": "string",
+          "example": "4836f6e1-2e8b-4b45-b903-9cf88d990901"
+        }
+      }
+    },
+    "tag_delete": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string",
+              "example": "是否要删除dfd(ID: 8759ede4-5fa4-4d41-80f3-eaa2d0624cef)?"
+            },
+            "id": {
+              "type": "string",
+              "example": "8759ede4-5fa4-4d41-80f3-eaa2d0624cef"
+            },
+            "type": {
+              "type": "string",
+              "example": "tag"
+            },
+            "TAG_ID": {
+              "type": "string",
+              "example": "8759ede4-5fa4-4d41-80f3-eaa2d0624cef"
+            }
+          }
+        }
+      }
+    },
+    "tag_update": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "TAG_ID": {
+              "type": "string",
+              "example": "a694aa03-2a5e-4267-95cc-302921ddd21c"
+            },
+            "TAG_NAME": {
+              "type": "string",
+              "example": "efef"
+            },
+            "TAG_VALUE": {
+              "type": "string",
+              "example": "fefefddddd"
+            },
+            "TYPE": {
+              "type": "string",
+              "example": "FI"
+            },
+            "DESCRIPTION": {
+              "type": "string",
+              "example": "feefe"
+            },
+            "CREATED_AT": {
+              "type": "string",
+              "example": "2021-09-08"
+            },
+            "UPDATED_AT": {
+              "type": "string",
+              "example": "2021-09-08"
+            },
+            "USER_ID_USER_ID": {
+              "type": "string",
+              "example": "2200"
+            },
+            "USER_NAME": {
+              "type": "string",
+              "example": "null"
+            },
+            "TAG_CATEGORY": {
+              "type": "string",
+              "example": "ewfwff"
+            }
+          }
+        }
+      }
+    },
+    "talent_update": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "TALENT_ID": {
+              "type": "string",
+              "example": "fc235c0a-0a35-11ec-9974-90ccdf01187c"
+            },
+            "TALENT_NAME": {
+              "type": "string",
+              "example": "彭十"
+            },
+            "AGE": {
+              "type": "number",
+              "example": 2
+            },
+            "SEX": {
+              "type": "string",
+              "example": "0"
+            },
+            "POSITION": {
+              "type": "string",
+              "example": "null"
+            },
+            "DEGREE": {
+              "type": "number",
+              "example": 4
+            },
+            "TYPE": {
+              "type": "string",
+              "example": "null"
+            },
+            "UNIVERSITY": {
+              "type": "string",
+              "example": "null"
+            },
+            "CAREER_YEAR": {
+              "type": "string",
+              "example": "4"
+            },
+            "COMPANY_NAME": {
+              "type": "string",
+              "example": "null"
+            },
+            "SALARY": {
+              "type": "string",
+              "example": "15k"
+            },
+            "AREA": {
+              "type": "string",
+              "example": "null"
+            },
+            "RESUME_URL": {
+              "type": "string",
+              "example": "null"
+            },
+            "CREATED_AT": {
+              "type": "string",
+              "example": "1970-01-01"
+            },
+            "UPDATED_AT": {
+              "type": "string",
+              "example": "1970-01-01"
+            },
+            "HIGHEST_EDUCATION": {
+              "type": "number",
+              "example": 2
+            },
+            "WORK_YEARS": {
+              "type": "number",
+              "example": 1
+            },
+            "CDATA": {
+              "type": "string",
+              "example": "ssss"
+            }
+          }
+        }
+      }
+    },
+    "talents_tags": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "TALENT_ID_TALENT_ID": {
+              "type": "string",
+              "example": "020d921e-0a36-11ec-82f5-90ccdf01187c"
+            }
+          }
+        }
+      }
+    },
+    "talent_delete": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string",
+              "example": "是否要删除undefined(ID: undefined)?"
+            },
+            "type": {
+              "type": "string",
+              "example": "policy"
+            }
+          }
+        }
+      }
+    },
+    "talent_addTags": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "TALENT_ID_TALENT_ID": {
+              "type": "string",
+              "example": "020d921e-0a36-11ec-82f5-90ccdf01187c"
+            },
+            "TAG_ID_TAG_ID": {
+              "type": "string",
+              "example": ""
+            }
+          }
+        }
+      }
+    },
+    "talent_deleteTags": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "TALENT_ID_TALENT_ID": {
+              "type": "string",
+              "example": "020d921e-0a36-11ec-82f5-90ccdf01187c"
+            },
+            "TAG_ID_TAG_ID": {
+              "type": "string",
+              "example": ""
+            }
+          }
+        }
+      }
+    },
+    "recommendList": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {}
+        }
+      }
+    },
+    "historical": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string",
+          "example": "2c59a359-77a0-4b66-9d66-02089946a04c"
+        }
+      }
+    },
+    "fin_add": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "FIN_ID": {
+              "type": "string",
+              "example": ""
+            },
+            "LOGO_URL": {
+              "type": "string",
+              "example": "1"
+            },
+            "FIN_CODE": {
+              "type": "string",
+              "example": ""
+            },
+            "NAME": {
+              "type": "string",
+              "example": "ddd"
+            },
+            "DESCRIPTION": {
+              "type": "string",
+              "example": "1"
+            },
+            "WORKFLOW_URL": {
+              "type": "string",
+              "example": "1"
+            },
+            "URL": {
+              "type": "string",
+              "example": "1"
+            },
+            "APPLY_URL": {
+              "type": "string",
+              "example": "1"
+            },
+            "BANK_NAME": {
+              "type": "string",
+              "example": ""
+            },
+            "BANK_ID": {
+              "type": "string",
+              "example": ""
+            },
+            "STATUS": {
+              "type": "string",
+              "example": "1"
+            },
+            "FIN_START_DATE": {
+              "type": "string",
+              "example": ""
+            },
+            "FIN_END_DATE": {
+              "type": "string",
+              "example": ""
+            },
+            "CREATED_AT": {
+              "type": "string",
+              "example": "2021-09-08T09:51:59.635Z"
+            },
+            "UPDATED_AT": {
+              "type": "string",
+              "example": "2021-09-08T09:51:59.635Z"
+            },
+            "USER_ID_USER_ID": {
+              "type": "string",
+              "example": "1"
+            },
+            "USER_NAME": {
+              "type": "string",
+              "example": "1"
+            },
+            "RATE_LOW": {
+              "type": "string",
+              "example": ""
+            },
+            "RATE_HIGH": {
+              "type": "string",
+              "example": ""
+            },
+            "LOAN_QUOTA": {
+              "type": "string",
+              "example": ""
+            },
+            "LOAN_DATE_LOW": {
+              "type": "number",
+              "example": 1
+            },
+            "LOAN_DATE_HIGH": {
+              "type": "number",
+              "example": 5
+            },
+            "CHARGE_METHOD": {
+              "type": "string",
+              "example": ""
+            },
+            "REPAY_METHOD": {
+              "type": "string",
+              "example": ""
+            },
+            "TARGET": {
+              "type": "string",
+              "example": ""
+            },
+            "FIN_TYPE": {
+              "type": "string",
+              "example": "1"
+            },
+            "PRODUCT_TYPE": {
+              "type": "string",
+              "example": ""
+            },
+            "LOAN_TYPE": {
+              "type": "string",
+              "example": ""
+            }
+          }
+        },
+        "token": {
+          "type": "string",
+          "example": "2c59a359-77a0-4b66-9d66-02089946a04c"
         }
       }
     }

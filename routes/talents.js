@@ -15,6 +15,7 @@ function checkData(res, data) {
  */
 router.get("/", function (req, res, next) {
   // #swagger.tags = ['Talent']
+  // #swagger.summary = '获取人才'
   const t_Talent = new ohana("SAP_JIANGDU_TalentS"); // new ohana('table_name');
   t_Talent.find().then((result) => {
     res.send(result);
@@ -24,6 +25,17 @@ router.get("/", function (req, res, next) {
 /**update Talent  */
 router.put("/", function (req, res, next) {
   // #swagger.tags = ['Talent']
+  // #swagger.summary = '修改人才信息'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/talent_update"
+                    }  
+                },
+            }
+    } */
   checkData(res, req.body.data);
   const { data } = req.body;
   console.log(data);
@@ -75,6 +87,7 @@ router.post("/tags", function (req, res, next) {
 
 router.post("/allTags", function (req, res, next) {
   // #swagger.tags = ['Talent']
+  // #swagger.summary = '应该是个废弃的接口了'
   const { data } = req.body;
   getAllTags(data)
     .then((result) => {
@@ -99,7 +112,7 @@ router.post("/addTags", function (req, res, next) {
             content: {
                 "application/json": {
                     schema: {
-                        $ref: "#/definitions/talents_tags"
+                        $ref: "#/definitions/talent_addTags"
                     }  
                 },
             }
@@ -128,7 +141,7 @@ router.post("/deleteTags", function (req, res, next) {
             content: {
                 "application/json": {
                     schema: {
-                        $ref: "#/definitions/talents_tags"
+                        $ref: "#/definitions/talent_deleteTags"
                     }  
                 },
             }
@@ -150,6 +163,17 @@ router.post("/deleteTags", function (req, res, next) {
 /** insert Talent */
 router.post("/", function (req, res, next) {
   // #swagger.tags = ['Talent']
+  // #swagger.summary = '注册User'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/user_register"
+                    }  
+                },
+            }
+    } */
   console.log(req.body);
   const { data } = req.body;
   console.log(data);
@@ -173,6 +197,17 @@ router.post("/", function (req, res, next) {
 /**delete Talent  */
 router.delete("/", function (req, res, next) {
   // #swagger.tags = ['Talent']
+  // #swagger.summary = '删除人才'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/talent_delete"
+                    }  
+                },
+            }
+    } */
   checkData(res, req.body.data);
   const { data } = req.body;
   deleteTalent(data)
