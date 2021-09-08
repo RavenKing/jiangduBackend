@@ -94,7 +94,7 @@ router.post("/deleteTags", function (req, res, next) {
 });
 
 /** insert policys */
-router.post("/", function (req, res, next) {
+router.post("/add", function (req, res, next) {
   // #swagger.tags = ['Policy']
   // #swagger.summary = '插入新政策'
   const { data } = req.body;
