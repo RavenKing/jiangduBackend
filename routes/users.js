@@ -146,7 +146,17 @@ router.get("/getCompanyInfo", function (req, res, next) {
 
 router.post("/", function (req, res, next) {
   // #swagger.tags = ['Users']
-  // #swagger.summary = '插入新的企业数据，需要哪些字段未知'
+  // #swagger.summary = '插入新的企业数据'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/user"
+                    }  
+                },
+            }
+    } */
   const { data } = req.body;
   //console.log(uunewid.v4())
   data.USER_ID = uunewid.v4();

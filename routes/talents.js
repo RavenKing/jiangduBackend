@@ -163,7 +163,7 @@ router.post("/deleteTags", function (req, res, next) {
 /** insert Talent */
 router.post("/", function (req, res, next) {
   // #swagger.tags = ['Talent']
-  // #swagger.summary = '注册User'
+  // #swagger.summary = '添加人才'
   /*	#swagger.requestBody = {
             required: true,
             content: {

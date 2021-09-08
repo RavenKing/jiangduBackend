@@ -19,13 +19,13 @@ const tagTableName = "SAP_JIANGDU_TAG_TECHS";
 /* GET users listing. */
 router.post("/", function (req, res, next) {
   // #swagger.tags = ['Tech']
-  // #swagger.summary = '注册User'
+  // #swagger.summary = '获取tech'
   /*	#swagger.requestBody = {
             required: true,
             content: {
                 "application/json": {
                     schema: {
-                        $ref: "#/definitions/user_register"
+                        $ref: "#/definitions/tech"
                     }  
                 },
             }
@@ -38,13 +38,13 @@ router.post("/", function (req, res, next) {
 
 router.post("/add", function (req, res, next) {
   // #swagger.tags = ['Tech']
-  // #swagger.summary = '注册User'
+  // #swagger.summary = '增加tech'
   /*	#swagger.requestBody = {
             required: true,
             content: {
                 "application/json": {
                     schema: {
-                        $ref: "#/definitions/user_register"
+                        $ref: "#/definitions/tech_add_update"
                     }  
                 },
             }
@@ -79,17 +79,7 @@ async function insertData(body) {
  */
 router.post("/search", function (req, res, next) {
   // #swagger.tags = ['Tech']
-  // #swagger.summary = '注册User'
-  /*	#swagger.requestBody = {
-            required: true,
-            content: {
-                "application/json": {
-                    schema: {
-                        $ref: "#/definitions/user_register"
-                    }  
-                },
-            }
-    } */
+  // #swagger.summary = 'query参数未知'
   const queryData = req.query;
   const user = new ohana(tableName); // new ohana('table_name');
   if (queryData == null) {
@@ -106,13 +96,13 @@ router.post("/search", function (req, res, next) {
 /**update TECHs  */
 router.put("/", function (req, res, next) {
   // #swagger.tags = ['Tech']
-  // #swagger.summary = '注册User'
+  // #swagger.summary = '修改tech'
   /*	#swagger.requestBody = {
             required: true,
             content: {
                 "application/json": {
                     schema: {
-                        $ref: "#/definitions/user_register"
+                        $ref: "#/definitions/tech_add_update"
                     }  
                 },
             }
@@ -137,13 +127,13 @@ router.put("/", function (req, res, next) {
 /*delete something*/
 router.delete("/", function (req, res, next) {
   // #swagger.tags = ['Tech']
-  // #swagger.summary = '注册User'
+  // #swagger.summary = '删除tech'
   /*	#swagger.requestBody = {
             required: true,
             content: {
                 "application/json": {
                     schema: {
-                        $ref: "#/definitions/user_register"
+                        $ref: "#/definitions/tech_delete"
                     }  
                 },
             }
@@ -188,13 +178,13 @@ async function deletePolicy(body) {
 
 router.post("/techTags", function (req, res, next) {
   // #swagger.tags = ['Tech']
-  // #swagger.summary = '注册User'
+  // #swagger.summary = '获取tag'
   /*	#swagger.requestBody = {
             required: true,
             content: {
                 "application/json": {
                     schema: {
-                        $ref: "#/definitions/user_register"
+                        $ref: "#/definitions/tech_tag"
                     }  
                 },
             }
@@ -219,13 +209,13 @@ router.post("/techTags", function (req, res, next) {
 
 router.post("/addTags", function (req, res, next) {
   // #swagger.tags = ['Tech']
-  // #swagger.summary = '注册User'
+  // #swagger.summary = '增加标签'
   /*	#swagger.requestBody = {
             required: true,
             content: {
                 "application/json": {
                     schema: {
-                        $ref: "#/definitions/user_register"
+                        $ref: "#/definitions/tech_tag_add_delete"
                     }  
                 },
             }
@@ -248,13 +238,13 @@ router.post("/addTags", function (req, res, next) {
 
 router.post("/deleteTags", function (req, res, next) {
   // #swagger.tags = ['Tech']
-  // #swagger.summary = '注册User'
+  // #swagger.summary = '删除标签'
   /*	#swagger.requestBody = {
             required: true,
             content: {
                 "application/json": {
                     schema: {
-                        $ref: "#/definitions/user_register"
+                        $ref: "#/definitions/tech_tag_add_delete"
                     }  
                 },
             }
@@ -279,7 +269,7 @@ router.post("/deleteTags", function (req, res, next) {
  */
 router.put("/updateStatus", async (req, res, next) => {
   // #swagger.tags = ['Tech']
-  // #swagger.summary = '注册User'
+  // #swagger.summary = '????'
   /*	#swagger.requestBody = {
             required: true,
             content: {

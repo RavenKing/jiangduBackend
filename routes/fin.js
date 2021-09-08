@@ -28,7 +28,7 @@ router.post("/", function (req, res, next) {
 
 router.post("/add", function (req, res, next) {
   // #swagger.tags = ['Fin']
-  // #swagger.summary = '新建fin'
+  // #swagger.summary = '新建金融'
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -69,17 +69,7 @@ async function insertData(body) {
  */
 router.post("/search", function (req, res, next) {
   // #swagger.tags = ['Fin']
-  // #swagger.summary = '注册User'
-  /*	#swagger.requestBody = {
-            required: true,
-            content: {
-                "application/json": {
-                    schema: {
-                        $ref: "#/definitions/user_register"
-                    }  
-                },
-            }
-    } */
+  // #swagger.summary = '金融搜索 queryData未知'
   const queryData = req.query;
   const user = new ohana(tableName); // new ohana('table_name');
   if (queryData == null) {
@@ -96,13 +86,13 @@ router.post("/search", function (req, res, next) {
 /**update fins  */
 router.put("/", function (req, res, next) {
   // #swagger.tags = ['Fin']
-  // #swagger.summary = '注册User'
+  // #swagger.summary = '修改Fin'
   /*	#swagger.requestBody = {
             required: true,
             content: {
                 "application/json": {
                     schema: {
-                        $ref: "#/definitions/user_register"
+                        $ref: "#/definitions/fin_update"
                     }  
                 },
             }
@@ -127,13 +117,13 @@ router.put("/", function (req, res, next) {
 /*delete something*/
 router.delete("/", function (req, res, next) {
   // #swagger.tags = ['Fin']
-  // #swagger.summary = '注册User'
+  // #swagger.summary = '删除金融产品'
   /*	#swagger.requestBody = {
             required: true,
             content: {
                 "application/json": {
                     schema: {
-                        $ref: "#/definitions/user_register"
+                        $ref: "#/definitions/fin_delete"
                     }  
                 },
             }
@@ -178,13 +168,13 @@ async function deletePolicy(body) {
 
 router.post("/finTags", function (req, res, next) {
   // #swagger.tags = ['Fin']
-  // #swagger.summary = '注册User'
+  // #swagger.summary = '获取某个金融惠企的标签'
   /*	#swagger.requestBody = {
             required: true,
             content: {
                 "application/json": {
                     schema: {
-                        $ref: "#/definitions/user_register"
+                        $ref: "#/definitions/fin_finTags"
                     }  
                 },
             }
@@ -209,13 +199,13 @@ router.post("/finTags", function (req, res, next) {
 
 router.post("/addTags", function (req, res, next) {
   // #swagger.tags = ['Fin']
-  // #swagger.summary = '注册User'
+  // #swagger.summary = '添加标签'
   /*	#swagger.requestBody = {
             required: true,
             content: {
                 "application/json": {
                     schema: {
-                        $ref: "#/definitions/user_register"
+                        $ref: "#/definitions/fin_addTags"
                     }  
                 },
             }
@@ -238,13 +228,13 @@ router.post("/addTags", function (req, res, next) {
 
 router.post("/deleteTags", function (req, res, next) {
   // #swagger.tags = ['Fin']
-  // #swagger.summary = '注册User'
+  // #swagger.summary = '删除标签'
   /*	#swagger.requestBody = {
             required: true,
             content: {
                 "application/json": {
                     schema: {
-                        $ref: "#/definitions/user_register"
+                        $ref: "#/definitions/fin_deleteTags"
                     }  
                 },
             }
@@ -269,13 +259,13 @@ router.post("/deleteTags", function (req, res, next) {
  */
 router.put("/updateStatus", async (req, res, next) => {
   // #swagger.tags = ['Fin']
-  // #swagger.summary = '注册User'
+  // #swagger.summary = '？？？更新user表'
   /*	#swagger.requestBody = {
             required: true,
             content: {
                 "application/json": {
                     schema: {
-                        $ref: "#/definitions/user_register"
+                        $ref: "#/definitions/fin_updateStatus"
                     }  
                 },
             }

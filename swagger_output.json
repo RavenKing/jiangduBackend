@@ -39,23 +39,20 @@
         "tags": [
           "Users"
         ],
-        "summary": "插入新的企业数据，需要哪些字段未知",
+        "summary": "插入新的企业数据",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/user"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       }
     },
     "/api/users/register": {
@@ -383,7 +380,7 @@
         "tags": [
           "Talent"
         ],
-        "summary": "注册User",
+        "summary": "添加人才",
         "description": "",
         "parameters": [],
         "responses": {},
@@ -651,7 +648,7 @@
         "tags": [
           "Fin"
         ],
-        "summary": "注册User",
+        "summary": "修改Fin",
         "description": "",
         "parameters": [],
         "responses": {},
@@ -660,7 +657,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/definitions/user_register"
+                "$ref": "#/definitions/fin_update"
               }
             }
           }
@@ -670,7 +667,7 @@
         "tags": [
           "Fin"
         ],
-        "summary": "注册User",
+        "summary": "删除金融产品",
         "description": "",
         "parameters": [],
         "responses": {},
@@ -679,7 +676,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/definitions/user_register"
+                "$ref": "#/definitions/fin_delete"
               }
             }
           }
@@ -691,7 +688,7 @@
         "tags": [
           "Fin"
         ],
-        "summary": "新建fin",
+        "summary": "新建金融",
         "description": "",
         "parameters": [],
         "responses": {},
@@ -712,20 +709,10 @@
         "tags": [
           "Fin"
         ],
-        "summary": "注册User",
+        "summary": "金融搜索 queryData未知",
         "description": "",
         "parameters": [],
-        "responses": {},
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/definitions/user_register"
-              }
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/fins/finTags": {
@@ -733,7 +720,7 @@
         "tags": [
           "Fin"
         ],
-        "summary": "注册User",
+        "summary": "获取某个金融惠企的标签",
         "description": "",
         "parameters": [],
         "responses": {},
@@ -742,7 +729,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/definitions/user_register"
+                "$ref": "#/definitions/fin_finTags"
               }
             }
           }
@@ -754,7 +741,7 @@
         "tags": [
           "Fin"
         ],
-        "summary": "注册User",
+        "summary": "添加标签",
         "description": "",
         "parameters": [],
         "responses": {},
@@ -763,7 +750,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/definitions/user_register"
+                "$ref": "#/definitions/fin_addTags"
               }
             }
           }
@@ -775,7 +762,7 @@
         "tags": [
           "Fin"
         ],
-        "summary": "注册User",
+        "summary": "删除标签",
         "description": "",
         "parameters": [],
         "responses": {},
@@ -784,7 +771,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/definitions/user_register"
+                "$ref": "#/definitions/fin_deleteTags"
               }
             }
           }
@@ -796,7 +783,7 @@
         "tags": [
           "Fin"
         ],
-        "summary": "注册User",
+        "summary": "？？？更新user表",
         "description": "",
         "parameters": [],
         "responses": {},
@@ -805,7 +792,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/definitions/user_register"
+                "$ref": "#/definitions/fin_updateStatus"
               }
             }
           }
@@ -826,7 +813,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "data": {}
+                "$ref": "#/definitions/asset"
               }
             }
           }
@@ -836,7 +823,7 @@
         "tags": [
           "Asset"
         ],
-        "summary": "注册User",
+        "summary": "修改asset 前端还没做好",
         "description": "",
         "parameters": [],
         "responses": {},
@@ -845,7 +832,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/definitions/user_register"
+                "$ref": "#/definitions/asset_add_update"
               }
             }
           }
@@ -855,7 +842,7 @@
         "tags": [
           "Asset"
         ],
-        "summary": "注册User",
+        "summary": "删除asset",
         "description": "",
         "parameters": [],
         "responses": {},
@@ -864,7 +851,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/definitions/user_register"
+                "$ref": "#/definitions/asset_delete"
               }
             }
           }
@@ -876,7 +863,7 @@
         "tags": [
           "Asset"
         ],
-        "summary": "注册User",
+        "summary": "添加asset",
         "description": "",
         "parameters": [],
         "responses": {},
@@ -885,7 +872,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/definitions/user_register"
+                "$ref": "#/definitions/asset_add_update"
               }
             }
           }
@@ -897,20 +884,10 @@
         "tags": [
           "Asset"
         ],
-        "summary": "注册User",
+        "summary": "搜索，参数未知",
         "description": "",
         "parameters": [],
-        "responses": {},
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/definitions/user_register"
-              }
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/assets/AssetTags": {
@@ -918,7 +895,7 @@
         "tags": [
           "Asset"
         ],
-        "summary": "注册User",
+        "summary": "获取标签",
         "description": "",
         "parameters": [],
         "responses": {},
@@ -927,7 +904,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/definitions/user_register"
+                "$ref": "#/definitions/asset_tag"
               }
             }
           }
@@ -939,7 +916,7 @@
         "tags": [
           "Asset"
         ],
-        "summary": "注册User",
+        "summary": "加标签",
         "description": "",
         "parameters": [],
         "responses": {},
@@ -948,7 +925,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/definitions/user_register"
+                "$ref": "#/definitions/asset_tag_add_delete"
               }
             }
           }
@@ -960,7 +937,7 @@
         "tags": [
           "Asset"
         ],
-        "summary": "注册User",
+        "summary": "删除标签",
         "description": "",
         "parameters": [],
         "responses": {},
@@ -969,7 +946,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/definitions/user_register"
+                "$ref": "#/definitions/asset_tag_add_delete"
               }
             }
           }
@@ -981,7 +958,7 @@
         "tags": [
           "Asset"
         ],
-        "summary": "注册User",
+        "summary": "？？？？？？？",
         "description": "",
         "parameters": [],
         "responses": {},
@@ -1002,7 +979,7 @@
         "tags": [
           "Tech"
         ],
-        "summary": "注册User",
+        "summary": "获取tech",
         "description": "",
         "parameters": [],
         "responses": {},
@@ -1011,7 +988,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/definitions/user_register"
+                "$ref": "#/definitions/tech"
               }
             }
           }
@@ -1021,7 +998,7 @@
         "tags": [
           "Tech"
         ],
-        "summary": "注册User",
+        "summary": "修改tech",
         "description": "",
         "parameters": [],
         "responses": {},
@@ -1030,7 +1007,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/definitions/user_register"
+                "$ref": "#/definitions/tech_add_update"
               }
             }
           }
@@ -1040,7 +1017,7 @@
         "tags": [
           "Tech"
         ],
-        "summary": "注册User",
+        "summary": "删除tech",
         "description": "",
         "parameters": [],
         "responses": {},
@@ -1049,7 +1026,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/definitions/user_register"
+                "$ref": "#/definitions/tech_delete"
               }
             }
           }
@@ -1061,7 +1038,7 @@
         "tags": [
           "Tech"
         ],
-        "summary": "注册User",
+        "summary": "增加tech",
         "description": "",
         "parameters": [],
         "responses": {},
@@ -1070,7 +1047,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/definitions/user_register"
+                "$ref": "#/definitions/tech_add_update"
               }
             }
           }
@@ -1082,20 +1059,10 @@
         "tags": [
           "Tech"
         ],
-        "summary": "注册User",
+        "summary": "query参数未知",
         "description": "",
         "parameters": [],
-        "responses": {},
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/definitions/user_register"
-              }
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/techs/techTags": {
@@ -1103,7 +1070,7 @@
         "tags": [
           "Tech"
         ],
-        "summary": "注册User",
+        "summary": "获取tag",
         "description": "",
         "parameters": [],
         "responses": {},
@@ -1112,7 +1079,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/definitions/user_register"
+                "$ref": "#/definitions/tech_tag"
               }
             }
           }
@@ -1124,7 +1091,7 @@
         "tags": [
           "Tech"
         ],
-        "summary": "注册User",
+        "summary": "增加标签",
         "description": "",
         "parameters": [],
         "responses": {},
@@ -1133,7 +1100,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/definitions/user_register"
+                "$ref": "#/definitions/tech_tag_add_delete"
               }
             }
           }
@@ -1145,7 +1112,7 @@
         "tags": [
           "Tech"
         ],
-        "summary": "注册User",
+        "summary": "删除标签",
         "description": "",
         "parameters": [],
         "responses": {},
@@ -1154,7 +1121,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/definitions/user_register"
+                "$ref": "#/definitions/tech_tag_add_delete"
               }
             }
           }
@@ -1166,7 +1133,7 @@
         "tags": [
           "Tech"
         ],
-        "summary": "注册User",
+        "summary": "????",
         "description": "",
         "parameters": [],
         "responses": {},
@@ -1184,6 +1151,164 @@
     }
   },
   "definitions": {
+    "user": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "USER_ID": {
+              "type": "string",
+              "example": "aa314dca-0a25-11ec-a9e3-342eb7e2a2ec"
+            },
+            "PASSWORD": {
+              "type": "string",
+              "example": "null"
+            },
+            "TOKEN": {
+              "type": "string",
+              "example": "null"
+            },
+            "LOG_DATE": {
+              "type": "string",
+              "example": "null"
+            },
+            "VALIDATEDATE": {
+              "type": "string",
+              "example": "null"
+            },
+            "STATUS": {
+              "type": "string",
+              "example": "null"
+            },
+            "COMMENTS": {
+              "type": "string",
+              "example": "null"
+            },
+            "PHONE": {
+              "type": "string",
+              "example": "null"
+            },
+            "LEVEL": {
+              "type": "string",
+              "example": "null"
+            },
+            "AREA": {
+              "type": "string",
+              "example": "null"
+            },
+            "USER_NAME": {
+              "type": "string",
+              "example": "null"
+            },
+            "COMPANY_NAME": {
+              "type": "string",
+              "example": "江苏金世缘乳胶制品股份有限公司"
+            },
+            "COMPANY_CODE": {
+              "type": "string",
+              "example": "91321000691310517U"
+            },
+            "COMPANY_ADDRESS": {
+              "type": "string",
+              "example": "扬州市江都区小纪镇高徐工业园区"
+            },
+            "LEGAL_REPRESENTATIVE": {
+              "type": "string",
+              "example": "null"
+            },
+            "REGISTERED_CAPITAL": {
+              "type": "string",
+              "example": "4710 万人民币"
+            },
+            "CONTACT_PERSON": {
+              "type": "string",
+              "example": "null"
+            },
+            "CONTACT_PHONE": {
+              "type": "string",
+              "example": "null"
+            },
+            "TERM_OF_OPERATION": {
+              "type": "string",
+              "example": "null"
+            },
+            "COMPANY_TYPE": {
+              "type": "string",
+              "example": "股份有限公司"
+            },
+            "REGISTER_STATUS": {
+              "type": "string",
+              "example": "null"
+            },
+            "HEZHUN_TIME": {
+              "type": "string",
+              "example": "null"
+            },
+            "REGISTER_NUMBER": {
+              "type": "string",
+              "example": "null"
+            },
+            "REGISTER_CURRENCY": {
+              "type": "string",
+              "example": "null"
+            },
+            "BUSINESS_SCOPE": {
+              "type": "string",
+              "example": "生产乳胶制品，床上用品及配件、床垫及配件、家具生产、销售，道路普通货物运输，货物专用运输（集装箱），自营和代理各类商品及技术的进出口业务（国家限定企业进出口的商品和技术除外）。（依法须经批准的项目，经相关部门批准后方可开展经营活动）"
+            },
+            "CERTIFICATE_URL": {
+              "type": "string",
+              "example": "null"
+            },
+            "CREATED_AT": {
+              "type": "string",
+              "example": "null"
+            },
+            "UPDATED_AT": {
+              "type": "string",
+              "example": "null"
+            },
+            "COUNTRY_CODE": {
+              "type": "string",
+              "example": "null"
+            },
+            "DENGJI_JIGUAN": {
+              "type": "string",
+              "example": "null"
+            },
+            "INDUSTRY": {
+              "type": "string",
+              "example": "制造业"
+            },
+            "CAP": {
+              "type": "string",
+              "example": "橡胶和塑料制品业"
+            },
+            "ESTABLISHED_DATE": {
+              "type": "string",
+              "example": "2009-06-24 00:00:00.000000000"
+            },
+            "COMPANY_SIZE": {
+              "type": "string",
+              "example": "1"
+            },
+            "HAS_DISHONEST_ACT": {
+              "type": "string",
+              "example": "0"
+            },
+            "HAS_DEFAULTER": {
+              "type": "string",
+              "example": "1"
+            },
+            "TAX_SCORE": {
+              "type": "number",
+              "example": 20
+            }
+          }
+        }
+      }
+    },
     "user_login": {
       "type": "object",
       "properties": {
@@ -1822,6 +1947,492 @@
             "LOAN_TYPE": {
               "type": "string",
               "example": ""
+            }
+          }
+        },
+        "token": {
+          "type": "string",
+          "example": "2c59a359-77a0-4b66-9d66-02089946a04c"
+        }
+      }
+    },
+    "fin_update": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "FIN_ID": {
+              "type": "string",
+              "example": "ac61b1b3-0c60-11ec-a492-90ccdf01187c"
+            },
+            "LOGO_URL": {
+              "type": "string",
+              "example": "null"
+            },
+            "FIN_CODE": {
+              "type": "string",
+              "example": "4080"
+            },
+            "NAME": {
+              "type": "string",
+              "example": "信用贷"
+            },
+            "DESCRIPTION": {
+              "type": "string",
+              "example": "这是一个介绍"
+            },
+            "WORKFLOW_URL": {
+              "type": "string",
+              "example": "null"
+            },
+            "URL": {
+              "type": "string",
+              "example": "null"
+            },
+            "APPLY_URL": {
+              "type": "string",
+              "example": "null"
+            },
+            "BANK_NAME": {
+              "type": "string",
+              "example": "中国银行"
+            },
+            "BANK_ID": {
+              "type": "string",
+              "example": "1234"
+            },
+            "STATUS": {
+              "type": "string",
+              "example": "启用"
+            },
+            "FIN_START_DATE": {
+              "type": "string",
+              "example": "2015-11-28 00:00:00.000000000"
+            },
+            "FIN_END_DATE": {
+              "type": "string",
+              "example": "2008-12-22 00:00:00.000000000"
+            },
+            "CREATED_AT": {
+              "type": "string",
+              "example": "2018-05-02"
+            },
+            "UPDATED_AT": {
+              "type": "string",
+              "example": "2003-12-13"
+            },
+            "USER_ID_USER_ID": {
+              "type": "string",
+              "example": "1234"
+            },
+            "USER_NAME": {
+              "type": "string",
+              "example": "null"
+            },
+            "RATE_LOW": {
+              "type": "string",
+              "example": "5%"
+            },
+            "RATE_HIGH": {
+              "type": "string",
+              "example": "9%"
+            },
+            "LOAN_QUOTA": {
+              "type": "string",
+              "example": "300w"
+            },
+            "LOAN_DATE_LOW": {
+              "type": "number",
+              "example": 6
+            },
+            "LOAN_DATE_HIGH": {
+              "type": "number",
+              "example": 26
+            },
+            "CHARGE_METHOD": {
+              "type": "string",
+              "example": "信用"
+            },
+            "REPAY_METHOD": {
+              "type": "string",
+              "example": "担保公司"
+            },
+            "TARGET": {
+              "type": "string",
+              "example": "小微企业"
+            },
+            "FIN_TYPE": {
+              "type": "string",
+              "example": "H"
+            },
+            "PRODUCT_TYPE": {
+              "type": "string",
+              "example": "线上审批"
+            },
+            "LOAN_TYPE": {
+              "type": "string",
+              "example": "流动资金贷款"
+            }
+          }
+        }
+      }
+    },
+    "fin_delete": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string",
+              "example": "是否要删除启信宝(ID: ac61d8b6-0c60-11ec-aaff-90ccdf01187c)?"
+            },
+            "id": {
+              "type": "string",
+              "example": "ac61d8b6-0c60-11ec-aaff-90ccdf01187c"
+            },
+            "type": {
+              "type": "string",
+              "example": "fin"
+            },
+            "FIN_ID": {
+              "type": "string",
+              "example": "ac61d8b6-0c60-11ec-aaff-90ccdf01187c"
+            }
+          }
+        }
+      }
+    },
+    "fin_finTags": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "FIN_ID": {
+              "type": "string",
+              "example": "ac61b1b3-0c60-11ec-a492-90ccdf01187c"
+            }
+          }
+        },
+        "token": {
+          "type": "string",
+          "example": "2c59a359-77a0-4b66-9d66-02089946a04c"
+        }
+      }
+    },
+    "fin_addTags": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "FIN_ID_FIN_ID": {
+              "type": "string",
+              "example": "ac61b1b3-0c60-11ec-a492-90ccdf01187c"
+            },
+            "TAG_ID_TAG_ID": {
+              "type": "string",
+              "example": "15cefa4b-0c63-11ec-9ac5-342eb7e2a2ec"
+            }
+          }
+        },
+        "token": {
+          "type": "string",
+          "example": "2c59a359-77a0-4b66-9d66-02089946a04c"
+        }
+      }
+    },
+    "fin_deleteTags": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "FIN_ID_FIN_ID": {
+              "type": "string",
+              "example": "ac61b1b3-0c60-11ec-a492-90ccdf01187c"
+            },
+            "TAG_ID_TAG_ID": {
+              "type": "string",
+              "example": "15cefa4b-0c63-11ec-9ac5-342eb7e2a2ec"
+            }
+          }
+        },
+        "token": {
+          "type": "string",
+          "example": "2c59a359-77a0-4b66-9d66-02089946a04c"
+        }
+      }
+    },
+    "fin_updateStatus": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "COMMENTS": {
+              "type": "string",
+              "example": ""
+            },
+            "STATUS": {
+              "type": "string",
+              "example": ""
+            },
+            "USER_ID": {
+              "type": "string",
+              "example": ""
+            }
+          }
+        }
+      }
+    },
+    "asset": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {}
+        },
+        "token": {
+          "type": "string",
+          "example": "2c59a359-77a0-4b66-9d66-02089946a04c"
+        }
+      }
+    },
+    "asset_add_update": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "ASSET_ID": {
+              "type": "string",
+              "example": "ad52d74e-0ede-11ec-b9ca-342eb7e2a2ec"
+            },
+            "ASSET_NAME": {
+              "type": "string",
+              "example": "设备3"
+            },
+            "ASSET_COUNTRY": {
+              "type": "string",
+              "example": "日本"
+            },
+            "MAKER": {
+              "type": "string",
+              "example": "制造商3"
+            },
+            "ASSET_COUNT": {
+              "type": "number",
+              "example": 10
+            },
+            "START_DATE": {
+              "type": "string",
+              "example": "2021-09-06 14:50:08.990637000"
+            },
+            "USER_ID_USER_ID": {
+              "type": "string",
+              "example": "aa38a206-0a25-11ec-9885-342eb7e2a2ec"
+            },
+            "USER_NAME": {
+              "type": "string",
+              "example": "admin"
+            },
+            "STATUS": {
+              "type": "string",
+              "example": "已下架"
+            },
+            "AREA": {
+              "type": "string",
+              "example": "邗江"
+            },
+            "FIN_TIME": {
+              "type": "string",
+              "example": "Invalid date - Invalid date"
+            },
+            "RATE_RANGE": {
+              "type": "string",
+              "example": "undefined - undefined"
+            },
+            "CREATED_AT": {
+              "type": "string",
+              "example": "Invalid date"
+            },
+            "UPDATED_AT": {
+              "type": "string",
+              "example": "Invalid date"
+            },
+            "vgt_id": {
+              "type": "number",
+              "example": 0
+            },
+            "originalIndex": {
+              "type": "number",
+              "example": 0
+            },
+            "tags": {
+              "type": "array",
+              "example": [],
+              "items": {}
+            }
+          }
+        },
+        "token": {
+          "type": "string",
+          "example": "2c59a359-77a0-4b66-9d66-02089946a04c"
+        }
+      }
+    },
+    "asset_tag": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "ASSET_ID": {
+              "type": "string",
+              "example": "ad52d74e-0ede-11ec-b9ca-342eb7e2a2ec"
+            }
+          }
+        },
+        "token": {
+          "type": "string",
+          "example": "2c59a359-77a0-4b66-9d66-02089946a04c"
+        }
+      }
+    },
+    "asset_delete": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string",
+              "example": "是否要删除undefined(ID: ad52d74d-0ede-11ec-8613-342eb7e2a2ec)?"
+            },
+            "id": {
+              "type": "string",
+              "example": "ad52d74d-0ede-11ec-8613-342eb7e2a2ec"
+            },
+            "type": {
+              "type": "string",
+              "example": "fin"
+            },
+            "ASSET_ID": {
+              "type": "string",
+              "example": "ad52d74d-0ede-11ec-8613-342eb7e2a2ec"
+            }
+          }
+        }
+      }
+    },
+    "asset_tag_add_delete": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "ASSET_ID_ASSET_ID": {
+              "type": "string",
+              "example": "ad52d74e-0ede-11ec-b9ca-342eb7e2a2ec"
+            },
+            "TAG_ID_TAG_ID": {
+              "type": "string",
+              "example": "15cefa4b-0c63-11ec-9ac5-342eb7e2a2ec"
+            }
+          }
+        },
+        "token": {
+          "type": "string",
+          "example": "2c59a359-77a0-4b66-9d66-02089946a04c"
+        }
+      }
+    },
+    "tech": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {}
+        },
+        "token": {
+          "type": "string",
+          "example": "2c59a359-77a0-4b66-9d66-02089946a04c"
+        }
+      }
+    },
+    "tech_add_update": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {}
+        }
+      }
+    },
+    "tech_delete": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string",
+              "example": "是否要删除?"
+            },
+            "id": {
+              "type": "string",
+              "example": "ad52d74d-0ede-11ec-8613-342eb7e2a2ec"
+            },
+            "type": {
+              "type": "string",
+              "example": "fin"
+            },
+            "TECH_ID": {
+              "type": "string",
+              "example": "ad52d74d-0ede-11ec-8613-342eb7e2a2ec"
+            }
+          }
+        },
+        "token": {
+          "type": "string",
+          "example": "2c59a359-77a0-4b66-9d66-02089946a04c"
+        }
+      }
+    },
+    "tech_tag": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "TECH_ID": {
+              "type": "string",
+              "example": "ad52d74e-0ede-11ec-b9ca-342eb7e2a2ec"
+            }
+          }
+        },
+        "token": {
+          "type": "string",
+          "example": "2c59a359-77a0-4b66-9d66-02089946a04c"
+        }
+      }
+    },
+    "tech_tag_add_delete": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "TECH_ID_TECH_ID": {
+              "type": "string",
+              "example": "ad52d74e-0ede-11ec-b9ca-342eb7e2a2ec"
+            },
+            "TAG_ID_TAG_ID": {
+              "type": "string",
+              "example": "15cefa4b-0c63-11ec-9ac5-342eb7e2a2ec"
             }
           }
         },

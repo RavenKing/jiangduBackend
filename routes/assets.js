@@ -22,7 +22,7 @@ router.post("/", function (req, res, next) {
             content: {
                 "application/json": {
                     schema: {
-                        "data":{}
+                        $ref: "#/definitions/asset"
                     }  
                 },
             }
@@ -35,13 +35,13 @@ router.post("/", function (req, res, next) {
 
 router.post("/add", function (req, res, next) {
   // #swagger.tags = ['Asset']
-  // #swagger.summary = '注册User'
+  // #swagger.summary = '添加asset'
   /*	#swagger.requestBody = {
             required: true,
             content: {
                 "application/json": {
                     schema: {
-                        $ref: "#/definitions/user_register"
+                        $ref: "#/definitions/asset_add_update"
                     }  
                 },
             }
@@ -76,17 +76,7 @@ async function insertData(body) {
  */
 router.post("/search", function (req, res, next) {
   // #swagger.tags = ['Asset']
-  // #swagger.summary = '注册User'
-  /*	#swagger.requestBody = {
-            required: true,
-            content: {
-                "application/json": {
-                    schema: {
-                        $ref: "#/definitions/user_register"
-                    }  
-                },
-            }
-    } */
+  // #swagger.summary = '搜索，参数未知'
   const queryData = req.query;
   const user = new ohana(tableName); // new ohana('table_name');
   if (queryData == null) {
@@ -103,13 +93,13 @@ router.post("/search", function (req, res, next) {
 /**update Assets  */
 router.put("/", function (req, res, next) {
   // #swagger.tags = ['Asset']
-  // #swagger.summary = '注册User'
+  // #swagger.summary = '修改asset 前端还没做好'
   /*	#swagger.requestBody = {
             required: true,
             content: {
                 "application/json": {
                     schema: {
-                        $ref: "#/definitions/user_register"
+                        $ref: "#/definitions/asset_add_update"
                     }  
                 },
             }
@@ -134,13 +124,13 @@ router.put("/", function (req, res, next) {
 /*delete something*/
 router.delete("/", function (req, res, next) {
   // #swagger.tags = ['Asset']
-  // #swagger.summary = '注册User'
+  // #swagger.summary = '删除asset'
   /*	#swagger.requestBody = {
             required: true,
             content: {
                 "application/json": {
                     schema: {
-                        $ref: "#/definitions/user_register"
+                        $ref: "#/definitions/asset_delete"
                     }  
                 },
             }
@@ -185,13 +175,13 @@ async function deletePolicy(body) {
 
 router.post("/AssetTags", function (req, res, next) {
   // #swagger.tags = ['Asset']
-  // #swagger.summary = '注册User'
+  // #swagger.summary = '获取标签'
   /*	#swagger.requestBody = {
             required: true,
             content: {
                 "application/json": {
                     schema: {
-                        $ref: "#/definitions/user_register"
+                        $ref: "#/definitions/asset_tag"
                     }  
                 },
             }
@@ -216,13 +206,13 @@ router.post("/AssetTags", function (req, res, next) {
 
 router.post("/addTags", function (req, res, next) {
   // #swagger.tags = ['Asset']
-  // #swagger.summary = '注册User'
+  // #swagger.summary = '加标签'
   /*	#swagger.requestBody = {
             required: true,
             content: {
                 "application/json": {
                     schema: {
-                        $ref: "#/definitions/user_register"
+                        $ref: "#/definitions/asset_tag_add_delete"
                     }  
                 },
             }
@@ -245,13 +235,13 @@ router.post("/addTags", function (req, res, next) {
 
 router.post("/deleteTags", function (req, res, next) {
   // #swagger.tags = ['Asset']
-  // #swagger.summary = '注册User'
+  // #swagger.summary = '删除标签'
   /*	#swagger.requestBody = {
             required: true,
             content: {
                 "application/json": {
                     schema: {
-                        $ref: "#/definitions/user_register"
+                        $ref: "#/definitions/asset_tag_add_delete"
                     }  
                 },
             }
@@ -276,7 +266,7 @@ router.post("/deleteTags", function (req, res, next) {
  */
 router.put("/updateStatus", async (req, res, next) => {
   // #swagger.tags = ['Asset']
-  // #swagger.summary = '注册User'
+  // #swagger.summary = '？？？？？？？'
   /*	#swagger.requestBody = {
             required: true,
             content: {
