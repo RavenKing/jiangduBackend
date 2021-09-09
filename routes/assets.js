@@ -306,14 +306,16 @@ router.put("/updateStatus", async (req, res, next) => {
  * @param {*} body
  * @returns
  */
-async function getAssetTag(data)
-{
-    const policyTag = new ohana(tagTableName); // new ohana('table_name');
-    const result = await policyTag.raw(
-        "select \"TAG_ID\", \"TAG_NAME\",\"TAG_VALUE\" ,\"TAG_CATEGORY\" from \"SAP_JIANGDU_TAGS\" where \"TAG_ID\" in (Select \"TAG_ID_TAG_ID\" from \""+tagTableName+"\" where \"ASSET_ID_ASSET_ID\" = '" +data.ASSET_ID + "' )"
-    )
-    return result; 
-
+async function getAssetTag(data) {
+  const policyTag = new ohana(tagTableName); // new ohana('table_name');
+  const result = await policyTag.raw(
+    'select "TAG_ID", "TAG_NAME","TAG_VALUE" ,"TAG_CATEGORY" from "SAP_JIANGDU_TAGS" where "TAG_ID" in (Select "TAG_ID_TAG_ID" from "' +
+      tagTableName +
+      '" where "ASSET_ID_ASSET_ID" = \'' +
+      data.ASSET_ID +
+      "' )"
+  );
+  return result;
 }
 async function insertAssetData(data) {
   const policyTag = new ohana(tagTableName); // new ohana('table_name');
