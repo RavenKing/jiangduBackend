@@ -64,7 +64,6 @@ router.post("/notices", function (req, res, next) {
                 },
             }
     } */
-  console.log("here!");
   const queryData = req.query;
   const recommendLists = new ohana(tableName); // new ohana('table_name');
   if (queryData == null) {
@@ -85,6 +84,35 @@ router.post("/notices", function (req, res, next) {
       res.send(result);
     });
   }
+});
+
+// get count 
+
+
+router.post("/getUnreadNoticeCount", function (req, res, next) {
+  // #swagger.tags = ['RecommendList']
+  // #swagger.summary = '新建推荐列表'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/recommendList"
+                    }  
+                },
+            }
+    } */
+  const { data } = req.body;
+  countUnreadNotice(data).then((result)=>{
+    if(result.length>0)
+    {
+      res.send({count:result[0]["COUNT(RECOMMENDED_LIST_ID)"]});
+    }else{
+      res.sendStatus(500)
+    }
+  })
+  //console.log(uunewid.v4())
+  // console.log(data);
 });
 
 router.put("/", function (req, res, next) {
@@ -116,6 +144,22 @@ router.put("/", function (req, res, next) {
       console.log(err);
     });
 });
+
+async function countUnreadNotice(body) {
+  const policy = new ohana(tableName); // new ohana('table_name');
+  const result = await policy.count(
+   "RECOMMENDED_LIST_ID",
+    body
+  );
+  return result;
+}
+
+async function insertData(body) {
+  const user = new ohana(tableName); // new ohana('table_name');
+  const result = await user.batchInsert(body);
+  return result;
+}
+
 
 async function updateMessage(body) {
   const policy = new ohana(tableName); // new ohana('table_name');
