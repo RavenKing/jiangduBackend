@@ -16,7 +16,7 @@ function checkData(res, data) {
 router.get("/", function (req, res, next) {
   // #swagger.tags = ['Talent']
   // #swagger.summary = '获取人才'
-  const t_Talent = new ohana("SAP_JIANGDU_TalentS"); // new ohana('table_name');
+  const t_Talent = new ohana("SAP_JIANGDU_TALENTS"); // new ohana('table_name');
   t_Talent.find().then((result) => {
     res.send(result);
   });
@@ -178,7 +178,7 @@ router.post("/", function (req, res, next) {
   const { data } = req.body;
   console.log(data);
   //console.log(uunewid.v4())
-  data.Talent_ID = uunewid.v4();
+  data.TALENT_ID = uunewid.v4();
   insertData(data)
     .then((result) => {
       console.log(result);
@@ -233,15 +233,15 @@ async function insertData(body) {
 
 async function updateTalent(body) {
   const t_Talent = new ohana("SAP_JIANGDU_TalentS");
-  const result = await t_Talent.update({ Talent_ID: body.Talent_ID }, body);
+  const result = await t_Talent.update({ TALENT_ID: body.TALENT_ID }, body);
   return result;
 }
 
 async function deleteTalent(body) {
   const t_Talent = new ohana("SAP_JIANGDU_TalentS"); // new ohana('table_name');
   const result = await policy.raw(
-    'delete from "SAP_JIANGDU_TalentS" where Talent_ID = \'' +
-      body.Talent_ID +
+    'delete from "SAP_JIANGDU_TalentS" where TALENT_ID = \'' +
+      body.TALENT_ID +
       "'"
   );
   return result;
@@ -267,7 +267,7 @@ async function getTalentTags(body) {
   const t_Talent = new ohana("SAP_JIANGDU_TAG_TalentS");
   //fisrt get tag ids attached with target Talent by Talent id
   const tag_ids = await t_Talent.find({
-    Talent_ID_Talent_ID: body.Talent_ID_Talent_ID,
+    TALENT_ID_TALENT_ID: body.TALENT_ID_TALENT_ID,
   });
   //console.log(tag_ids)
   let tags = [];
@@ -287,8 +287,8 @@ async function insertTalentData(data) {
 async function deletaTalentTag(data) {
   const t_TalentTags = new ohana("SAP_JIANGDU_TAG_TalentS"); // new ohana('table_name');
   const result = await t_TalentTags.raw(
-    'delete from "SAP_JIANGDU_TAG_TalentS" where Talent_ID_Talent_ID = \'' +
-      data.Talent_ID_Talent_ID +
+    'delete from "SAP_JIANGDU_TAG_TalentS" where TALENT_ID_TALENT_ID = \'' +
+      data.TALENT_ID_TALENT_ID +
       "' and TAG_ID_TAG_ID = '" +
       data.TAG_ID_TAG_ID +
       "'"
