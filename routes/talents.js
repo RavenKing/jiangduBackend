@@ -226,21 +226,21 @@ router.delete("/", function (req, res, next) {
 });
 
 async function insertData(body) {
-  const t_Talent = new ohana("SAP_JIANGDU_TalentS"); // new ohana('table_name');
+  const t_Talent = new ohana("SAP_JIANGDU_TALENTS"); // new ohana('table_name');
   const result = await t_Talent.insert(body);
   return result;
 }
 
 async function updateTalent(body) {
-  const t_Talent = new ohana("SAP_JIANGDU_TalentS");
+  const t_Talent = new ohana("SAP_JIANGDU_TALENTS");
   const result = await t_Talent.update({ TALENT_ID: body.TALENT_ID }, body);
   return result;
 }
 
 async function deleteTalent(body) {
-  const t_Talent = new ohana("SAP_JIANGDU_TalentS"); // new ohana('table_name');
+  const t_Talent = new ohana("SAP_JIANGDU_TALENTS"); // new ohana('table_name');
   const result = await policy.raw(
-    'delete from "SAP_JIANGDU_TalentS" where TALENT_ID = \'' +
+    'delete from "SAP_JIANGDU_TALENTS" where TALENT_ID = \'' +
       body.TALENT_ID +
       "'"
   );
@@ -256,15 +256,15 @@ async function get_Talent_tag(tag_id) {
 }
 
 async function getAllTags(data) {
-  const t_TalentTags = new ohana("SAP_JIANGDU_TAG_TalentS"); // new ohana('table_name');
+  const t_TalentTags = new ohana("SAP_JIANGDU_TAG_TALENTS"); // new ohana('table_name');
   const result = await t_TalentTags.raw(
-    'SELECT A1.*, A2.TAG_NAME, A2.TAG_VALUE, A2.TYPE, A2.TAG_CATEGORY, A2.DESCRIPTION from "SAP_JIANGDU_TAG_TalentS" as A1 LEFT JOIN "SAP_JIANGDU_TAGS" as A2 on A1.TAG_ID_TAG_ID = A2.TAG_ID'
+    'SELECT A1.*, A2.TAG_NAME, A2.TAG_VALUE, A2.TYPE, A2.TAG_CATEGORY, A2.DESCRIPTION from "SAP_JIANGDU_TAG_TALENTS" as A1 LEFT JOIN "SAP_JIANGDU_TAGS" as A2 on A1.TAG_ID_TAG_ID = A2.TAG_ID'
   );
   return result;
 }
 
 async function getTalentTags(body) {
-  const t_Talent = new ohana("SAP_JIANGDU_TAG_TalentS");
+  const t_Talent = new ohana("SAP_JIANGDU_TAG_TALENTS");
   //fisrt get tag ids attached with target Talent by Talent id
   const tag_ids = await t_Talent.find({
     TALENT_ID_TALENT_ID: body.TALENT_ID_TALENT_ID,
@@ -279,15 +279,15 @@ async function getTalentTags(body) {
 }
 
 async function insertTalentData(data) {
-  const t_TalentTags = new ohana("SAP_JIANGDU_TAG_TalentS"); // new ohana('table_name');
+  const t_TalentTags = new ohana("SAP_JIANGDU_TAG_TALENTS"); // new ohana('table_name');
   const result = await t_TalentTags.insert(data);
   return result;
 }
 
 async function deletaTalentTag(data) {
-  const t_TalentTags = new ohana("SAP_JIANGDU_TAG_TalentS"); // new ohana('table_name');
+  const t_TalentTags = new ohana("SAP_JIANGDU_TAG_TALENTS"); // new ohana('table_name');
   const result = await t_TalentTags.raw(
-    'delete from "SAP_JIANGDU_TAG_TalentS" where TALENT_ID_TALENT_ID = \'' +
+    'delete from "SAP_JIANGDU_TAG_TALENTS" where TALENT_ID_TALENT_ID = \'' +
       data.TALENT_ID_TALENT_ID +
       "' and TAG_ID_TAG_ID = '" +
       data.TAG_ID_TAG_ID +
