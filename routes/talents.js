@@ -239,7 +239,7 @@ async function updateTalent(body) {
 
 async function deleteTalent(body) {
   const t_Talent = new ohana("SAP_JIANGDU_TALENTS"); // new ohana('table_name');
-  const result = await policy.raw(
+  const result = await t_Talent.raw(
     'delete from "SAP_JIANGDU_TALENTS" where TALENT_ID = \'' +
       body.TALENT_ID +
       "'"
