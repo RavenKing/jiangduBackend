@@ -115,6 +115,25 @@ router.post("/getUnreadNoticeCount", function (req, res, next) {
   // console.log(data);
 });
 
+router.post("/toggleNotice", function (req, res, next) {
+
+  //checkData(res, req.body.data);
+  const { data } = req.body;
+  updateNoticeStatus(data)
+    .then((result) => {
+      console.log(result);
+      if (result == 1) {
+        res.sendStatus(200);
+      } else {
+        res.send(500);
+      }
+      //return res.send(result)
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
 router.put("/", function (req, res, next) {
   // #swagger.tags = ['RecommendList']
   // #swagger.summary = '修改列表'
@@ -128,7 +147,7 @@ router.put("/", function (req, res, next) {
                 },
             }
     } */
-  checkData(res, req.body.data);
+  //checkData(res, req.body.data);
   const { data } = req.body;
   updateMessage(data)
     .then((result) => {
@@ -160,7 +179,17 @@ async function insertData(body) {
   return result;
 }
 
-
+async function updateNoticeStatus(body) {
+  const policy = new ohana(tableName); // new ohana('table_name');
+  const result = await policy.update(
+    {
+      RECOMMENDED_LIST_ID: body.RECOMMENDED_LIST_ID,
+    },
+    {"STATUS":body.STATUS
+  }
+  );
+  return result;
+}
 async function updateMessage(body) {
   const policy = new ohana(tableName); // new ohana('table_name');
   const result = await policy.update(
