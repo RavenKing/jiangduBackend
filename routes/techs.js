@@ -155,7 +155,7 @@ router.delete("/", function (req, res, next) {
     });
 });
 
-async function updateTECH(body) {
+async function updateTech(body) {
   // console.log(body)
   const policy = new ohana(tableName); // new ohana('table_name');
   const result = await policy.update(
