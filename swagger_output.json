@@ -535,7 +535,7 @@
         "tags": [
           "RecommendList"
         ],
-        "summary": "修改列表",
+        "summary": "修改推荐列表",
         "description": "",
         "parameters": [],
         "responses": {},
@@ -570,6 +570,48 @@
             }
           }
         }
+      }
+    },
+    "/api/recommendLists/getUnreadNoticeCount": {
+      "post": {
+        "tags": [
+          "RecommendList"
+        ],
+        "summary": "获取未读的消息数量",
+        "description": "",
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/recommendList"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/recommendLists/toggleNotice": {
+      "post": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {}
       }
     },
     "/api/blackLists/": {

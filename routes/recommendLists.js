@@ -91,7 +91,7 @@ router.post("/notices", function (req, res, next) {
 
 router.post("/getUnreadNoticeCount", function (req, res, next) {
   // #swagger.tags = ['RecommendList']
-  // #swagger.summary = '新建推荐列表'
+  // #swagger.summary = '获取未读的消息数量'
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -136,7 +136,7 @@ router.post("/toggleNotice", function (req, res, next) {
 
 router.put("/", function (req, res, next) {
   // #swagger.tags = ['RecommendList']
-  // #swagger.summary = '修改列表'
+  // #swagger.summary = '修改推荐列表'
   /*	#swagger.requestBody = {
             required: true,
             content: {
