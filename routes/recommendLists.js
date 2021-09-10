@@ -53,7 +53,7 @@ router.post("/", function (req, res, next) {
 
 router.post("/notices", function (req, res, next) {
   // #swagger.tags = ['RecommendList']
-  // #swagger.summary = '??????'
+  // #swagger.summary = ？？？？？？？
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -86,8 +86,7 @@ router.post("/notices", function (req, res, next) {
   }
 });
 
-// get count 
-
+// get count
 
 router.post("/getUnreadNoticeCount", function (req, res, next) {
   // #swagger.tags = ['RecommendList']
@@ -103,19 +102,30 @@ router.post("/getUnreadNoticeCount", function (req, res, next) {
             }
     } */
   const { data } = req.body;
-  countUnreadNotice(data).then((result)=>{
-    if(result.length>0)
-    {
-      res.send({count:result[0]["COUNT(RECOMMENDED_LIST_ID)"]});
-    }else{
-      res.sendStatus(500)
+  countUnreadNotice(data).then((result) => {
+    if (result.length > 0) {
+      res.send({ count: result[0]["COUNT(RECOMMENDED_LIST_ID)"] });
+    } else {
+      res.sendStatus(500);
     }
-  })
+  });
   //console.log(uunewid.v4())
   // console.log(data);
 });
 
 router.post("/toggleNotice", function (req, res, next) {
+  // #swagger.tags = ['RecommendList']
+  // #swagger.summary = 'toggleNotice'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/recommendList_toggleNotice"
+                    }  
+                },
+            }
+    } */
 
   //checkData(res, req.body.data);
   const { data } = req.body;
@@ -166,10 +176,7 @@ router.put("/", function (req, res, next) {
 
 async function countUnreadNotice(body) {
   const policy = new ohana(tableName); // new ohana('table_name');
-  const result = await policy.count(
-   "RECOMMENDED_LIST_ID",
-    body
-  );
+  const result = await policy.count("RECOMMENDED_LIST_ID", body);
   return result;
 }
 
@@ -185,8 +192,7 @@ async function updateNoticeStatus(body) {
     {
       RECOMMENDED_LIST_ID: body.RECOMMENDED_LIST_ID,
     },
-    {"STATUS":body.STATUS
-  }
+    { STATUS: body.STATUS }
   );
   return result;
 }

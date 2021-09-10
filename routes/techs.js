@@ -79,7 +79,7 @@ async function insertData(body) {
  */
 router.post("/search", function (req, res, next) {
   // #swagger.tags = ['Tech']
-  // #swagger.summary = 'query参数未知'
+  // #swagger.summary = '搜索tech，query参数未知'
   const queryData = req.query;
   const user = new ohana(tableName); // new ohana('table_name');
   if (queryData == null) {
@@ -178,7 +178,7 @@ async function deletePolicy(body) {
 
 router.post("/techTags", function (req, res, next) {
   // #swagger.tags = ['Tech']
-  // #swagger.summary = '获取tag'
+  // #swagger.summary = '获取标签'
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -269,7 +269,7 @@ router.post("/deleteTags", function (req, res, next) {
  */
 router.put("/updateStatus", async (req, res, next) => {
   // #swagger.tags = ['Tech']
-  // #swagger.summary = '????'
+  // #swagger.summary = "？？？？？？？"
   /*	#swagger.requestBody = {
             required: true,
             content: {

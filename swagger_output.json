@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "江都 API",
-    "description": "小程序+管理后台共用接口api",
-    "version": "1.0.0"
+    "version": "1.1.0",
+    "description": "小程序+管理后台共用接口api"
   },
   "host": "localhost:4000",
   "basePath": "/",
@@ -30,7 +30,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "获取User信息列表",
+        "summary": "获取User",
         "description": "这个API能获取所有User的列表",
         "parameters": [],
         "responses": {}
@@ -39,8 +39,8 @@
         "tags": [
           "Users"
         ],
-        "summary": "插入新的企业数据",
-        "description": "",
+        "summary": "插入User",
+        "description": "插入新的企业数据",
         "parameters": [],
         "responses": {},
         "requestBody": {
@@ -102,8 +102,8 @@
         "tags": [
           "Users"
         ],
-        "summary": "获取企业信息列表",
-        "description": "",
+        "summary": "获取企业信息",
+        "description": "返回",
         "parameters": [],
         "responses": {}
       }
@@ -113,7 +113,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "搜索企业 需要参数未知",
+        "summary": "搜索企业，query参数未知",
         "description": "",
         "parameters": [],
         "responses": {},
@@ -155,8 +155,8 @@
         "tags": [
           "Policy"
         ],
-        "summary": "获取政策列表",
-        "description": "",
+        "summary": "获取policy",
+        "description": "获取政策列表",
         "parameters": [],
         "responses": {},
         "requestBody": {
@@ -174,7 +174,7 @@
         "tags": [
           "Policy"
         ],
-        "summary": "修改政策",
+        "summary": "修改policy",
         "description": "",
         "parameters": [],
         "responses": {},
@@ -193,7 +193,7 @@
         "tags": [
           "Policy"
         ],
-        "summary": "删除政策",
+        "summary": "删除policy",
         "description": "",
         "parameters": [],
         "responses": {},
@@ -256,7 +256,7 @@
         "tags": [
           "Policy"
         ],
-        "summary": "插入新政策",
+        "summary": "插入policy",
         "description": "",
         "parameters": [],
         "responses": {},
@@ -352,7 +352,7 @@
         "tags": [
           "Talent"
         ],
-        "summary": "获取人才",
+        "summary": "获取talent",
         "description": "",
         "parameters": [],
         "responses": {}
@@ -361,7 +361,7 @@
         "tags": [
           "Talent"
         ],
-        "summary": "修改人才信息",
+        "summary": "修改talent",
         "description": "",
         "parameters": [],
         "responses": {},
@@ -380,7 +380,7 @@
         "tags": [
           "Talent"
         ],
-        "summary": "添加人才",
+        "summary": "添加talent",
         "description": "",
         "parameters": [],
         "responses": {},
@@ -399,7 +399,7 @@
         "tags": [
           "Talent"
         ],
-        "summary": "删除人才",
+        "summary": "删除talent",
         "description": "",
         "parameters": [],
         "responses": {},
@@ -556,7 +556,7 @@
         "tags": [
           "RecommendList"
         ],
-        "summary": "??????",
+        "summary": "",
         "description": "",
         "parameters": [],
         "responses": {},
@@ -595,23 +595,23 @@
     },
     "/api/recommendLists/toggleNotice": {
       "post": {
-        "tags": [],
+        "tags": [
+          "RecommendList"
+        ],
+        "summary": "toggleNotice",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/recommendList_toggleNotice"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       }
     },
     "/api/blackLists/": {
@@ -709,7 +709,7 @@
         "tags": [
           "Fin"
         ],
-        "summary": "删除金融产品",
+        "summary": "删除Fin",
         "description": "",
         "parameters": [],
         "responses": {},
@@ -730,7 +730,7 @@
         "tags": [
           "Fin"
         ],
-        "summary": "新建金融",
+        "summary": "新建Fin",
         "description": "",
         "parameters": [],
         "responses": {},
@@ -751,7 +751,7 @@
         "tags": [
           "Fin"
         ],
-        "summary": "金融搜索 queryData未知",
+        "summary": "搜索Fin，query参数未知",
         "description": "",
         "parameters": [],
         "responses": {}
@@ -762,7 +762,7 @@
         "tags": [
           "Fin"
         ],
-        "summary": "获取某个金融惠企的标签",
+        "summary": "获取标签",
         "description": "",
         "parameters": [],
         "responses": {},
@@ -825,7 +825,7 @@
         "tags": [
           "Fin"
         ],
-        "summary": "？？？更新user表",
+        "summary": "？？？？？？？",
         "description": "",
         "parameters": [],
         "responses": {},
@@ -865,7 +865,7 @@
         "tags": [
           "Asset"
         ],
-        "summary": "修改asset 前端还没做好",
+        "summary": "修改asset",
         "description": "",
         "parameters": [],
         "responses": {},
@@ -926,7 +926,7 @@
         "tags": [
           "Asset"
         ],
-        "summary": "搜索，参数未知",
+        "summary": "搜索asset，query参数未知",
         "description": "",
         "parameters": [],
         "responses": {}
@@ -958,7 +958,7 @@
         "tags": [
           "Asset"
         ],
-        "summary": "加标签",
+        "summary": "增加标签",
         "description": "",
         "parameters": [],
         "responses": {},
@@ -1101,7 +1101,7 @@
         "tags": [
           "Tech"
         ],
-        "summary": "query参数未知",
+        "summary": "搜索tech，query参数未知",
         "description": "",
         "parameters": [],
         "responses": {}
@@ -1112,7 +1112,7 @@
         "tags": [
           "Tech"
         ],
-        "summary": "获取tag",
+        "summary": "获取标签",
         "description": "",
         "parameters": [],
         "responses": {},
@@ -1175,7 +1175,7 @@
         "tags": [
           "Tech"
         ],
-        "summary": "????",
+        "summary": "？？？？？？？",
         "description": "",
         "parameters": [],
         "responses": {},
@@ -1863,6 +1863,24 @@
         }
       }
     },
+    "recommendList_toggleNotice": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "RECOMMENDED_LIST_ID": {
+              "type": "number",
+              "example": 111
+            },
+            "STATUS": {
+              "type": "string",
+              "example": ""
+            }
+          }
+        }
+      }
+    },
     "historical": {
       "type": "object",
       "properties": {
@@ -2410,7 +2428,208 @@
       "properties": {
         "data": {
           "type": "object",
-          "properties": {}
+          "properties": {
+            "TECH_ID": {
+              "type": "string",
+              "example": "7544d13c-9aad-4e25-a41f-f70619262687"
+            },
+            "TECH_CODE": {
+              "type": "string",
+              "example": "2"
+            },
+            "NAME": {
+              "type": "string",
+              "example": "专利2"
+            },
+            "DESCRIPTION": {
+              "type": "string",
+              "example": "专利描述2"
+            },
+            "DESCRIPTION_PIC_URL": {
+              "type": "string",
+              "example": " "
+            },
+            "TYPE": {
+              "type": "string",
+              "example": "专利"
+            },
+            "PATENT_APPLICATION_COUNTRY": {
+              "type": "string",
+              "example": "国内"
+            },
+            "PATENT_APPLICATION_CODE": {
+              "type": "string",
+              "example": " "
+            },
+            "PATENT_APPLICATION_DATE": {
+              "type": "string",
+              "example": ""
+            },
+            "PATENT_AUTHORIZATION_STATE": {
+              "type": "string",
+              "example": " "
+            },
+            "PATENT_AUTHORIZATION_CODE": {
+              "type": "string",
+              "example": " "
+            },
+            "PATENT_AUTHORIZATION_DATE": {
+              "type": "string",
+              "example": ""
+            },
+            "PATENT_APPLICANT": {
+              "type": "string",
+              "example": " "
+            },
+            "PATENT_INVENTOR": {
+              "type": "string",
+              "example": " "
+            },
+            "TRADEMARK_AVATAR": {
+              "type": "string",
+              "example": " "
+            },
+            "TRADEMARK_REGISTERATION_CODE": {
+              "type": "string",
+              "example": " "
+            },
+            "TRADEMARK_REGISTERATION_DATE": {
+              "type": "string",
+              "example": ""
+            },
+            "TRADEMARK_REGISTERATION_EXPIRE_DATE": {
+              "type": "string",
+              "example": ""
+            },
+            "TRADEMARK_APPLICANT": {
+              "type": "string",
+              "example": " "
+            },
+            "COPYRIGHT_TYPE": {
+              "type": "string",
+              "example": " "
+            },
+            "COPYRIGHT_REGISTERATION_CODE": {
+              "type": "string",
+              "example": " "
+            },
+            "COPYRIGHT_REGISTERATION_DATE": {
+              "type": "string",
+              "example": ""
+            },
+            "COPYRIGHT_FINISHED_DATE": {
+              "type": "string",
+              "example": ""
+            },
+            "COPYRIGHT_PUBLISHED_DATE": {
+              "type": "string",
+              "example": ""
+            },
+            "COPYRIGHT_VERSION_CODE": {
+              "type": "string",
+              "example": " "
+            },
+            "COPYRIGHT_CLASSIFICATION_CODE": {
+              "type": "string",
+              "example": " "
+            },
+            "COPYRIGHT_AUTHORIZATION_DATE": {
+              "type": "string",
+              "example": " "
+            },
+            "QUALIFICATION_CODE": {
+              "type": "string",
+              "example": " "
+            },
+            "QUALIFICATION_STATUS": {
+              "type": "string",
+              "example": " "
+            },
+            "QUALIFICATION_DATE": {
+              "type": "string",
+              "example": ""
+            },
+            "QUALIFICATION_EXPIRE_DATE": {
+              "type": "string",
+              "example": ""
+            },
+            "CONTACT_NAME": {
+              "type": "string",
+              "example": " "
+            },
+            "PHONE": {
+              "type": "string",
+              "example": " "
+            },
+            "EMAIL": {
+              "type": "string",
+              "example": " "
+            },
+            "DEPARTMENT": {
+              "type": "string",
+              "example": " "
+            },
+            "COMPANY_CODE_COMPANY_CODE": {
+              "type": "string",
+              "example": " "
+            },
+            "COMPANY_NAME": {
+              "type": "string",
+              "example": " "
+            },
+            "STATUS": {
+              "type": "string",
+              "example": "启用"
+            },
+            "CREATED_AT": {
+              "type": "string",
+              "example": "2021-09-09"
+            },
+            "UPDATED_AT": {
+              "type": "string",
+              "example": "2021-09-09"
+            },
+            "USER_ID_USER_ID": {
+              "type": "string",
+              "example": " "
+            },
+            "USER_NAME": {
+              "type": "string",
+              "example": "张三"
+            },
+            "AREA": {
+              "type": "string",
+              "example": " "
+            },
+            "NEW_INDUSTRY": {
+              "type": "string",
+              "example": " "
+            },
+            "TARGET_PRICE": {
+              "type": "string",
+              "example": " "
+            },
+            "QUANSHU_AREA": {
+              "type": "string",
+              "example": " "
+            },
+            "IPC_CATEGORY": {
+              "type": "string",
+              "example": " "
+            },
+            "PATENT_CATEGORY": {
+              "type": "string",
+              "example": " "
+            },
+            "PCT": {
+              "type": "boolean",
+              "example": true
+            },
+            "HEZUO_TYPE": {
+              "type": "string",
+              "example": " "
+            }
+          }
         }
       }
     },

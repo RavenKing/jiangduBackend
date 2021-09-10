@@ -76,7 +76,7 @@ async function insertData(body) {
  */
 router.post("/search", function (req, res, next) {
   // #swagger.tags = ['Asset']
-  // #swagger.summary = '搜索，参数未知'
+  // #swagger.summary = '搜索asset，query参数未知'
   const queryData = req.query;
   const user = new ohana(tableName); // new ohana('table_name');
   if (queryData == null) {
@@ -93,7 +93,7 @@ router.post("/search", function (req, res, next) {
 /**update Assets  */
 router.put("/", function (req, res, next) {
   // #swagger.tags = ['Asset']
-  // #swagger.summary = '修改asset 前端还没做好'
+  // #swagger.summary = '修改asset'
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -206,7 +206,7 @@ router.post("/AssetTags", function (req, res, next) {
 
 router.post("/addTags", function (req, res, next) {
   // #swagger.tags = ['Asset']
-  // #swagger.summary = '加标签'
+  // #swagger.summary = '增加标签'
   /*	#swagger.requestBody = {
             required: true,
             content: {
