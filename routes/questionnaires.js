@@ -6,22 +6,22 @@ const {
 } = require("ohana-node-orm");
 
 //创建问卷答案
-  /*
+/*
 
 
 
-    } */
+  } */
 router.post("/createQuestionnaire", async (req, res, next) => {
     const {
         data
     } = req.body;
     data.uuid = uunewid.v4();
     const result = await insertJsonDoc(data);
-    if(result == 1)
-    {
+    if (result == 1) {
         res.sendStatus(200)
+    } else {
+        res.sendStatus(500)
     }
-    else{res.sendStatus(500)}
 
 });
 
@@ -41,6 +41,8 @@ router.post("/getQuestionnaire", async (req, res, next) => {
     res.send(result);
 });
 
+
+
 //更新问卷 只能更新Answers
 /**
  * 
@@ -55,11 +57,31 @@ router.post("/updateQuestionnaire", async (req, res, next) => {
     } = req.body;
     const result = await updateJsonDoc(data);
     console.log(result);
-    if(result == 1)
-    {
+    if (result == 1) {
         res.sendStatus(200)
+    } else {
+        res.sendStatus(500)
     }
-    else{res.sendStatus(500)}
+});
+
+
+
+
+/*
+ *删除问卷id
+ */
+
+router.delete("/", async (req, res, next) => {
+    const {
+        data
+    } = req.body;
+    const result = await deleteJsonDoc(data);
+
+    if (result == 1) {
+        res.sendStatus(200)
+    } else {
+        res.sendStatus(500)
+    }
 });
 async function insertJsonDoc(data) {
     const histo = new ohana("SAP_JIANGDU_FREQUENTLY_USED_ENTERPRISES");
@@ -89,10 +111,20 @@ async function updateJsonDoc(data) {
     var json = JSON.stringify(data.ANSWERS); // {"type":"Fiat","model":"500","color":"White"}为了去掉"符合HANA json 插入的格式
     var unquoted = json.replace(/"([^"]+)":/g, '$1:');
     let resultText = unquoted.replace(new RegExp("\"", "g"), "'");
-    var stringText = "update QUESTIONNAIRES SET ANSWERS = " + resultText + " where UUID = '" + data.UUID+"'";
+    var stringText = "update QUESTIONNAIRES SET ANSWERS = " + resultText + " where UUID = '" + data.UUID + "'";
     ///UPDATE  Questionnaires  SET  "ANSWERS" = {test:12312} where UUID = '455bdad0-4cbb-4bc4-85b0-0c34c0e4d8c4'
 
     console.log(stringText);
+    const result = await histo.raw(
+        stringText
+    );
+    return result;
+}
+
+async function deleteJsonDoc(data) {
+    const histo = new ohana("SAP_JIANGDU_FREQUENTLY_USED_ENTERPRISES");
+    var stringText = "delete from  QUESTIONNAIRES where UUID = '" + data.UUID + "'";
+    console.log(stringText)
     const result = await histo.raw(
         stringText
     );
