@@ -58,8 +58,7 @@ router.post("/add", function (req, res, next) {
         console.log(result);
         res.send(500);
       }
-      //return res.send(result)
-    })
+        })
     .catch((err) => {
       console.log(err);
     });

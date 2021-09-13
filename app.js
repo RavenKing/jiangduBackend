@@ -14,6 +14,7 @@ var tagsRouter = require('./routes/tags');
 var talentsRouter = require('./routes/talents');
 var recommendListsRouter = require('./routes/recommendLists')
 var blackListRouter = require('./routes/blackList')
+var questionnaireRouter = require('./routes/questionnaires')
 
 var historicalRouter = require('./routes/historical')
 
@@ -48,6 +49,7 @@ app.use('/api/historical', historicalRouter);
 app.use('/api/fins', finRouter);
 app.use('/api/assets', assetRouter);
 app.use('/api/techs', techRouter);
+app.use('/api/questionnaires', questionnaireRouter);
 
 //configure JWT service
 app.use(expressJwt({
