@@ -1190,6 +1190,69 @@
           }
         }
       }
+    },
+    "/api/questionnaires/createQuestionnaire": {
+      "post": {
+        "tags": [
+          "Questionnaire"
+        ],
+        "summary": "创建questionnaire",
+        "description": "",
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/recommendList_toggleNotice"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/questionnaires/getQuestionnaire": {
+      "post": {
+        "tags": [
+          "Questionnaire"
+        ],
+        "summary": "获取questionnaire",
+        "description": "",
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/questionnaire_get_update"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/questionnaires/updateQuestionnaire": {
+      "post": {
+        "tags": [
+          "Questionnaire"
+        ],
+        "summary": "更新questionnaire",
+        "description": "",
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/questionnaire_get_update"
+              }
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -1712,55 +1775,55 @@
           "properties": {
             "TALENT_ID": {
               "type": "string",
-              "example": "fc235c0a-0a35-11ec-9974-90ccdf01187c"
+              "example": "13f9fcb8-0a36-11ec-85eb-90ccdf01187c"
             },
             "TALENT_NAME": {
               "type": "string",
-              "example": "彭十"
+              "example": "魏十五"
             },
             "AGE": {
               "type": "number",
-              "example": 2
+              "example": 3
             },
             "SEX": {
-              "type": "string",
-              "example": "0"
+              "type": "number",
+              "example": 0
             },
             "POSITION": {
               "type": "string",
-              "example": "null"
+              "example": ""
             },
             "DEGREE": {
               "type": "number",
-              "example": 4
+              "example": 1
             },
             "TYPE": {
               "type": "string",
-              "example": "null"
+              "example": ""
             },
             "UNIVERSITY": {
               "type": "string",
-              "example": "null"
+              "example": ""
             },
             "CAREER_YEAR": {
-              "type": "string",
-              "example": "4"
+              "type": "number",
+              "example": 2
             },
             "COMPANY_NAME": {
               "type": "string",
-              "example": "null"
+              "example": ""
             },
             "SALARY": {
               "type": "string",
-              "example": "15k"
+              "example": "199k"
             },
             "AREA": {
               "type": "string",
-              "example": "null"
+              "example": ""
             },
             "RESUME_URL": {
               "type": "string",
-              "example": "null"
+              "example": ""
             },
             "CREATED_AT": {
               "type": "string",
@@ -1770,17 +1833,9 @@
               "type": "string",
               "example": "1970-01-01"
             },
-            "HIGHEST_EDUCATION": {
-              "type": "number",
-              "example": 2
-            },
-            "WORK_YEARS": {
-              "type": "number",
-              "example": 1
-            },
-            "CDATA": {
+            "AVATAR": {
               "type": "string",
-              "example": "ssss"
+              "example": "https://s3.bmp.ovh/imgs/2021/09/31168b2e6cd39fb4.png"
             }
           }
         }
@@ -2700,6 +2755,46 @@
         "token": {
           "type": "string",
           "example": "2c59a359-77a0-4b66-9d66-02089946a04c"
+        }
+      }
+    },
+    "questionnaire": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {}
+        },
+        "token": {
+          "type": "string",
+          "example": "2c59a359-77a0-4b66-9d66-02089946a04c"
+        }
+      }
+    },
+    "questionnaire_get_update": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "ANSWERS": {
+              "type": "object",
+              "properties": {
+                "TEST": {
+                  "type": "string",
+                  "example": "132"
+                },
+                "COOL": {
+                  "type": "string",
+                  "example": "it works"
+                }
+              }
+            },
+            "UUID": {
+              "type": "string",
+              "example": "455bdad0-4cbb-4bc4-85b0-0c34c0e4d8c4"
+            }
+          }
         }
       }
     }

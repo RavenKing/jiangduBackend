@@ -12,6 +12,18 @@ const {
 
     } */
 router.post("/createQuestionnaire", async (req, res, next) => {
+     // #swagger.tags = ['Questionnaire']
+  // #swagger.summary = '创建questionnaire'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/recommendList_toggleNotice"
+                    }  
+                },
+            }
+    } */
     const {
         data
     } = req.body;
@@ -34,6 +46,18 @@ router.post("/createQuestionnaire", async (req, res, next) => {
  */
 
 router.post("/getQuestionnaire", async (req, res, next) => {
+    // #swagger.tags = ['Questionnaire']
+  // #swagger.summary = '获取questionnaire'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/questionnaire_get_update"
+                    }  
+                },
+            }
+    } */
     const {
         data
     } = req.body;
@@ -50,6 +74,18 @@ router.post("/getQuestionnaire", async (req, res, next) => {
 }
  */
 router.post("/updateQuestionnaire", async (req, res, next) => {
+    // #swagger.tags = ['Questionnaire']
+  // #swagger.summary = '更新questionnaire'
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/questionnaire_get_update"
+                    }  
+                },
+            }
+    } */
     const {
         data
     } = req.body;
