@@ -421,7 +421,10 @@ const doc = {
     },
     questionnaire: { data: {}, token: "2c59a359-77a0-4b66-9d66-02089946a04c" },
     questionnaire_get_update: {
-      "data":{"ANSWERS": {"TEST": "132", "COOL": "it works"}, "UUID": "455bdad0-4cbb-4bc4-85b0-0c34c0e4d8c4"},
+      data: {
+        ANSWERS: { TEST: "132", COOL: "it works" },
+        UUID: "455bdad0-4cbb-4bc4-85b0-0c34c0e4d8c4",
+      },
     },
   },
 };

@@ -1,18 +1,16 @@
 var express = require("express");
 var uunewid = require("uuid");
 var router = express.Router();
-const {
-    ohana
-} = require("ohana-node-orm");
+const { ohana } = require("ohana-node-orm");
 
 //创建问卷答案
-  /*
+/*
 
 
 
     } */
 router.post("/createQuestionnaire", async (req, res, next) => {
-     // #swagger.tags = ['Questionnaire']
+  // #swagger.tags = ['Questionnaire']
   // #swagger.summary = '创建questionnaire'
   /*	#swagger.requestBody = {
             required: true,
@@ -24,17 +22,14 @@ router.post("/createQuestionnaire", async (req, res, next) => {
                 },
             }
     } */
-    const {
-        data
-    } = req.body;
-    data.uuid = uunewid.v4();
-    const result = await insertJsonDoc(data);
-    if(result == 1)
-    {
-        res.sendStatus(200)
-    }
-    else{res.sendStatus(500)}
-
+  const { data } = req.body;
+  data.uuid = uunewid.v4();
+  const result = await insertJsonDoc(data);
+  if (result == 1) {
+    res.sendStatus(200);
+  } else {
+    res.sendStatus(500);
+  }
 });
 
 //list问卷答案
@@ -46,7 +41,7 @@ router.post("/createQuestionnaire", async (req, res, next) => {
  */
 
 router.post("/getQuestionnaire", async (req, res, next) => {
-    // #swagger.tags = ['Questionnaire']
+  // #swagger.tags = ['Questionnaire']
   // #swagger.summary = '获取questionnaire'
   /*	#swagger.requestBody = {
             required: true,
@@ -58,11 +53,9 @@ router.post("/getQuestionnaire", async (req, res, next) => {
                 },
             }
     } */
-    const {
-        data
-    } = req.body;
-    const result = await getJsonDoc(data);
-    res.send(result);
+  const { data } = req.body;
+  const result = await getJsonDoc(data);
+  res.send(result);
 });
 
 //更新问卷 只能更新Answers
@@ -70,11 +63,10 @@ router.post("/getQuestionnaire", async (req, res, next) => {
  * 
  * {
 	"data":{"ANSWERS": {"TEST": "132", "COOL": "it works"}, "UUID": "455bdad0-4cbb-4bc4-85b0-0c34c0e4d8c4"}
-	
 }
  */
 router.post("/updateQuestionnaire", async (req, res, next) => {
-    // #swagger.tags = ['Questionnaire']
+  // #swagger.tags = ['Questionnaire']
   // #swagger.summary = '更新questionnaire'
   /*	#swagger.requestBody = {
             required: true,
@@ -86,53 +78,51 @@ router.post("/updateQuestionnaire", async (req, res, next) => {
                 },
             }
     } */
-    const {
-        data
-    } = req.body;
-    const result = await updateJsonDoc(data);
-    console.log(result);
-    if(result == 1)
-    {
-        res.sendStatus(200)
-    }
-    else{res.sendStatus(500)}
+  const { data } = req.body;
+  const result = await updateJsonDoc(data);
+  console.log(result);
+  if (result == 1) {
+    res.sendStatus(200);
+  } else {
+    res.sendStatus(500);
+  }
 });
 async function insertJsonDoc(data) {
-    const histo = new ohana("SAP_JIANGDU_FREQUENTLY_USED_ENTERPRISES");
-    var json = JSON.stringify(data); // {"type":"Fiat","model":"500","color":"White"}为了去掉"符合HANA json 插入的格式
-    var unquoted = json.replace(/"([^"]+)":/g, '$1:');
-    let resultText = unquoted.replace(new RegExp("\"", "g"), "'");
-    var stringText = "insert into QUESTIONNAIRES values(" + resultText + ")";
-    const result = await histo.raw(
-        stringText
-    );
-    return result;
+  const histo = new ohana("SAP_JIANGDU_FREQUENTLY_USED_ENTERPRISES");
+  var json = JSON.stringify(data); // {"type":"Fiat","model":"500","color":"White"}为了去掉"符合HANA json 插入的格式
+  var unquoted = json.replace(/"([^"]+)":/g, "$1:");
+  let resultText = unquoted.replace(new RegExp('"', "g"), "'");
+  var stringText = "insert into QUESTIONNAIRES values(" + resultText + ")";
+  const result = await histo.raw(stringText);
+  return result;
 }
 async function getJsonDoc(data) {
-    const histo = new ohana("SAP_JIANGDU_FREQUENTLY_USED_ENTERPRISES");
-    var stringText = "select * from  QUESTIONNAIRES where UUID = '" + data.UUID + "'";
-    console.log(stringText)
-    const result = await histo.raw(
-        stringText
-    );
-    return {
-        data: result
-    };
+  const histo = new ohana("SAP_JIANGDU_FREQUENTLY_USED_ENTERPRISES");
+  var stringText =
+    "select * from  QUESTIONNAIRES where UUID = '" + data.UUID + "'";
+  console.log(stringText);
+  const result = await histo.raw(stringText);
+  return {
+    data: result,
+  };
 }
 
 async function updateJsonDoc(data) {
-    const histo = new ohana("SAP_JIANGDU_FREQUENTLY_USED_ENTERPRISES");
-    var json = JSON.stringify(data.ANSWERS); // {"type":"Fiat","model":"500","color":"White"}为了去掉"符合HANA json 插入的格式
-    var unquoted = json.replace(/"([^"]+)":/g, '$1:');
-    let resultText = unquoted.replace(new RegExp("\"", "g"), "'");
-    var stringText = "update QUESTIONNAIRES SET ANSWERS = " + resultText + " where UUID = '" + data.UUID+"'";
-    ///UPDATE  Questionnaires  SET  "ANSWERS" = {test:12312} where UUID = '455bdad0-4cbb-4bc4-85b0-0c34c0e4d8c4'
+  const histo = new ohana("SAP_JIANGDU_FREQUENTLY_USED_ENTERPRISES");
+  var json = JSON.stringify(data.ANSWERS); // {"type":"Fiat","model":"500","color":"White"}为了去掉"符合HANA json 插入的格式
+  var unquoted = json.replace(/"([^"]+)":/g, "$1:");
+  let resultText = unquoted.replace(new RegExp('"', "g"), "'");
+  var stringText =
+    "update QUESTIONNAIRES SET ANSWERS = " +
+    resultText +
+    " where UUID = '" +
+    data.UUID +
+    "'";
+  ///UPDATE  Questionnaires  SET  "ANSWERS" = {test:12312} where UUID = '455bdad0-4cbb-4bc4-85b0-0c34c0e4d8c4'
 
-    console.log(stringText);
-    const result = await histo.raw(
-        stringText
-    );
-    return result;
+  console.log(stringText);
+  const result = await histo.raw(stringText);
+  return result;
 }
 
 module.exports = router;
