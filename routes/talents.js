@@ -15,7 +15,7 @@ function checkData(res, data) {
  */
 router.get("/", function (req, res, next) {
   // #swagger.tags = ['Talent']
-  // #swagger.summary = '获取人才'
+  // #swagger.summary = '获取talent'
   const t_Talent = new ohana("SAP_JIANGDU_TALENTS"); // new ohana('table_name');
   t_Talent.find().then((result) => {
     res.send(result);
@@ -25,7 +25,7 @@ router.get("/", function (req, res, next) {
 /**update Talent  */
 router.put("/", function (req, res, next) {
   // #swagger.tags = ['Talent']
-  // #swagger.summary = '修改人才信息'
+  // #swagger.summary = '修改talent'
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -163,7 +163,7 @@ router.post("/deleteTags", function (req, res, next) {
 /** insert Talent */
 router.post("/", function (req, res, next) {
   // #swagger.tags = ['Talent']
-  // #swagger.summary = '添加人才'
+  // #swagger.summary = '添加talent'
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -197,7 +197,7 @@ router.post("/", function (req, res, next) {
 /**delete Talent  */
 router.delete("/", function (req, res, next) {
   // #swagger.tags = ['Talent']
-  // #swagger.summary = '删除人才'
+  // #swagger.summary = '删除talent'
   /*	#swagger.requestBody = {
             required: true,
             content: {

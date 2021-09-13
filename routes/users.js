@@ -17,7 +17,7 @@ const tableName = "SAP_JIANGDU_USERS";
 /* GET users listing. */
 router.get("/", function (req, res, next) {
   // #swagger.tags = ['Users']
-  // #swagger.summary = '获取User信息列表'
+  // #swagger.summary = '获取User'
   // #swagger.description = '这个API能获取所有User的列表'
   const user = new ohana(tableName); // new ohana('table_name');
   user.find().then((result) => {
@@ -127,7 +127,8 @@ router.post("/login", async function (req, res, next) {
 
 router.get("/getCompanyInfo", function (req, res, next) {
   // #swagger.tags = ['Users']
-  // #swagger.summary = '获取企业信息列表'
+  // #swagger.summary = '获取企业信息'
+  // #swagger.description = "返回"USER_ID",  "COMPANY_NAME", "COMPANY_CODE", "COMPANY_TYPE"四个字段"
   checkData(res, req.body);
   getCompanyInfo(req.body)
     .then((result) => {
@@ -146,7 +147,8 @@ router.get("/getCompanyInfo", function (req, res, next) {
 
 router.post("/", function (req, res, next) {
   // #swagger.tags = ['Users']
-  // #swagger.summary = '插入新的企业数据'
+  // #swagger.summary = '插入User'
+   // #swagger.description = "插入新的企业数据"
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -194,7 +196,7 @@ async function insertData(body) {
  */
 router.post("/search", function (req, res, next) {
   // #swagger.tags = ['Users']
-  // #swagger.summary = '搜索企业 需要参数未知'
+  // #swagger.summary = '搜索企业，query参数未知'
   /*	#swagger.requestBody = {
             required: true,
             content: {

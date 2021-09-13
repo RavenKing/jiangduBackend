@@ -11,7 +11,9 @@ function checkData(res, data) {
 
 router.post("/", function (req, res, next) {
   // #swagger.tags = ['Policy']
-  // #swagger.summary = '获取政策列表'
+  // #swagger.summary = '获取policy'
+  // #swagger.description = '获取政策列表'
+  
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -37,7 +39,7 @@ router.post("/", function (req, res, next) {
 /**update policy  */
 router.put("/", function (req, res, next) {
   // #swagger.tags = ['Policy']
-  // #swagger.summary = '修改政策'
+  // #swagger.summary = '修改policy'
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -124,7 +126,7 @@ router.post("/deleteTags", function (req, res, next) {
 /** insert policys */
 router.post("/add", function (req, res, next) {
   // #swagger.tags = ['Policy']
-  // #swagger.summary = '插入新政策'
+  // #swagger.summary = '插入policy'
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -163,7 +165,7 @@ async function insertData(body) {
 /**delete policy  */
 router.delete("/", function (req, res, next) {
   // #swagger.tags = ['Policy']
-  // #swagger.summary = '删除政策'
+  // #swagger.summary = '删除policy'
   /*	#swagger.requestBody = {
             required: true,
             content: {
