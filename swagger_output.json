@@ -684,7 +684,17 @@
         "summary": "获取Fin",
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/fin_get"
+              }
+            }
+          }
+        }
       },
       "put": {
         "tags": [
@@ -1252,6 +1262,27 @@
             }
           }
         }
+      }
+    },
+    "/api/questionnaires/": {
+      "delete": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {}
       }
     }
   },
@@ -1942,6 +1973,15 @@
         "token": {
           "type": "string",
           "example": "2c59a359-77a0-4b66-9d66-02089946a04c"
+        }
+      }
+    },
+    "fin_get": {
+      "type": "object",
+      "properties": {
+        "LOAN_TYPE": {
+          "type": "string",
+          "example": ""
         }
       }
     },

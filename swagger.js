@@ -198,6 +198,7 @@ const doc = {
       },
     },
     historical: { token: "2c59a359-77a0-4b66-9d66-02089946a04c" },
+    fin_get:{data:{LOAN_TYPE:""}},
     fin_add: {
       data: {
         FIN_ID: "",
@@ -339,10 +340,9 @@ const doc = {
       data: {
         ASSET_ID_ASSET_ID: "ad52d74e-0ede-11ec-b9ca-342eb7e2a2ec",
         TAG_ID_TAG_ID: "15cefa4b-0c63-11ec-9ac5-342eb7e2a2ec",
-      },
-      token: "2c59a359-77a0-4b66-9d66-02089946a04c",
+      } 
     },
-    tech: { data: {}, token: "2c59a359-77a0-4b66-9d66-02089946a04c" },
+    tech: { data: {} },
     tech_add_update: {
       data: {
         TECH_ID: "7544d13c-9aad-4e25-a41f-f70619262687",

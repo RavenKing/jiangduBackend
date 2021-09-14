@@ -2,21 +2,39 @@ var express = require("express");
 var uunewid = require("uuid");
 var router = express.Router();
 const { ohana } = require("ohana-node-orm");
-
+const tableName="SAP_JIANGDU_TALENTS"
 /** */
 function checkData(res, data) {
   if (data == null) {
     res.send(500);
   }
 }
-
+/**
+ * get filter talents
+ */
+router.post("/get",function(req,res,next){
+    const {
+        data
+    } = req.body;
+    const user = new ohana(tableName); // new ohana('table_name');
+    if (!data) {
+        user.find().then((result) => {
+            res.send(result);
+        });
+    } else {
+        console.log(data)
+        user.find(data).then((result) => {
+            res.send(result);
+        });
+    }
+})
 /**
  * find all Talents
  */
 router.get("/", function (req, res, next) {
   // #swagger.tags = ['Talent']
   // #swagger.summary = '获取talent'
-  const t_Talent = new ohana("SAP_JIANGDU_TALENTS"); // new ohana('table_name');
+  const t_Talent = new ohana(tableName); // new ohana('table_name');
   t_Talent.find().then((result) => {
     res.send(result);
   });
@@ -226,21 +244,21 @@ router.delete("/", function (req, res, next) {
 });
 
 async function insertData(body) {
-  const t_Talent = new ohana("SAP_JIANGDU_TALENTS"); // new ohana('table_name');
+  const t_Talent = new ohana(tableName); // new ohana('table_name');
   const result = await t_Talent.insert(body);
   return result;
 }
 
 async function updateTalent(body) {
-  const t_Talent = new ohana("SAP_JIANGDU_TALENTS");
+  const t_Talent = new ohana(tableName);
   const result = await t_Talent.update({ TALENT_ID: body.TALENT_ID }, body);
   return result;
 }
 
 async function deleteTalent(body) {
-  const t_Talent = new ohana("SAP_JIANGDU_TALENTS"); // new ohana('table_name');
+  const t_Talent = new ohana(tableName); // new ohana('table_name');
   const result = await t_Talent.raw(
-    'delete from "SAP_JIANGDU_TALENTS" where TALENT_ID = \'' +
+    'delete from '+tableName+' where TALENT_ID = \'' +
       body.TALENT_ID +
       "'"
   );

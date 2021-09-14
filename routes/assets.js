@@ -27,10 +27,20 @@ router.post("/", function (req, res, next) {
                 },
             }
     } */
-  const user = new ohana(tableName); // new ohana('table_name');
-  user.find().then((result) => {
-    res.send(result);
-  });
+    const {
+        data
+    } = req.body;
+    const user = new ohana(tableName); // new ohana('table_name');
+    if (!data) {
+        user.find().then((result) => {
+            res.send(result);
+        });
+    } else {
+        console.log(data)
+        user.find(data).then((result) => {
+            res.send(result);
+        });
+    }
 });
 
 router.post("/add", function (req, res, next) {
