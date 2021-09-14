@@ -347,6 +347,27 @@
         }
       }
     },
+    "/api/talents/get": {
+      "post": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
     "/api/talents/": {
       "get": {
         "tags": [
@@ -1979,9 +2000,14 @@
     "fin_get": {
       "type": "object",
       "properties": {
-        "LOAN_TYPE": {
-          "type": "string",
-          "example": ""
+        "data": {
+          "type": "object",
+          "properties": {
+            "LOAN_TYPE": {
+              "type": "string",
+              "example": ""
+            }
+          }
         }
       }
     },
@@ -2498,10 +2524,6 @@
               "example": "15cefa4b-0c63-11ec-9ac5-342eb7e2a2ec"
             }
           }
-        },
-        "token": {
-          "type": "string",
-          "example": "2c59a359-77a0-4b66-9d66-02089946a04c"
         }
       }
     },
@@ -2511,10 +2533,6 @@
         "data": {
           "type": "object",
           "properties": {}
-        },
-        "token": {
-          "type": "string",
-          "example": "2c59a359-77a0-4b66-9d66-02089946a04c"
         }
       }
     },
