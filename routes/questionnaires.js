@@ -64,8 +64,6 @@ router.post("/getQuestionnaire", async (req, res, next) => {
   res.send(result);
 });
 
-
-
 //更新问卷 只能更新Answers
 /**
  * 
@@ -74,7 +72,7 @@ router.post("/getQuestionnaire", async (req, res, next) => {
 }
  */
 router.post("/updateQuestionnaire", async (req, res, next) => {
-      // #swagger.tags = ['Questionnaire']
+  // #swagger.tags = ['Questionnaire']
   // #swagger.summary = '更新questionnaire'
   /* #swagger.security = [{
                "JiangduJWT": []
@@ -89,20 +87,15 @@ router.post("/updateQuestionnaire", async (req, res, next) => {
                 },
             }
     } */
-    const {
-        data
-    } = req.body;
-    const result = await updateJsonDoc(data);
-    console.log(result);
-    if (result == 1) {
-        res.sendStatus(200)
-    } else {
-        res.sendStatus(500)
-    }
+  const { data } = req.body;
+  const result = await updateJsonDoc(data);
+  console.log(result);
+  if (result == 1) {
+    res.sendStatus(200);
+  } else {
+    res.sendStatus(500);
+  }
 });
-
-
-
 
 /*
  *删除问卷id
@@ -114,16 +107,14 @@ router.delete("/", async (req, res, next) => {
   /* #swagger.security = [{
                "JiangduJWT": []
   }] */
-    const {
-        data
-    } = req.body;
-    const result = await deleteJsonDoc(data);
+  const { data } = req.body;
+  const result = await deleteJsonDoc(data);
 
-    if (result == 1) {
-        res.sendStatus(200)
-    } else {
-        res.sendStatus(500)
-    }
+  if (result == 1) {
+    res.sendStatus(200);
+  } else {
+    res.sendStatus(500);
+  }
 });
 async function insertJsonDoc(data) {
   const histo = new ohana("SAP_JIANGDU_FREQUENTLY_USED_ENTERPRISES");
@@ -164,13 +155,12 @@ async function updateJsonDoc(data) {
 }
 
 async function deleteJsonDoc(data) {
-    const histo = new ohana("SAP_JIANGDU_FREQUENTLY_USED_ENTERPRISES");
-    var stringText = "delete from  QUESTIONNAIRES where UUID = '" + data.UUID + "'";
-    console.log(stringText)
-    const result = await histo.raw(
-        stringText
-    );
-    return result;
+  const histo = new ohana("SAP_JIANGDU_FREQUENTLY_USED_ENTERPRISES");
+  var stringText =
+    "delete from  QUESTIONNAIRES where UUID = '" + data.UUID + "'";
+  console.log(stringText);
+  const result = await histo.raw(stringText);
+  return result;
 }
 
 module.exports = router;

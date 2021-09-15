@@ -4,11 +4,9 @@ var router = express.Router();
 const jwt = require("jsonwebtoken");
 var { PRIVITE_KEY, EXPIRESD } = require("../utils/store");
 
-var constants = require("../utils/constants")
+var constants = require("../utils/constants");
 
-const {
-  ohana
-} = require("ohana-node-orm");
+const { ohana } = require("ohana-node-orm");
 
 /** */
 function checkData(res, data) {
@@ -94,15 +92,12 @@ router.post("/login", async function (req, res, next) {
             }
     } */
 
-  const {
-    data
-  } = req.body;
-  if(!data)
-  {
+  const { data } = req.body;
+  if (!data) {
     res.send({
-      code:400,
-      message:constants.BODY_IN_CORRECT
-    })
+      code: 400,
+      message: constants.BODY_IN_CORRECT,
+    });
     return;
   }
 
@@ -140,12 +135,12 @@ router.post("/login", async function (req, res, next) {
     console.log(real_user_name);
     if (result && result.length != 0) {
       res.send({
-        code:0,
-        status:"OK",
-        USER_NAME:real_user_name,
+        code: 0,
+        status: "OK",
+        USER_NAME: real_user_name,
         LEVEL: result[0].LEVEL,
         USER_ID: result[0].USER_ID,
-        token:generateToken({
+        token: generateToken({
           USER_NAME: real_user_name,
           USER_ID: result[0].USER_ID,
           LEVEL: result[0].LEVEL,

@@ -3,12 +3,9 @@ var uunewid = require("uuid");
 var router = express.Router();
 var constants = require("../utils/constants");
 
-
 const tableName = "SAP_JIANGDU_TECH_INNOS";
 const tagTableName = "SAP_JIANGDU_TAG_TECHS";
-const {
-  ohana
-} = require("ohana-node-orm");
+const { ohana } = require("ohana-node-orm");
 
 /**
  *
@@ -19,25 +16,21 @@ function checkData(res, data) {
     res.send(500);
   }
 }
-function checkPriority(req,levelData)
-{
-  if(!req.user)
-  {
-    return constants.UNAUTHORIZED
+function checkPriority(req, levelData) {
+  if (!req.user) {
+    return constants.UNAUTHORIZED;
   }
-  console.log(req.user)
-
+  console.log(req.user);
 }
 /* GET users listing. */
 router.post("/", function (req, res, next) {
-
   // const p_check=checkPriority(req,constants.LEVEL1);
   // if(p_check==constants.UNAUTHORIZED)
   // {
   //   res.sendStatus(401);
   //   return;
   // }
-  
+
   // #swagger.tags = ['Tech']
   // #swagger.summary = '获取tech'
   /* #swagger.security = [{
@@ -53,16 +46,14 @@ router.post("/", function (req, res, next) {
                 },
             }
     } */
-  const {
-    data
-  } = req.body;
+  const { data } = req.body;
   const user = new ohana(tableName); // new ohana('table_name');
   if (!data) {
     user.find().then((result) => {
       res.send(result);
     });
   } else {
-    console.log(data)
+    console.log(data);
     user.find(data).then((result) => {
       res.send(result);
     });
@@ -85,9 +76,7 @@ router.post("/add", function (req, res, next) {
                 },
             }
     } */
-  const {
-    data
-  } = req.body;
+  const { data } = req.body;
   //console.log(uunewid.v4())
   data.TECH_ID = uunewid.v4();
   console.log(data);
@@ -152,9 +141,7 @@ router.put("/", function (req, res, next) {
             }
     } */
   //   checkData(res, req.body.data)
-  const {
-    data
-  } = req.body;
+  const { data } = req.body;
   //  console.log(data);
   updateTech(data)
     .then((result) => {
@@ -188,9 +175,7 @@ router.delete("/", function (req, res, next) {
             }
     } */
   checkData(res, req.body.data);
-  const {
-    data
-  } = req.body;
+  const { data } = req.body;
   deletePolicy(data)
     .then((result) => {
       console.log(result);
@@ -209,7 +194,8 @@ router.delete("/", function (req, res, next) {
 async function updateTech(body) {
   // console.log(body)
   const policy = new ohana(tableName); // new ohana('table_name');
-  const result = await policy.update({
+  const result = await policy.update(
+    {
       TECH_ID: body.TECH_ID,
     },
     body
@@ -242,9 +228,7 @@ router.post("/techTags", function (req, res, next) {
                 },
             }
     } */
-  const {
-    data
-  } = req.body;
+  const { data } = req.body;
   getTechTag(data)
     .then((result) => {
       //console.log(result);
@@ -278,9 +262,7 @@ router.post("/addTags", function (req, res, next) {
                 },
             }
     } */
-  const {
-    data
-  } = req.body;
+  const { data } = req.body;
   insertTechData(data)
     .then((result) => {
       //console.log(result);
@@ -312,9 +294,7 @@ router.post("/deleteTags", function (req, res, next) {
                 },
             }
     } */
-  const {
-    data
-  } = req.body;
+  const { data } = req.body;
   deletaTechTag(data)
     .then((result) => {
       if (result == 1) {
@@ -348,21 +328,19 @@ router.put("/updateStatus", async (req, res, next) => {
                 },
             }
     } */
-  const {
-    data
-  } = req.body;
+  const { data } = req.body;
 
   const user = new ohana(tableName);
   //console.log("UPDATE SAP_JIANGDU_USERS SET COMMENTS='"+ data.COMMENTS + "', STATUS='" + data.STATUS + "' WHERE USER_ID='"+data.USER_ID+"'")
   try {
     const result = await user.raw(
       "UPDATE SAP_JIANGDU_USERS SET COMMENTS='" +
-      data.COMMENTS +
-      "', STATUS='" +
-      data.STATUS +
-      "' WHERE USER_ID='" +
-      data.USER_ID +
-      "'"
+        data.COMMENTS +
+        "', STATUS='" +
+        data.STATUS +
+        "' WHERE USER_ID='" +
+        data.USER_ID +
+        "'"
     );
     if (result == 1) {
       res.sendStatus(200);
@@ -383,8 +361,8 @@ async function getTechTag(data) {
   const policyTag = new ohana(tagTableName); // new ohana('table_name');
   const result = await policyTag.raw(
     'select "TAG_ID", "TAG_NAME","TAG_VALUE" ,"TAG_CATEGORY" from "SAP_JIANGDU_TAGS" where "TAG_ID" in (Select "TAG_ID_TAG_ID" from "SAP_JIANGDU_TAG_TECHS" where "TECH_ID_TECH_ID" = \'' +
-    data.TECH_ID +
-    "' )"
+      data.TECH_ID +
+      "' )"
   );
   return result;
 }
@@ -397,12 +375,12 @@ async function deletaTechTag(data) {
   const policyTag = new ohana(tagTableName); // new ohana('table_name');
   const result = await policyTag.raw(
     'delete from "' +
-    tagTableName +
-    "\" where TECH_ID_TECH_ID = '" +
-    data.TECH_ID_TECH_ID +
-    "' and TAG_ID_TAG_ID = '" +
-    data.TAG_ID_TAG_ID +
-    "'"
+      tagTableName +
+      "\" where TECH_ID_TECH_ID = '" +
+      data.TECH_ID_TECH_ID +
+      "' and TAG_ID_TAG_ID = '" +
+      data.TAG_ID_TAG_ID +
+      "'"
   );
   return result;
 }

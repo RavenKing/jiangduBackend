@@ -3,7 +3,6 @@ var uunewid = require("uuid");
 var router = express.Router();
 const { ohana } = require("ohana-node-orm");
 
-
 router.post("/latest/policy/companies", async (req, res, next) => {
   // #swagger.tags = ['Historical']
   // #swagger.summary = '常用公司历史数据'
