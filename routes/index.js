@@ -5,6 +5,9 @@ var router = express.Router();
 router.get("/", function (req, res, next) {
   // #swagger.tags = ['Home']
   // #swagger.summary = '获取HomePage'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   res.render("index", { title: "Express" });
 });
 

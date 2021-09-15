@@ -14,6 +14,9 @@ function checkData(res, data) {
 router.get("/", function (req, res, next) {
   // #swagger.tags = ['Tag']
   // #swagger.summary = '获取Tag列表'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*  #swagger.parameters['TYPE'] = {
                 in: 'query',
                 description: '标签类别 PO/FI/TA...'
@@ -31,10 +34,12 @@ router.get("/", function (req, res, next) {
   }
 });
 
-
 router.put("/", function (req, res, next) {
   // #swagger.tags = ['Tag']
   // #swagger.summary = '修改Tag'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -67,6 +72,9 @@ router.put("/", function (req, res, next) {
 router.post("/", function (req, res, next) {
   // #swagger.tags = ['Tag']
   // #swagger.summary = '新建Tag'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -117,6 +125,9 @@ async function insertData(body) {
 router.delete("/", function (req, res, next) {
   // #swagger.tags = ['Tag']
   // #swagger.summary = '删除Tag'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {

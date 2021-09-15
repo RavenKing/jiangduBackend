@@ -8,12 +8,15 @@ function checkData(res, data) {
     res.send(500);
   }
 }
-const tagTableName="SAP_JIANGDU_TAG_POLICYS"
+const tagTableName = "SAP_JIANGDU_TAG_POLICYS";
 router.post("/", function (req, res, next) {
   // #swagger.tags = ['Policy']
   // #swagger.summary = '获取policy'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   // #swagger.description = '获取政策列表'
-  
+
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -40,6 +43,9 @@ router.post("/", function (req, res, next) {
 router.put("/", function (req, res, next) {
   // #swagger.tags = ['Policy']
   // #swagger.summary = '修改policy'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -70,6 +76,9 @@ router.put("/", function (req, res, next) {
 router.post("/addTags", function (req, res, next) {
   // #swagger.tags = ['Policy']
   // #swagger.summary = '给某一政策增加标签'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -98,25 +107,43 @@ router.post("/addTags", function (req, res, next) {
 /// Asset tags
 
 router.post("/policyTags", function (req, res, next) {
-    const { data } = req.body;
-    getPolicyTags(data)
-      .then((result) => {
-        res.send(result);
-        // if (result == 1) {
-        //    res.send(result)
-        // } else {
-        //     res.send(500)
-        // }
-        //return res.send(result)
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  });
-  
+  // #swagger.tags = ['Policy']
+  // #swagger.summary = '？？？获取标签？？？'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/policy_policyTags"
+                    }  
+                },
+            }
+    } */
+  const { data } = req.body;
+  getPolicyTags(data)
+    .then((result) => {
+      res.send(result);
+      // if (result == 1) {
+      //    res.send(result)
+      // } else {
+      //     res.send(500)
+      // }
+      //return res.send(result)
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
 router.post("/deleteTags", function (req, res, next) {
   // #swagger.tags = ['Policy']
   // #swagger.summary = '给某一个政策删除Tag'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -145,6 +172,9 @@ router.post("/deleteTags", function (req, res, next) {
 router.post("/add", function (req, res, next) {
   // #swagger.tags = ['Policy']
   // #swagger.summary = '插入policy'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -184,6 +214,9 @@ async function insertData(body) {
 router.delete("/", function (req, res, next) {
   // #swagger.tags = ['Policy']
   // #swagger.summary = '删除policy'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -227,13 +260,13 @@ async function getPolicy(condition) {
         "%'"
     );
   }
-//   for (var i = 0; i < result.length; i++) {
-//     result[i].tags = await policy.raw(
-//       'select "TAG_ID", "TAG_NAME","TAG_VALUE" ,"TAG_CATEGORY" from "SAP_JIANGDU_TAGS" where "TAG_ID" in (Select "TAG_ID_TAG_ID" from "SAP_JIANGDU_TAG_POLICYS" where "POLICY_ID_POLICY_ID" = \'' +
-//         result[i].POLICY_ID +
-//         "' )"
-//     );
-//   }
+  //   for (var i = 0; i < result.length; i++) {
+  //     result[i].tags = await policy.raw(
+  //       'select "TAG_ID", "TAG_NAME","TAG_VALUE" ,"TAG_CATEGORY" from "SAP_JIANGDU_TAGS" where "TAG_ID" in (Select "TAG_ID_TAG_ID" from "SAP_JIANGDU_TAG_POLICYS" where "POLICY_ID_POLICY_ID" = \'' +
+  //         result[i].POLICY_ID +
+  //         "' )"
+  //     );
+  //   }
   return result;
 }
 
@@ -273,7 +306,9 @@ async function insertPolicyData(data) {
 async function deletaPolicyTag(data) {
   const policyTag = new ohana(tagTableName); // new ohana('table_name');
   const result = await policyTag.raw(
-    'delete from '+tagTableName +'where POLICY_ID_POLICY_ID = \'' +
+    "delete from " +
+      tagTableName +
+      "where POLICY_ID_POLICY_ID = '" +
       data.POLICY_ID_POLICY_ID +
       "' and TAG_ID_TAG_ID = '" +
       data.TAG_ID_TAG_ID +
@@ -282,17 +317,16 @@ async function deletaPolicyTag(data) {
   return result;
 }
 
-
 async function getPolicyTags(data) {
-    const policyTag = new ohana(tagTableName); // new ohana('table_name');
-    const result = await policyTag.raw(
-      'select "TAG_ID", "TAG_NAME","TAG_VALUE" ,"TAG_CATEGORY" from "SAP_JIANGDU_TAGS" where "TAG_ID" in (Select "TAG_ID_TAG_ID" from "' +
-        tagTableName +
-        '" where "POLICY_ID_POLICY_ID" = \'' +
-        data.POLICY_ID_POLICY_ID +
-        "' )"
-    );
-    return result;
-  }
+  const policyTag = new ohana(tagTableName); // new ohana('table_name');
+  const result = await policyTag.raw(
+    'select "TAG_ID", "TAG_NAME","TAG_VALUE" ,"TAG_CATEGORY" from "SAP_JIANGDU_TAGS" where "TAG_ID" in (Select "TAG_ID_TAG_ID" from "' +
+      tagTableName +
+      '" where "POLICY_ID_POLICY_ID" = \'' +
+      data.POLICY_ID_POLICY_ID +
+      "' )"
+  );
+  return result;
+}
 
 module.exports = router;

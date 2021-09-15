@@ -4,11 +4,9 @@ var router = express.Router();
 const jwt = require("jsonwebtoken");
 var { PRIVITE_KEY, EXPIRESD } = require("../utils/store");
 
-var constants = require("../utils/constants")
+var constants = require("../utils/constants");
 
-const {
-  ohana
-} = require("ohana-node-orm");
+const { ohana } = require("ohana-node-orm");
 
 /** */
 function checkData(res, data) {
@@ -23,6 +21,9 @@ router.get("/", function (req, res, next) {
   // #swagger.tags = ['Users']
   // #swagger.summary = '获取User'
   // #swagger.description = '这个API能获取所有User的列表'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   const user = new ohana(tableName); // new ohana('table_name');
   user.find().then((result) => {
     res.send(result);
@@ -91,15 +92,12 @@ router.post("/login", async function (req, res, next) {
             }
     } */
 
-  const {
-    data
-  } = req.body;
-  if(!data)
-  {
+  const { data } = req.body;
+  if (!data) {
     res.send({
-      code:400,
-      message:constants.BODY_IN_CORRECT
-    })
+      code: 400,
+      message: constants.BODY_IN_CORRECT,
+    });
     return;
   }
 
@@ -137,12 +135,12 @@ router.post("/login", async function (req, res, next) {
     console.log(real_user_name);
     if (result && result.length != 0) {
       res.send({
-        code:0,
-        status:"OK",
-        USER_NAME:real_user_name,
+        code: 0,
+        status: "OK",
+        USER_NAME: real_user_name,
         LEVEL: result[0].LEVEL,
         USER_ID: result[0].USER_ID,
-        token:generateToken({
+        token: generateToken({
           USER_NAME: real_user_name,
           USER_ID: result[0].USER_ID,
           LEVEL: result[0].LEVEL,
@@ -238,6 +236,9 @@ router.post("/", function (req, res, next) {
   // #swagger.tags = ['Users']
   // #swagger.summary = '插入User'
   // #swagger.description = "插入新的企业数据"
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -286,6 +287,9 @@ async function insertData(body) {
 router.post("/search", function (req, res, next) {
   // #swagger.tags = ['Users']
   // #swagger.summary = '搜索企业，query参数未知'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -318,6 +322,9 @@ router.put("/updateStatus", async (req, res, next) => {
   // #swagger.tags = ['Users']
   const { data } = req.body;
   // #swagger.summary = "企业加入白名单/黑名单"
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {

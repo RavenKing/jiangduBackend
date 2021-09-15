@@ -15,6 +15,9 @@ const tableName = "SAP_JIANGDU_BLACKLIST";
 router.get("/", function (req, res, next) {
   // #swagger.tags = ['blacklist']
   // #swagger.summary = '获取黑白名单'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   const user = new ohana(tableName); // new ohana('table_name');
   user.find().then((result) => {
     res.send(result);
@@ -24,6 +27,9 @@ router.get("/", function (req, res, next) {
 router.get("/getCompanyInfo", function (req, res, next) {
   // #swagger.tags = ['blacklist']
   // #swagger.summary = '只要了"USER_ID",  "COMPANY_NAME", "COMPANY_CODE", "COMPANY_TYPE"四个字段'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   checkData(res, req.body);
   getCompanyInfo(req.body)
     .then((result) => {
@@ -43,6 +49,9 @@ router.get("/getCompanyInfo", function (req, res, next) {
 router.post("/", function (req, res, next) {
   // #swagger.tags = ['blacklist']
   // #swagger.summary = '新建，删除，修改黑白名单用的是users/updateStatus，这个接口没用'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {

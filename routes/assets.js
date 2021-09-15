@@ -17,6 +17,9 @@ const tagTableName = "SAP_JIANGDU_TAG_ASSETS";
 router.post("/", function (req, res, next) {
   // #swagger.tags = ['Asset']
   // #swagger.summary = '获取asset'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -27,26 +30,33 @@ router.post("/", function (req, res, next) {
                 },
             }
     } */
-    const {
-        data
-    } = req.body;
-    const user = new ohana(tableName); // new ohana('table_name');
-    if (!data.ASSET_NAME) {
-        user.find().then((result) => {
-            res.send(result);
-        });
-    } else {
-        user.raw(
-            "select * from " + tableName + " where ASSET_NAME like '%" + data.ASSET_NAME + "%'"
-        ).then((result) => {
-            res.send(result);
-        });
-    }
+  const { data } = req.body;
+  const user = new ohana(tableName); // new ohana('table_name');
+  if (!data.ASSET_NAME) {
+    user.find().then((result) => {
+      res.send(result);
+    });
+  } else {
+    user
+      .raw(
+        "select * from " +
+          tableName +
+          " where ASSET_NAME like '%" +
+          data.ASSET_NAME +
+          "%'"
+      )
+      .then((result) => {
+        res.send(result);
+      });
+  }
 });
 
 router.post("/add", function (req, res, next) {
   // #swagger.tags = ['Asset']
   // #swagger.summary = '添加asset'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -69,7 +79,7 @@ router.post("/add", function (req, res, next) {
         console.log(result);
         res.send(500);
       }
-        })
+    })
     .catch((err) => {
       console.log(err);
     });
@@ -87,6 +97,9 @@ async function insertData(body) {
 router.post("/search", function (req, res, next) {
   // #swagger.tags = ['Asset']
   // #swagger.summary = '搜索asset，query参数未知'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   const queryData = req.query;
   const user = new ohana(tableName); // new ohana('table_name');
   if (queryData == null) {
@@ -104,6 +117,9 @@ router.post("/search", function (req, res, next) {
 router.put("/", function (req, res, next) {
   // #swagger.tags = ['Asset']
   // #swagger.summary = '修改asset'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -116,7 +132,7 @@ router.put("/", function (req, res, next) {
     } */
   //   checkData(res, req.body.data)
   const { data } = req.body;
-   console.log(data);
+  console.log(data);
   updateAsset(data)
     .then((result) => {
       if (result == 1) {
@@ -135,6 +151,9 @@ router.put("/", function (req, res, next) {
 router.delete("/", function (req, res, next) {
   // #swagger.tags = ['Asset']
   // #swagger.summary = '删除asset'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -186,6 +205,9 @@ async function deletePolicy(body) {
 router.post("/AssetTags", function (req, res, next) {
   // #swagger.tags = ['Asset']
   // #swagger.summary = '获取标签'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -217,6 +239,9 @@ router.post("/AssetTags", function (req, res, next) {
 router.post("/addTags", function (req, res, next) {
   // #swagger.tags = ['Asset']
   // #swagger.summary = '增加标签'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -246,6 +271,9 @@ router.post("/addTags", function (req, res, next) {
 router.post("/deleteTags", function (req, res, next) {
   // #swagger.tags = ['Asset']
   // #swagger.summary = '删除标签'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -268,47 +296,6 @@ router.post("/deleteTags", function (req, res, next) {
     .catch((err) => {
       console.log(err);
     });
-});
-/**
- * Update COMMENTS, STATUS by USER_ID
- * @param {*} body
- * @returns
- */
-router.put("/updateStatus", async (req, res, next) => {
-  // #swagger.tags = ['Asset']
-  // #swagger.summary = '？？？？？？？'
-  /*	#swagger.requestBody = {
-            required: true,
-            content: {
-                "application/json": {
-                    schema: {
-                        $ref: "#/definitions/user_register"
-                    }  
-                },
-            }
-    } */
-  const { data } = req.body;
-
-  const user = new ohana(tableName);
-  //console.log("UPDATE SAP_JIANGDU_USERS SET COMMENTS='"+ data.COMMENTS + "', STATUS='" + data.STATUS + "' WHERE USER_ID='"+data.USER_ID+"'")
-  try {
-    const result = await user.raw(
-      "UPDATE SAP_JIANGDU_USERS SET COMMENTS='" +
-        data.COMMENTS +
-        "', STATUS='" +
-        data.STATUS +
-        "' WHERE USER_ID='" +
-        data.USER_ID +
-        "'"
-    );
-    if (result == 1) {
-      res.sendStatus(200);
-    } else {
-      res.send(500);
-    }
-  } catch (err) {
-    console.log(err);
-  }
 });
 
 /**

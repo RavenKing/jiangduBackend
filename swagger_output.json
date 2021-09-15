@@ -23,7 +23,12 @@
         "summary": "获取HomePage",
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ]
       }
     },
     "/api/users/": {
@@ -34,7 +39,12 @@
         "summary": "获取User",
         "description": "这个API能获取所有User的列表",
         "parameters": [],
-        "responses": {}
+        "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ]
       },
       "post": {
         "tags": [
@@ -44,6 +54,11 @@
         "description": "插入新的企业数据",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -149,6 +164,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -170,6 +190,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -191,6 +216,11 @@
         "description": "获取政策列表",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -210,6 +240,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -229,6 +264,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -250,6 +290,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -264,23 +309,28 @@
     },
     "/api/policys/policyTags": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Policy"
+        ],
+        "summary": "？？？获取标签？？？",
         "description": "",
-        "parameters": [
+        "parameters": [],
+        "responses": {},
+        "security": [
           {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
+            "JiangduJWT": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/policy_policyTags"
               }
             }
           }
-        ],
-        "responses": {}
+        }
       }
     },
     "/api/policys/deleteTags": {
@@ -292,6 +342,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -313,6 +368,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -340,7 +400,12 @@
             "type": "string"
           }
         ],
-        "responses": {}
+        "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ]
       },
       "put": {
         "tags": [
@@ -350,6 +415,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -369,6 +439,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -388,6 +463,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -402,7 +482,10 @@
     },
     "/api/talents/get": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Talent"
+        ],
+        "summary": "获取talent",
         "description": "",
         "parameters": [
           {
@@ -418,7 +501,12 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ]
       }
     },
     "/api/talents/": {
@@ -429,7 +517,12 @@
         "summary": "获取talent",
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ]
       },
       "put": {
         "tags": [
@@ -439,6 +532,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -458,6 +556,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -477,6 +580,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -498,6 +606,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -510,30 +623,6 @@
         }
       }
     },
-    "/api/talents/allTags": {
-      "post": {
-        "tags": [
-          "Talent"
-        ],
-        "summary": "应该是个废弃的接口了",
-        "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {}
-      }
-    },
     "/api/talents/addTags": {
       "post": {
         "tags": [
@@ -543,6 +632,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -564,6 +658,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -584,7 +683,12 @@
         "summary": "获取推荐列表",
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ]
       },
       "post": {
         "tags": [
@@ -594,6 +698,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -613,6 +722,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -634,6 +748,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -655,6 +774,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -676,6 +800,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -696,7 +825,12 @@
         "summary": "获取黑白名单",
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ]
       },
       "post": {
         "tags": [
@@ -706,6 +840,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -726,7 +865,12 @@
         "summary": "只要了\"USER_ID\", \"COMPANY_NAME\", \"COMPANY_CODE\", \"COMPANY_TYPE\"四个字段",
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ]
       }
     },
     "/api/historical/latest/policy/companies": {
@@ -738,6 +882,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -759,6 +908,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -778,6 +932,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -797,6 +956,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -818,6 +982,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -838,7 +1007,12 @@
         "summary": "搜索Fin，query参数未知",
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ]
       }
     },
     "/api/fins/finTags": {
@@ -850,6 +1024,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -871,6 +1050,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -892,33 +1076,17 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/definitions/fin_deleteTags"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/fins/updateStatus": {
-      "put": {
-        "tags": [
-          "Fin"
-        ],
-        "summary": "？？？？？？？",
-        "description": "",
-        "parameters": [],
-        "responses": {},
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/definitions/fin_updateStatus"
               }
             }
           }
@@ -934,6 +1102,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -953,6 +1126,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -972,6 +1150,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -993,6 +1176,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -1013,7 +1201,12 @@
         "summary": "搜索asset，query参数未知",
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ]
       }
     },
     "/api/assets/AssetTags": {
@@ -1025,6 +1218,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -1046,6 +1244,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -1067,33 +1270,17 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/definitions/asset_tag_add_delete"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/assets/updateStatus": {
-      "put": {
-        "tags": [
-          "Asset"
-        ],
-        "summary": "？？？？？？？",
-        "description": "",
-        "parameters": [],
-        "responses": {},
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/definitions/user_register"
               }
             }
           }
@@ -1109,6 +1296,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -1128,6 +1320,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -1147,6 +1344,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -1168,6 +1370,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -1188,7 +1395,12 @@
         "summary": "搜索tech，query参数未知",
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ]
       }
     },
     "/api/techs/techTags": {
@@ -1200,6 +1412,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -1221,6 +1438,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -1242,33 +1464,17 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/definitions/tech_tag_add_delete"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/techs/updateStatus": {
-      "put": {
-        "tags": [
-          "Tech"
-        ],
-        "summary": "？？？？？？？",
-        "description": "",
-        "parameters": [],
-        "responses": {},
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/definitions/user_register"
               }
             }
           }
@@ -1284,6 +1490,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -1305,6 +1516,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -1326,6 +1542,11 @@
         "description": "",
         "parameters": [],
         "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -1340,7 +1561,10 @@
     },
     "/api/questionnaires/": {
       "delete": {
-        "tags": [],
+        "tags": [
+          "Questionnaire"
+        ],
+        "summary": "删除questionnaire",
         "description": "",
         "parameters": [
           {
@@ -1356,7 +1580,12 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ]
       }
     }
   },
