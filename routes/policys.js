@@ -8,7 +8,7 @@ function checkData(res, data) {
     res.send(500);
   }
 }
-
+const tagTableName="SAP_JIANGDU_TAG_POLICYS"
 router.post("/", function (req, res, next) {
   // #swagger.tags = ['Policy']
   // #swagger.summary = '获取policy'
@@ -67,7 +67,7 @@ router.put("/", function (req, res, next) {
     });
 });
 
-router.post("/policyTags", function (req, res, next) {
+router.post("/addTags", function (req, res, next) {
   // #swagger.tags = ['Policy']
   // #swagger.summary = '给某一政策增加标签'
   /*	#swagger.requestBody = {
@@ -95,7 +95,25 @@ router.post("/policyTags", function (req, res, next) {
       console.log(err);
     });
 });
+/// Asset tags
 
+router.post("/policyTags", function (req, res, next) {
+    const { data } = req.body;
+    getPolicyTags(data)
+      .then((result) => {
+        res.send(result);
+        // if (result == 1) {
+        //    res.send(result)
+        // } else {
+        //     res.send(500)
+        // }
+        //return res.send(result)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+  
 router.post("/deleteTags", function (req, res, next) {
   // #swagger.tags = ['Policy']
   // #swagger.summary = '给某一个政策删除Tag'
@@ -200,22 +218,22 @@ async function getPolicy(condition) {
   if (!condition.searchString) {
     //    const result = await policy.find(["POLICY_ID", "POLICY_TITLE", "CREATED_AT", "UPDATED_AT"]);
     result = await policy.raw(
-      'SELECT TOP 5      "POLICY_ID",  "POLICY_TITLE", "CREATED_AT", "UPDATED_AT" FROM "SAP_JIANGDU_POLICYS"'
+      'SELECT "POLICY_ID",  "POLICY_TITLE", "CREATED_AT", "UPDATED_AT" FROM "SAP_JIANGDU_POLICYS"'
     );
   } else {
     result = await policy.raw(
-      'SELECT TOP 5      "POLICY_ID",  "POLICY_TITLE", "CREATED_AT", "UPDATED_AT" FROM "SAP_JIANGDU_POLICYS" where "POLICY_TITLE" LIKE \'%' +
+      'SELECT  "POLICY_ID",  "POLICY_TITLE", "CREATED_AT", "UPDATED_AT" FROM "SAP_JIANGDU_POLICYS" where "POLICY_TITLE" LIKE \'%' +
         condition.searchString +
         "%'"
     );
   }
-  for (var i = 0; i < result.length; i++) {
-    result[i].tags = await policy.raw(
-      'select "TAG_ID", "TAG_NAME","TAG_VALUE" ,"TAG_CATEGORY" from "SAP_JIANGDU_TAGS" where "TAG_ID" in (Select "TAG_ID_TAG_ID" from "SAP_JIANGDU_TAG_POLICYS" where "POLICY_ID_POLICY_ID" = \'' +
-        result[i].POLICY_ID +
-        "' )"
-    );
-  }
+//   for (var i = 0; i < result.length; i++) {
+//     result[i].tags = await policy.raw(
+//       'select "TAG_ID", "TAG_NAME","TAG_VALUE" ,"TAG_CATEGORY" from "SAP_JIANGDU_TAGS" where "TAG_ID" in (Select "TAG_ID_TAG_ID" from "SAP_JIANGDU_TAG_POLICYS" where "POLICY_ID_POLICY_ID" = \'' +
+//         result[i].POLICY_ID +
+//         "' )"
+//     );
+//   }
   return result;
 }
 
@@ -247,15 +265,15 @@ async function deletePolicy(body) {
 }
 
 async function insertPolicyData(data) {
-  const policyTag = new ohana("SAP_JIANGDU_TAG_POLICYS"); // new ohana('table_name');
+  const policyTag = new ohana(tagTableName); // new ohana('table_name');
   const result = await policyTag.insert(data);
   return result;
 }
 
 async function deletaPolicyTag(data) {
-  const policyTag = new ohana("SAP_JIANGDU_TAG_POLICYS"); // new ohana('table_name');
+  const policyTag = new ohana(tagTableName); // new ohana('table_name');
   const result = await policyTag.raw(
-    'delete from "SAP_JIANGDU_TAG_POLICYS" where POLICY_ID_POLICY_ID = \'' +
+    'delete from '+tagTableName +'where POLICY_ID_POLICY_ID = \'' +
       data.POLICY_ID_POLICY_ID +
       "' and TAG_ID_TAG_ID = '" +
       data.TAG_ID_TAG_ID +
@@ -263,5 +281,18 @@ async function deletaPolicyTag(data) {
   );
   return result;
 }
+
+
+async function getPolicyTags(data) {
+    const policyTag = new ohana(tagTableName); // new ohana('table_name');
+    const result = await policyTag.raw(
+      'select "TAG_ID", "TAG_NAME","TAG_VALUE" ,"TAG_CATEGORY" from "SAP_JIANGDU_TAGS" where "TAG_ID" in (Select "TAG_ID_TAG_ID" from "' +
+        tagTableName +
+        '" where "POLICY_ID_POLICY_ID" = \'' +
+        data.POLICY_ID_POLICY_ID +
+        "' )"
+    );
+    return result;
+  }
 
 module.exports = router;

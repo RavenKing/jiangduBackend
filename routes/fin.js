@@ -36,13 +36,14 @@ router.post("/", function (req, res, next) {
         data
     } = req.body;
     const user = new ohana(tableName); // new ohana('table_name');
-    if (!data) {
+    if (!data.NAME) {
         user.find().then((result) => {
             res.send(result);
         });
     } else {
-        console.log(data)
-        user.find(data).then((result) => {
+        user.raw(
+            "select * from " + tableName + " where NAME like '%" + data.NAME + "%'"
+        ).then((result) => {
             res.send(result);
         });
     }

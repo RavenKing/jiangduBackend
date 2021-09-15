@@ -31,13 +31,14 @@ router.post("/", function (req, res, next) {
         data
     } = req.body;
     const user = new ohana(tableName); // new ohana('table_name');
-    if (!data) {
+    if (!data.ASSET_NAME) {
         user.find().then((result) => {
             res.send(result);
         });
     } else {
-        console.log(data)
-        user.find(data).then((result) => {
+        user.raw(
+            "select * from " + tableName + " where ASSET_NAME like '%" + data.ASSET_NAME + "%'"
+        ).then((result) => {
             res.send(result);
         });
     }
@@ -115,7 +116,7 @@ router.put("/", function (req, res, next) {
     } */
   //   checkData(res, req.body.data)
   const { data } = req.body;
-  //  console.log(data);
+   console.log(data);
   updateAsset(data)
     .then((result) => {
       if (result == 1) {

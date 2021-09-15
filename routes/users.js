@@ -2,9 +2,14 @@ var express = require("express");
 var uunewid = require("uuid");
 var router = express.Router();
 const jwt = require("jsonwebtoken");
-var { PRIVITE_KEY, EXPIRESD } = require("../utils/store");
+var {
+  PRIVITE_KEY,
+  EXPIRESD
+} = require("../utils/store");
 
-const { ohana } = require("ohana-node-orm");
+const {
+  ohana
+} = require("ohana-node-orm");
 
 /** */
 function checkData(res, data) {
@@ -40,12 +45,17 @@ router.post("/register", async (req, res, next) => {
             }
     } */
   const user = new ohana(tableName);
-  const { data } = req.body;
+  const {
+    data
+  } = req.body;
   username = data.USER_NAME;
   password = data.PASSWORD;
   try {
     // 查询当前用户名在不在数据库中(使用async方法后必须使用await方法才有值返回，不然返回promise对象)
-    let user = await user.findOne({ USER_NAME: username, PASSWORD: password });
+    let user = await user.findOne({
+      USER_NAME: username,
+      PASSWORD: password
+    });
     // 存在res即是数据库中有数据
     if (user && user.length != 0) {
       res.send({
@@ -54,10 +64,10 @@ router.post("/register", async (req, res, next) => {
       });
     } else {
       // 对密码进行加密
-      md5_password = md5(username + password);
+      // md5_password = md5(username + password);
       // async 和 await 向数据库插入数据
       data.USER_ID = uunewid.v4();
-      data.PASSWORD = md5_password;
+      //data.PASSWORD = md5_password;
       await user.insert(body);
       res.send({
         code: 0,
@@ -83,36 +93,44 @@ router.post("/login", async function (req, res, next) {
                 },
             }
     } */
+
+  const {
+    data
+  } = req.body;
+
   const user = new ohana(tableName);
   username = data.USER_NAME;
   password = data.PASSWORD;
 
   try {
-    let res1 = await user.findOne({ USER_NAME: username, PASSWORD: password });
+    let res1 = await user.findOne({
+      USER_NAME: username,
+      PASSWORD: password
+    });
     let res2 = await user.findOne({
       COMPANY_CODE: username,
       PASSWORD: password,
     });
-    let res3 = await user.findOne({ PHONE: username, PASSWORD: password });
+    let res3 = await user.findOne({
+      PHONE: username,
+      PASSWORD: password
+    });
 
-    let res = [];
-    res.push(...res1);
-    res.push(...res2);
-    res.push(...res3);
+    let result = [];
+    result.push(...res1);
+    result.push(...res2);
+    result.push(...res3);
 
-    let real_user_name = res.USER_NAME;
-    md5_password = md5(real_user_name + password);
-
-    if (res && res.length != 0 && res.PASSWORD == md5_password) {
-      let token = jwt.sign(real_user_name, PRIVITE_KEY, {
-        expiresIn: EXPIRESD,
-      });
-      res.send({
-        code: 0,
-        user_name: res.USER_NAME,
+    let real_user_name = result[0].USER_NAME;
+    //md5_password = md5(real_user_name + password);
+    console.log(real_user_name);
+    if (result && result.length != 0) {
+      res.send(generateToken({
+        USER_NAME: real_user_name,
+        USER_ID: result[0].USER_ID,
+        LEVEL: result[0].LEVEL,
         status: "ok",
-        token: token,
-      });
+      }));
     } else {
       res.send({
         code: -1,
@@ -125,6 +143,17 @@ router.post("/login", async function (req, res, next) {
   }
 });
 
+function generateToken(userData) {
+  const token = 'Bearer ' + jwt.sign({
+      _id: userData.USER_ID,
+      name: userData.USER_NAME,
+      role: userData.LEVEL,
+    },
+    'secret12345', {
+      expiresIn: 3600 * 24 * 3
+    });
+  return token;
+}
 router.get("/getCompanyInfo", function (req, res, next) {
   // #swagger.tags = ['Users']
   // #swagger.summary = '获取企业信息'
@@ -148,7 +177,7 @@ router.get("/getCompanyInfo", function (req, res, next) {
 router.post("/", function (req, res, next) {
   // #swagger.tags = ['Users']
   // #swagger.summary = '插入User'
-   // #swagger.description = "插入新的企业数据"
+  // #swagger.description = "插入新的企业数据"
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -159,7 +188,9 @@ router.post("/", function (req, res, next) {
                 },
             }
     } */
-  const { data } = req.body;
+  const {
+    data
+  } = req.body;
   //console.log(uunewid.v4())
   data.USER_ID = uunewid.v4();
   data.CREATED_AT = "2021-08-25 07:59:07.747000000";
@@ -227,7 +258,9 @@ router.post("/search", function (req, res, next) {
  */
 router.put("/updateStatus", async (req, res, next) => {
   // #swagger.tags = ['Users']
-  const { data } = req.body;
+  const {
+    data
+  } = req.body;
   // #swagger.summary = "企业加入白名单/黑名单"
   /*	#swagger.requestBody = {
             required: true,
@@ -244,12 +277,12 @@ router.put("/updateStatus", async (req, res, next) => {
   try {
     const result = await user.raw(
       "UPDATE SAP_JIANGDU_USERS SET COMMENTS='" +
-        data.COMMENTS +
-        "', STATUS='" +
-        data.STATUS +
-        "' WHERE USER_ID='" +
-        data.USER_ID +
-        "'"
+      data.COMMENTS +
+      "', STATUS='" +
+      data.STATUS +
+      "' WHERE USER_ID='" +
+      data.USER_ID +
+      "'"
     );
     if (result == 1) {
       res.sendStatus(200);
@@ -270,8 +303,8 @@ async function getCompanyInfo(body) {
   const user = new ohana(tableName); // new ohana('table_name');
   const result = await user.raw(
     'SELECT "USER_ID",  "COMPANY_NAME", "COMPANY_CODE", "COMPANY_TYPE" FROM "' +
-      tableName +
-      '"'
+    tableName +
+    '"' + " where STATUS!= '黑名单'"
   );
   return result;
 }
