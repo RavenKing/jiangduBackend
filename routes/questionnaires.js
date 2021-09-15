@@ -1,7 +1,9 @@
 var express = require("express");
 var uunewid = require("uuid");
 var router = express.Router();
-const { ohana } = require("ohana-node-orm");
+const {
+  ohana
+} = require("ohana-node-orm");
 
 //创建问卷答案
 /*
@@ -22,7 +24,9 @@ router.post("/createQuestionnaire", async (req, res, next) => {
                 },
             }
     } */
-  const { data } = req.body;
+  const {
+    data
+  } = req.body;
   data.uuid = uunewid.v4();
   const result = await insertJsonDoc(data);
   if (result == 1) {
@@ -53,7 +57,9 @@ router.post("/getQuestionnaire", async (req, res, next) => {
                 },
             }
     } */
-  const { data } = req.body;
+  const {
+    data
+  } = req.body;
   const result = await getJsonDoc(data);
   res.send(result);
 });
@@ -68,7 +74,7 @@ router.post("/getQuestionnaire", async (req, res, next) => {
 }
  */
 router.post("/updateQuestionnaire", async (req, res, next) => {
-      // #swagger.tags = ['Questionnaire']
+  // #swagger.tags = ['Questionnaire']
   // #swagger.summary = '更新questionnaire'
   /*	#swagger.requestBody = {
             required: true,
@@ -80,19 +86,43 @@ router.post("/updateQuestionnaire", async (req, res, next) => {
                 },
             }
     } */
-    const {
-        data
-    } = req.body;
-    const result = await updateJsonDoc(data);
-    console.log(result);
-    if (result == 1) {
-        res.sendStatus(200)
-    } else {
-        res.sendStatus(500)
-    }
+  const {
+    data
+  } = req.body;
+  const result = await updateJsonDoc(data);
+  console.log(result);
+  if (result == 1) {
+    res.sendStatus(200)
+  } else {
+    res.sendStatus(500)
+  }
 });
 
+router.post("/countQuestionnaire", async (req, res, next) => {
+  // #swagger.tags = ['Questionnaire']
+  // #swagger.summary = '更新questionnaire'
+  /*	#swagger.requestBody = {
+          required: true,
+          content: {
+              "application/json": {
+                  schema: {
+                      $ref: "#/definitions/questionnaire_get_update"
+                  }  
+              },
+          }
+  } */
+  const {
+    data
+  } = req.body;
+  const result = await countQuestionnaire(data);
+  res.send(result)
 
+  // if (result == 1) {
+  //   res.send(result)
+  // } else {
+  //   res.sendStatus(500)
+  // }
+});
 
 
 /*
@@ -100,16 +130,16 @@ router.post("/updateQuestionnaire", async (req, res, next) => {
  */
 
 router.delete("/", async (req, res, next) => {
-    const {
-        data
-    } = req.body;
-    const result = await deleteJsonDoc(data);
+  const {
+    data
+  } = req.body;
+  const result = await deleteJsonDoc(data);
 
-    if (result == 1) {
-        res.sendStatus(200)
-    } else {
-        res.sendStatus(500)
-    }
+  if (result == 1) {
+    res.sendStatus(200)
+  } else {
+    res.sendStatus(500)
+  }
 });
 async function insertJsonDoc(data) {
   const histo = new ohana("SAP_JIANGDU_FREQUENTLY_USED_ENTERPRISES");
@@ -150,13 +180,22 @@ async function updateJsonDoc(data) {
 }
 
 async function deleteJsonDoc(data) {
-    const histo = new ohana("SAP_JIANGDU_FREQUENTLY_USED_ENTERPRISES");
-    var stringText = "delete from  QUESTIONNAIRES where UUID = '" + data.UUID + "'";
-    console.log(stringText)
-    const result = await histo.raw(
-        stringText
-    );
-    return result;
+  const histo = new ohana("SAP_JIANGDU_FREQUENTLY_USED_ENTERPRISES");
+  var stringText = "delete from  QUESTIONNAIRES where UUID = '" + data.UUID + "'";
+  console.log(stringText)
+  const result = await histo.raw(
+    stringText
+  );
+  return result;
+}
+
+async function countQuestionnaire(data) {
+  const histo = new ohana("SAP_JIANGDU_FREQUENTLY_USED_ENTERPRISES");
+  var stringText = "select count(*) as total from QUESTIONNAIRES where UUID = '" + data.UUID + "'";
+  const result = await histo.raw(
+    stringText
+  );
+  return result;
 }
 
 module.exports = router;
