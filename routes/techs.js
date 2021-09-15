@@ -3,6 +3,9 @@ var uunewid = require("uuid");
 var router = express.Router();
 var constants = require("../utils/constants");
 
+
+const tableName = "SAP_JIANGDU_TECH_INNOS";
+const tagTableName = "SAP_JIANGDU_TAG_TECHS";
 const {
   ohana
 } = require("ohana-node-orm");
@@ -25,19 +28,15 @@ function checkPriority(req,levelData)
   console.log(req.user)
 
 }
-
-const tableName = "SAP_JIANGDU_TECH_INNOS";
-const tagTableName = "SAP_JIANGDU_TAG_TECHS";
 /* GET users listing. */
 router.post("/", function (req, res, next) {
 
-  const p_check=checkPriority(req,constants.LEVEL1);
-  console.log(p_check)
-  if(p_check==constants.UNAUTHORIZED)
-  {
-    res.sendStatus(401);
-    return;
-  }
+  // const p_check=checkPriority(req,constants.LEVEL1);
+  // if(p_check==constants.UNAUTHORIZED)
+  // {
+  //   res.sendStatus(401);
+  //   return;
+  // }
   
   // #swagger.tags = ['Tech']
   // #swagger.summary = '获取tech'
