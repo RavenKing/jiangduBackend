@@ -123,7 +123,7 @@ router.post("/login", async function (req, res, next) {
     if(result.length==0)
     {
       res.send({
-        code:403,
+        code:401,
         message:"user_password_error"
       })
       return;
@@ -132,12 +132,18 @@ router.post("/login", async function (req, res, next) {
     //md5_password = md5(real_user_name + password);
     console.log(real_user_name);
     if (result && result.length != 0) {
-      res.send(generateToken({
-        USER_NAME: real_user_name,
-        USER_ID: result[0].USER_ID,
-        LEVEL: result[0].LEVEL,
-        status: "ok",
-      }));
+      res.send({
+        code:0,
+        status:"OK",
+        token:generateToken({
+          USER_NAME: real_user_name,
+          USER_ID: result[0].USER_ID,
+          LEVEL: result[0].LEVEL,
+          status: "ok",
+        }),
+        message:"passed"
+
+      });
     } else {
       res.send({
         code: -1,
