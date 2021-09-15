@@ -4,7 +4,11 @@ var router = express.Router();
 const jwt = require("jsonwebtoken");
 var { PRIVITE_KEY, EXPIRESD } = require("../utils/store");
 
-const { ohana } = require("ohana-node-orm");
+var constants = require("../utils/constants")
+
+const {
+  ohana
+} = require("ohana-node-orm");
 
 /** */
 function checkData(res, data) {
@@ -87,7 +91,17 @@ router.post("/login", async function (req, res, next) {
             }
     } */
 
-  const { data } = req.body;
+  const {
+    data
+  } = req.body;
+  if(!data)
+  {
+    res.send({
+      code:400,
+      message:constants.BODY_IN_CORRECT
+    })
+    return;
+  }
 
   const user = new ohana(tableName);
   username = data.USER_NAME;
@@ -123,9 +137,12 @@ router.post("/login", async function (req, res, next) {
     console.log(real_user_name);
     if (result && result.length != 0) {
       res.send({
-        code: 0,
-        status: "OK",
-        token: generateToken({
+        code:0,
+        status:"OK",
+        USER_NAME:real_user_name,
+        LEVEL: result[0].LEVEL,
+        USER_ID: result[0].USER_ID,
+        token:generateToken({
           USER_NAME: real_user_name,
           USER_ID: result[0].USER_ID,
           LEVEL: result[0].LEVEL,
@@ -240,7 +257,7 @@ router.post("/", function (req, res, next) {
   data.VALIDATEDATE = "2021-08-25 07:59:07.747000000";
   data.HEZHUN_TIME = "2021-08-25 07:59:07.747000000";
   data.TOKEN = "2313122";
-  data.COMPANY_CODE = "12312312";
+  data.COMPANY_CODE = "000";
   console.log(data);
   insertData(data)
     .then((result) => {

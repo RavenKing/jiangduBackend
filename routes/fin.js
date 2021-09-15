@@ -36,7 +36,7 @@ router.post("/", function (req, res, next) {
         data
     } = req.body;
     const user = new ohana(tableName); // new ohana('table_name');
-    if (!data.NAME) {
+    if (!data||!data.NAME) {
         user.find().then((result) => {
             res.send(result);
         });
@@ -68,7 +68,6 @@ router.post("/add", function (req, res, next) {
     } = req.body;
     //console.log(uunewid.v4())
     data.FIN_ID = uunewid.v4();
-    console.log(data);
     insertData(data)
         .then((result) => {
             if (result == 1) {
@@ -213,8 +212,6 @@ router.post("/finTags", function (req, res, next) {
     } = req.body;
     getFinTag(data)
         .then((result) => {
-            //console.log(result);
-            console.log(result);
             res.send(result);
             // if (result == 1) {
             //    res.send(result)
