@@ -12,6 +12,9 @@ const tagTableName="SAP_JIANGDU_TAG_POLICYS"
 router.post("/", function (req, res, next) {
   // #swagger.tags = ['Policy']
   // #swagger.summary = '获取policy'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   // #swagger.description = '获取政策列表'
   
   /*	#swagger.requestBody = {
@@ -40,6 +43,9 @@ router.post("/", function (req, res, next) {
 router.put("/", function (req, res, next) {
   // #swagger.tags = ['Policy']
   // #swagger.summary = '修改policy'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -70,6 +76,9 @@ router.put("/", function (req, res, next) {
 router.post("/addTags", function (req, res, next) {
   // #swagger.tags = ['Policy']
   // #swagger.summary = '给某一政策增加标签'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -98,6 +107,21 @@ router.post("/addTags", function (req, res, next) {
 /// Asset tags
 
 router.post("/policyTags", function (req, res, next) {
+  // #swagger.tags = ['Policy']
+  // #swagger.summary = '？？？获取标签？？？'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
+  /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/policy_policyTags"
+                    }  
+                },
+            }
+    } */
     const { data } = req.body;
     getPolicyTags(data)
       .then((result) => {
@@ -117,6 +141,9 @@ router.post("/policyTags", function (req, res, next) {
 router.post("/deleteTags", function (req, res, next) {
   // #swagger.tags = ['Policy']
   // #swagger.summary = '给某一个政策删除Tag'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -145,6 +172,9 @@ router.post("/deleteTags", function (req, res, next) {
 router.post("/add", function (req, res, next) {
   // #swagger.tags = ['Policy']
   // #swagger.summary = '插入policy'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -184,6 +214,9 @@ async function insertData(body) {
 router.delete("/", function (req, res, next) {
   // #swagger.tags = ['Policy']
   // #swagger.summary = '删除policy'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {

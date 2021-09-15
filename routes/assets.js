@@ -17,6 +17,9 @@ const tagTableName = "SAP_JIANGDU_TAG_ASSETS";
 router.post("/", function (req, res, next) {
   // #swagger.tags = ['Asset']
   // #swagger.summary = '获取asset'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -47,6 +50,9 @@ router.post("/", function (req, res, next) {
 router.post("/add", function (req, res, next) {
   // #swagger.tags = ['Asset']
   // #swagger.summary = '添加asset'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -87,6 +93,9 @@ async function insertData(body) {
 router.post("/search", function (req, res, next) {
   // #swagger.tags = ['Asset']
   // #swagger.summary = '搜索asset，query参数未知'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   const queryData = req.query;
   const user = new ohana(tableName); // new ohana('table_name');
   if (queryData == null) {
@@ -104,6 +113,9 @@ router.post("/search", function (req, res, next) {
 router.put("/", function (req, res, next) {
   // #swagger.tags = ['Asset']
   // #swagger.summary = '修改asset'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -135,6 +147,9 @@ router.put("/", function (req, res, next) {
 router.delete("/", function (req, res, next) {
   // #swagger.tags = ['Asset']
   // #swagger.summary = '删除asset'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -186,6 +201,9 @@ async function deletePolicy(body) {
 router.post("/AssetTags", function (req, res, next) {
   // #swagger.tags = ['Asset']
   // #swagger.summary = '获取标签'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -217,6 +235,9 @@ router.post("/AssetTags", function (req, res, next) {
 router.post("/addTags", function (req, res, next) {
   // #swagger.tags = ['Asset']
   // #swagger.summary = '增加标签'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -246,6 +267,9 @@ router.post("/addTags", function (req, res, next) {
 router.post("/deleteTags", function (req, res, next) {
   // #swagger.tags = ['Asset']
   // #swagger.summary = '删除标签'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -277,6 +301,9 @@ router.post("/deleteTags", function (req, res, next) {
 router.put("/updateStatus", async (req, res, next) => {
   // #swagger.tags = ['Asset']
   // #swagger.summary = '？？？？？？？'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {

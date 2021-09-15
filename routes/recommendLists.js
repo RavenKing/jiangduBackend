@@ -8,6 +8,9 @@ const tableName = "SAP_JIANGDU_RECOMMENDED_LIST";
 router.get("/", function (req, res, next) {
   // #swagger.tags = ['RecommendList']
   // #swagger.summary = '获取推荐列表'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   const user = new ohana(tableName); // new ohana('table_name');
   user.find().then((result) => {
     res.send(result);
@@ -17,6 +20,9 @@ router.get("/", function (req, res, next) {
 router.post("/", function (req, res, next) {
   // #swagger.tags = ['RecommendList']
   // #swagger.summary = '新建推荐列表'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -54,6 +60,9 @@ router.post("/", function (req, res, next) {
 router.post("/notices", function (req, res, next) {
   // #swagger.tags = ['RecommendList']
   // #swagger.summary = ？？？？？？？
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -91,6 +100,9 @@ router.post("/notices", function (req, res, next) {
 router.post("/getUnreadNoticeCount", function (req, res, next) {
   // #swagger.tags = ['RecommendList']
   // #swagger.summary = '获取未读的消息数量'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -116,6 +128,9 @@ router.post("/getUnreadNoticeCount", function (req, res, next) {
 router.post("/toggleNotice", function (req, res, next) {
   // #swagger.tags = ['RecommendList']
   // #swagger.summary = 'toggleNotice'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -147,6 +162,9 @@ router.post("/toggleNotice", function (req, res, next) {
 router.put("/", function (req, res, next) {
   // #swagger.tags = ['RecommendList']
   // #swagger.summary = '修改推荐列表'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {

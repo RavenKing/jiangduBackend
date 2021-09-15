@@ -23,6 +23,9 @@ router.get("/", function (req, res, next) {
   // #swagger.tags = ['Users']
   // #swagger.summary = '获取User'
   // #swagger.description = '这个API能获取所有User的列表'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   const user = new ohana(tableName); // new ohana('table_name');
   user.find().then((result) => {
     res.send(result);
@@ -238,6 +241,9 @@ router.post("/", function (req, res, next) {
   // #swagger.tags = ['Users']
   // #swagger.summary = '插入User'
   // #swagger.description = "插入新的企业数据"
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -286,6 +292,9 @@ async function insertData(body) {
 router.post("/search", function (req, res, next) {
   // #swagger.tags = ['Users']
   // #swagger.summary = '搜索企业，query参数未知'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -318,6 +327,9 @@ router.put("/updateStatus", async (req, res, next) => {
   // #swagger.tags = ['Users']
   const { data } = req.body;
   // #swagger.summary = "企业加入白名单/黑名单"
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {

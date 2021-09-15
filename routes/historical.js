@@ -7,6 +7,9 @@ const { ohana } = require("ohana-node-orm");
 router.post("/latest/policy/companies", async (req, res, next) => {
   // #swagger.tags = ['Historical']
   // #swagger.summary = '常用公司历史数据'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {

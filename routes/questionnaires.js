@@ -12,6 +12,9 @@ const { ohana } = require("ohana-node-orm");
 router.post("/createQuestionnaire", async (req, res, next) => {
   // #swagger.tags = ['Questionnaire']
   // #swagger.summary = '创建questionnaire'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -43,6 +46,9 @@ router.post("/createQuestionnaire", async (req, res, next) => {
 router.post("/getQuestionnaire", async (req, res, next) => {
   // #swagger.tags = ['Questionnaire']
   // #swagger.summary = '获取questionnaire'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -70,6 +76,9 @@ router.post("/getQuestionnaire", async (req, res, next) => {
 router.post("/updateQuestionnaire", async (req, res, next) => {
       // #swagger.tags = ['Questionnaire']
   // #swagger.summary = '更新questionnaire'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -100,6 +109,11 @@ router.post("/updateQuestionnaire", async (req, res, next) => {
  */
 
 router.delete("/", async (req, res, next) => {
+  // #swagger.tags = ['Questionnaire']
+  // #swagger.summary = '删除questionnaire'
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
     const {
         data
     } = req.body;
