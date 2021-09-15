@@ -68,6 +68,9 @@ const doc = {
         STATUS: "黑名单",
       },
     },
+    user_getCompanyInfobyCondition: {
+      data: { STATUS: "INITIAL" },
+    },
     user_search: { data: {} },
     policy: { data: {}, token: "4836f6e1-2e8b-4b45-b903-9cf88d990901" },
     policy_add: {
@@ -198,7 +201,7 @@ const doc = {
       },
     },
     historical: { token: "2c59a359-77a0-4b66-9d66-02089946a04c" },
-    fin_get:{data:{LOAN_TYPE:""}},
+    fin_get: { data: { LOAN_TYPE: "" } },
     fin_add: {
       data: {
         FIN_ID: "",
@@ -340,7 +343,7 @@ const doc = {
       data: {
         ASSET_ID_ASSET_ID: "ad52d74e-0ede-11ec-b9ca-342eb7e2a2ec",
         TAG_ID_TAG_ID: "15cefa4b-0c63-11ec-9ac5-342eb7e2a2ec",
-      } 
+      },
     },
     tech: { data: {} },
     tech_add_update: {

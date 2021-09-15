@@ -41,12 +41,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //configure JWT service
-app.use(expressJwt({
-  secret: PRIVITE_KEY,
-  algorithms: ['HS256']
-}).unless({
-  path: ['/api/assets', '/api/fins', '/api/recommendLists', '/api/users/login', '/api/users/register', '/api/tags', '/api/talents', '/api/historical','/api/blackLists'] //添加不需要验证的路由
-}))
+// app.use(expressJwt({
+//   secret: PRIVITE_KEY,
+//   algorithms: ['HS256']
+// }).unless({
+//   path: ['/api/assets', '/api/fins', '/api/recommendLists', '/api/users/login', '/api/users/register', '/api/tags', '/api/talents', '/api/historical','/api/blackLists'] //添加不需要验证的路由
+// }))
 
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
