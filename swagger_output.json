@@ -1474,11 +1474,11 @@
           "properties": {
             "username": {
               "type": "string",
-              "example": "admin"
+              "example": "kevin"
             },
             "password": {
               "type": "string",
-              "example": "123456"
+              "example": "123"
             }
           }
         }

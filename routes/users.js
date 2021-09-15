@@ -2,10 +2,7 @@ var express = require("express");
 var uunewid = require("uuid");
 var router = express.Router();
 const jwt = require("jsonwebtoken");
-var {
-  PRIVITE_KEY,
-  EXPIRESD
-} = require("../utils/store");
+var {PRIVITE_KEY,EXPIRESD} = require('../utils/store')
 
 const {
   ohana
@@ -39,7 +36,7 @@ router.post("/register", async (req, res, next) => {
             content: {
                 "application/json": {
                     schema: {
-                        $ref: "#/definitions/user_register"
+                        $ref: "#/definitions/user"
                     }  
                 },
             }
@@ -162,8 +159,8 @@ function generateToken(userData) {
       name: userData.USER_NAME,
       role: userData.LEVEL,
     },
-    'secret12345', {
-      expiresIn: 3600 * 24 * 3
+    PRIVITE_KEY, {
+      expiresIn:EXPIRESD
     });
   return token;
 }
@@ -187,6 +184,26 @@ router.get("/getCompanyInfo", function (req, res, next) {
     });
 });
 
+
+router.post("/getCompanyInfobyCondition", function (req, res, next) {
+  // #swagger.tags = ['Users']
+  // #swagger.summary = '获取企业信息根据选择条件'
+  // #swagger.description = "返回*
+  const {data} = req.body;
+  getCompanyInfoByCondition(data)
+    .then((result) => {
+      //console.log(result);
+      if (result !== undefined) {
+        res.send(result);
+      } else {
+        res.send(500);
+      }
+      //return res.send(result)
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 router.post("/", function (req, res, next) {
   // #swagger.tags = ['Users']
   // #swagger.summary = '插入User'
@@ -321,5 +338,18 @@ async function getCompanyInfo(body) {
   );
   return result;
 }
+
+/**
+ * 127.0.0.1:4000/api/users/getCompanyGeneralInfo
+ * @param {*} body
+ * @returns
+ */
+ async function getCompanyInfoByCondition(filter) {
+  const user = new ohana(tableName); // new ohana('table_name');
+  console.log(filter)
+  const result = await user.find(filter);
+  return result;
+}
+
 
 module.exports = router;

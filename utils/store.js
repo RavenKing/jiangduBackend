@@ -1,4 +1,4 @@
 module.exports = {
-    "PRIVITE_KEY":"我是秘钥",
+    "PRIVITE_KEY":"funnylinwen",
     "EXPIRESD":60*60*24
 }
