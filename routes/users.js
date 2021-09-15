@@ -120,7 +120,14 @@ router.post("/login", async function (req, res, next) {
     result.push(...res1);
     result.push(...res2);
     result.push(...res3);
-
+    if(result.length==0)
+    {
+      res.send({
+        code:403,
+        message:"user_password_error"
+      })
+      return;
+    }
     let real_user_name = result[0].USER_NAME;
     //md5_password = md5(real_user_name + password);
     console.log(real_user_name);
