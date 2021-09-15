@@ -8,8 +8,8 @@ const swaggerFile = require('../../swagger_output.json')
     definition: {
       openapi: '3.0.0',
       info: {
-        title: 'api',
-        version: '1.1.0',
+        title: 'api???',
+        version: '2.1.0',
         description: `小程序+管理后台共用接口api`
       }
     },

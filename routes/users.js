@@ -2,11 +2,9 @@ var express = require("express");
 var uunewid = require("uuid");
 var router = express.Router();
 const jwt = require("jsonwebtoken");
-var {PRIVITE_KEY,EXPIRESD} = require('../utils/store')
+var { PRIVITE_KEY, EXPIRESD } = require("../utils/store");
 
-const {
-  ohana
-} = require("ohana-node-orm");
+const { ohana } = require("ohana-node-orm");
 
 /** */
 function checkData(res, data) {
@@ -42,16 +40,14 @@ router.post("/register", async (req, res, next) => {
             }
     } */
   const user = new ohana(tableName);
-  const {
-    data
-  } = req.body;
+  const { data } = req.body;
   username = data.USER_NAME;
   password = data.PASSWORD;
   try {
     // 查询当前用户名在不在数据库中(使用async方法后必须使用await方法才有值返回，不然返回promise对象)
     let user = await user.findOne({
       USER_NAME: username,
-      PASSWORD: password
+      PASSWORD: password,
     });
     // 存在res即是数据库中有数据
     if (user && user.length != 0) {
@@ -91,9 +87,7 @@ router.post("/login", async function (req, res, next) {
             }
     } */
 
-  const {
-    data
-  } = req.body;
+  const { data } = req.body;
 
   const user = new ohana(tableName);
   username = data.USER_NAME;
@@ -102,7 +96,7 @@ router.post("/login", async function (req, res, next) {
   try {
     let res1 = await user.findOne({
       USER_NAME: username,
-      PASSWORD: password
+      PASSWORD: password,
     });
     let res2 = await user.findOne({
       COMPANY_CODE: username,
@@ -110,19 +104,18 @@ router.post("/login", async function (req, res, next) {
     });
     let res3 = await user.findOne({
       PHONE: username,
-      PASSWORD: password
+      PASSWORD: password,
     });
 
     let result = [];
     result.push(...res1);
     result.push(...res2);
     result.push(...res3);
-    if(result.length==0)
-    {
+    if (result.length == 0) {
       res.send({
-        code:401,
-        message:"user_password_error"
-      })
+        code: 401,
+        message: "user_password_error",
+      });
       return;
     }
     let real_user_name = result[0].USER_NAME;
@@ -130,16 +123,15 @@ router.post("/login", async function (req, res, next) {
     console.log(real_user_name);
     if (result && result.length != 0) {
       res.send({
-        code:0,
-        status:"OK",
-        token:generateToken({
+        code: 0,
+        status: "OK",
+        token: generateToken({
           USER_NAME: real_user_name,
           USER_ID: result[0].USER_ID,
           LEVEL: result[0].LEVEL,
           status: "ok",
         }),
-        message:"passed"
-
+        message: "passed",
       });
     } else {
       res.send({
@@ -154,20 +146,28 @@ router.post("/login", async function (req, res, next) {
 });
 
 function generateToken(userData) {
-  const token = 'Bearer ' + jwt.sign({
-      _id: userData.USER_ID,
-      name: userData.USER_NAME,
-      role: userData.LEVEL,
-    },
-    PRIVITE_KEY, {
-      expiresIn:EXPIRESD
-    });
+  const token =
+    "Bearer " +
+    jwt.sign(
+      {
+        _id: userData.USER_ID,
+        name: userData.USER_NAME,
+        role: userData.LEVEL,
+      },
+      PRIVITE_KEY,
+      {
+        expiresIn: EXPIRESD,
+      }
+    );
   return token;
 }
 router.get("/getCompanyInfo", function (req, res, next) {
   // #swagger.tags = ['Users']
   // #swagger.summary = '获取企业信息'
   // #swagger.description = "返回"USER_ID",  "COMPANY_NAME", "COMPANY_CODE", "COMPANY_TYPE"四个字段"
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
   checkData(res, req.body);
   getCompanyInfo(req.body)
     .then((result) => {
@@ -184,12 +184,14 @@ router.get("/getCompanyInfo", function (req, res, next) {
     });
 });
 
-
 router.post("/getCompanyInfobyCondition", function (req, res, next) {
   // #swagger.tags = ['Users']
   // #swagger.summary = '获取企业信息根据选择条件'
-  // #swagger.description = "返回*
-   /*	#swagger.requestBody = {
+  // #swagger.description = ”返回“
+  /* #swagger.security = [{
+               "JiangduJWT": []
+  }] */
+  /*	#swagger.requestBody = {
             required: true,
             content: {
                 "application/json": {
@@ -200,7 +202,7 @@ router.post("/getCompanyInfobyCondition", function (req, res, next) {
             }
     } */
 
-  const {data} = req.body;
+  const { data } = req.body;
   getCompanyInfoByCondition(data)
     .then((result) => {
       //console.log(result);
@@ -229,9 +231,7 @@ router.post("/", function (req, res, next) {
                 },
             }
     } */
-  const {
-    data
-  } = req.body;
+  const { data } = req.body;
   //console.log(uunewid.v4())
   data.USER_ID = uunewid.v4();
   data.CREATED_AT = "2021-08-25 07:59:07.747000000";
@@ -299,9 +299,7 @@ router.post("/search", function (req, res, next) {
  */
 router.put("/updateStatus", async (req, res, next) => {
   // #swagger.tags = ['Users']
-  const {
-    data
-  } = req.body;
+  const { data } = req.body;
   // #swagger.summary = "企业加入白名单/黑名单"
   /*	#swagger.requestBody = {
             required: true,
@@ -318,12 +316,12 @@ router.put("/updateStatus", async (req, res, next) => {
   try {
     const result = await user.raw(
       "UPDATE SAP_JIANGDU_USERS SET COMMENTS='" +
-      data.COMMENTS +
-      "', STATUS='" +
-      data.STATUS +
-      "' WHERE USER_ID='" +
-      data.USER_ID +
-      "'"
+        data.COMMENTS +
+        "', STATUS='" +
+        data.STATUS +
+        "' WHERE USER_ID='" +
+        data.USER_ID +
+        "'"
     );
     if (result == 1) {
       res.sendStatus(200);
@@ -344,8 +342,9 @@ async function getCompanyInfo(body) {
   const user = new ohana(tableName); // new ohana('table_name');
   const result = await user.raw(
     'SELECT "USER_ID",  "COMPANY_NAME", "COMPANY_CODE", "COMPANY_TYPE" FROM "' +
-    tableName +
-    '"' + " where STATUS!= '黑名单'"
+      tableName +
+      '"' +
+      " where STATUS!= '黑名单'"
   );
   return result;
 }
@@ -355,12 +354,11 @@ async function getCompanyInfo(body) {
  * @param {*} body
  * @returns
  */
- async function getCompanyInfoByCondition(filter) {
+async function getCompanyInfoByCondition(filter) {
   const user = new ohana(tableName); // new ohana('table_name');
-  console.log(filter)
+  console.log(filter);
   const result = await user.find(filter);
   return result;
 }
-
 
 module.exports = router;
