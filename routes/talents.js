@@ -114,28 +114,6 @@ router.post("/tags", function (req, res, next) {
     });
 });
 
-router.post("/allTags", function (req, res, next) {
-  // #swagger.tags = ['Talent']
-  // #swagger.summary = '应该是个废弃的接口了'
-  /* #swagger.security = [{
-               "JiangduJWT": []
-  }] */
-  const { data } = req.body;
-  getAllTags(data)
-    .then((result) => {
-      //console.log(result);
-      if (result !== undefined) {
-        res.send(result);
-      } else {
-        res.send(500);
-      }
-      //return res.send(result)
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
-
 router.post("/addTags", function (req, res, next) {
   // #swagger.tags = ['Talent']
   // #swagger.summary = '给某个talent添加tag'
@@ -299,14 +277,6 @@ async function get_Talent_tag(tag_id) {
     TAG_ID: tag_id,
   });
   return tag;
-}
-
-async function getAllTags(data) {
-  const t_TalentTags = new ohana("SAP_JIANGDU_TAG_TALENTS"); // new ohana('table_name');
-  const result = await t_TalentTags.raw(
-    'SELECT A1.*, A2.TAG_NAME, A2.TAG_VALUE, A2.TYPE, A2.TAG_CATEGORY, A2.DESCRIPTION from "SAP_JIANGDU_TAG_TALENTS" as A1 LEFT JOIN "SAP_JIANGDU_TAGS" as A2 on A1.TAG_ID_TAG_ID = A2.TAG_ID'
-  );
-  return result;
 }
 
 async function getTalentTags(body) {

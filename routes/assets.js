@@ -297,50 +297,6 @@ router.post("/deleteTags", function (req, res, next) {
       console.log(err);
     });
 });
-/**
- * Update COMMENTS, STATUS by USER_ID
- * @param {*} body
- * @returns
- */
-router.put("/updateStatus", async (req, res, next) => {
-  // #swagger.tags = ['Asset']
-  // #swagger.summary = '？？？？？？？'
-  /* #swagger.security = [{
-               "JiangduJWT": []
-  }] */
-  /*	#swagger.requestBody = {
-            required: true,
-            content: {
-                "application/json": {
-                    schema: {
-                        $ref: "#/definitions/user_register"
-                    }  
-                },
-            }
-    } */
-  const { data } = req.body;
-
-  const user = new ohana(tableName);
-  //console.log("UPDATE SAP_JIANGDU_USERS SET COMMENTS='"+ data.COMMENTS + "', STATUS='" + data.STATUS + "' WHERE USER_ID='"+data.USER_ID+"'")
-  try {
-    const result = await user.raw(
-      "UPDATE SAP_JIANGDU_USERS SET COMMENTS='" +
-        data.COMMENTS +
-        "', STATUS='" +
-        data.STATUS +
-        "' WHERE USER_ID='" +
-        data.USER_ID +
-        "'"
-    );
-    if (result == 1) {
-      res.sendStatus(200);
-    } else {
-      res.send(500);
-    }
-  } catch (err) {
-    console.log(err);
-  }
-});
 
 /**
  * 127.0.0.1:4000/api/users/getCompanyInfo

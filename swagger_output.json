@@ -23,7 +23,12 @@
         "summary": "获取HomePage",
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ]
       }
     },
     "/api/users/": {
@@ -618,35 +623,6 @@
         }
       }
     },
-    "/api/talents/allTags": {
-      "post": {
-        "tags": [
-          "Talent"
-        ],
-        "summary": "应该是个废弃的接口了",
-        "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {},
-        "security": [
-          {
-            "JiangduJWT": []
-          }
-        ]
-      }
-    },
     "/api/talents/addTags": {
       "post": {
         "tags": [
@@ -1117,32 +1093,6 @@
         }
       }
     },
-    "/api/fins/updateStatus": {
-      "put": {
-        "tags": [
-          "Fin"
-        ],
-        "summary": "？？？？？？？",
-        "description": "",
-        "parameters": [],
-        "responses": {},
-        "security": [
-          {
-            "JiangduJWT": []
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/definitions/fin_updateStatus"
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/assets/": {
       "post": {
         "tags": [
@@ -1337,32 +1287,6 @@
         }
       }
     },
-    "/api/assets/updateStatus": {
-      "put": {
-        "tags": [
-          "Asset"
-        ],
-        "summary": "？？？？？？？",
-        "description": "",
-        "parameters": [],
-        "responses": {},
-        "security": [
-          {
-            "JiangduJWT": []
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/definitions/user_register"
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/techs/": {
       "post": {
         "tags": [
@@ -1551,32 +1475,6 @@
             "application/json": {
               "schema": {
                 "$ref": "#/definitions/tech_tag_add_delete"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/techs/updateStatus": {
-      "put": {
-        "tags": [
-          "Tech"
-        ],
-        "summary": "？？？？？？？",
-        "description": "",
-        "parameters": [],
-        "responses": {},
-        "security": [
-          {
-            "JiangduJWT": []
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/definitions/user_register"
               }
             }
           }
