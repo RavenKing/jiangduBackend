@@ -202,6 +202,17 @@ router.post("/getCompanyInfobyCondition", function (req, res, next) {
   // #swagger.tags = ['Users']
   // #swagger.summary = '获取企业信息根据选择条件'
   // #swagger.description = "返回*
+   /*	#swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/definitions/user_getCompanyInfobyCondition"
+                    }  
+                },
+            }
+    } */
+
   const {data} = req.body;
   getCompanyInfoByCondition(data)
     .then((result) => {

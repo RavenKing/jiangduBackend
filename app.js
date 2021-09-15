@@ -40,7 +40,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// //configure JWT service
+//configure JWT service
 // app.use(expressJwt({
 //   secret: PRIVITE_KEY,
 //   algorithms: ['HS256']
