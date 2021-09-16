@@ -148,8 +148,7 @@ async function insertJsonDoc(data) {
 }
 async function getJsonDoc(data) {
   const histo = new ohana("SAP_JIANGDU_FREQUENTLY_USED_ENTERPRISES");
-  var stringText = "select * from  QUESTIONNAIRES where UUID = '" + data.UUID + "'";
-  console.log(stringText);
+  var stringText = "select * from  QUESTIONNAIRES where USER_ID = '" + data.USER_ID + "'";
   const result = await histo.raw(stringText);
   return {
     data: result,
@@ -184,7 +183,7 @@ async function deleteJsonDoc(data) {
 }
 async function countQuestionnaire(data) {
   const histo = new ohana("SAP_JIANGDU_FREQUENTLY_USED_ENTERPRISES");
-  var stringText = "select count(*) as total from QUESTIONNAIRES where UUID = '" + data.UUID + "'";
+  var stringText = "select count(*) as total from QUESTIONNAIRES where USER_ID = '" + data.USER_ID + "'";
   const result = await histo.raw(
     stringText
   );
