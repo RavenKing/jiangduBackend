@@ -182,5 +182,12 @@ async function deleteJsonDoc(data) {
   const result = await histo.raw(stringText);
   return result;
 }
-
+async function countQuestionnaire(data) {
+  const histo = new ohana("SAP_JIANGDU_FREQUENTLY_USED_ENTERPRISES");
+  var stringText = "select count(*) as total from QUESTIONNAIRES where UUID = '" + data.UUID + "'";
+  const result = await histo.raw(
+    stringText
+  );
+  return result;
+}
 module.exports = router;
