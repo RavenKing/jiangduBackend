@@ -820,7 +820,7 @@
     "/api/blackLists/": {
       "get": {
         "tags": [
-          "blacklist"
+          "Blacklist"
         ],
         "summary": "获取黑白名单",
         "description": "",
@@ -834,7 +834,7 @@
       },
       "post": {
         "tags": [
-          "blacklist"
+          "Blacklist"
         ],
         "summary": "新建，删除，修改黑白名单用的是users/updateStatus，这个接口没用",
         "description": "",
@@ -860,7 +860,7 @@
     "/api/blackLists/getCompanyInfo": {
       "get": {
         "tags": [
-          "blacklist"
+          "Blacklist"
         ],
         "summary": "只要了\"USER_ID\", \"COMPANY_NAME\", \"COMPANY_CODE\", \"COMPANY_TYPE\"四个字段",
         "description": "",
@@ -1481,7 +1481,7 @@
         }
       }
     },
-    "/api/questionnaires/createQuestionnaire": {
+    "/api/questionnaires/": {
       "post": {
         "tags": [
           "Questionnaire"
@@ -1500,41 +1500,35 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/definitions/recommendList_toggleNotice"
+                "$ref": "#/definitions/questionnaire"
               }
             }
           }
         }
-      }
-    },
-    "/api/questionnaires/getQuestionnaire": {
-      "post": {
+      },
+      "get": {
         "tags": [
           "Questionnaire"
         ],
         "summary": "获取questionnaire",
         "description": "",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "UUID",
+            "description": "UUID of questionnaire",
+            "required": true,
+            "type": "integer",
+            "in": "query"
+          }
+        ],
         "responses": {},
         "security": [
           {
             "JiangduJWT": []
           }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/definitions/questionnaire_get_update"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/questionnaires/updateQuestionnaire": {
-      "post": {
+        ]
+      },
+      "put": {
         "tags": [
           "Questionnaire"
         ],
@@ -1552,40 +1546,56 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/definitions/questionnaire_get_update"
+                "$ref": "#/definitions/questionnaire_update"
               }
             }
           }
         }
-      }
-    },
-    "/api/questionnaires/": {
+      },
       "delete": {
         "tags": [
           "Questionnaire"
         ],
         "summary": "删除questionnaire",
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
+        "parameters": [],
         "responses": {},
         "security": [
           {
             "JiangduJWT": []
           }
-        ]
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/questionnaire_delete"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/questionnaires/countQuestionnaire": {
+      "post": {
+        "tags": [
+          "Questionnaire"
+        ],
+        "summary": "计数questionnaire",
+        "description": "",
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/questionnaire_countQuestionnaire"
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -3117,15 +3127,20 @@
       "properties": {
         "data": {
           "type": "object",
-          "properties": {}
-        },
-        "token": {
-          "type": "string",
-          "example": "2c59a359-77a0-4b66-9d66-02089946a04c"
+          "properties": {
+            "TEST": {
+              "type": "string",
+              "example": "132"
+            },
+            "COOL": {
+              "type": "string",
+              "example": "it works"
+            }
+          }
         }
       }
     },
-    "questionnaire_get_update": {
+    "questionnaire_update": {
       "type": "object",
       "properties": {
         "data": {
@@ -3144,6 +3159,34 @@
                 }
               }
             },
+            "UUID": {
+              "type": "string",
+              "example": "455bdad0-4cbb-4bc4-85b0-0c34c0e4d8c4"
+            }
+          }
+        }
+      }
+    },
+    "questionnaire_delete": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "UUID": {
+              "type": "string",
+              "example": "455bdad0-4cbb-4bc4-85b0-0c34c0e4d8c4"
+            }
+          }
+        }
+      }
+    },
+    "countQuestionnaire": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
             "UUID": {
               "type": "string",
               "example": "455bdad0-4cbb-4bc4-85b0-0c34c0e4d8c4"

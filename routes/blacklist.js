@@ -13,7 +13,7 @@ function checkData(res, data) {
 const tableName = "SAP_JIANGDU_BLACKLIST";
 /* GET users listing. */
 router.get("/", function (req, res, next) {
-  // #swagger.tags = ['blacklist']
+  // #swagger.tags = ['Blacklist']
   // #swagger.summary = '获取黑白名单'
   /* #swagger.security = [{
                "JiangduJWT": []
@@ -25,7 +25,7 @@ router.get("/", function (req, res, next) {
 });
 
 router.get("/getCompanyInfo", function (req, res, next) {
-  // #swagger.tags = ['blacklist']
+  // #swagger.tags = ['Blacklist']
   // #swagger.summary = '只要了"USER_ID",  "COMPANY_NAME", "COMPANY_CODE", "COMPANY_TYPE"四个字段'
   /* #swagger.security = [{
                "JiangduJWT": []
@@ -47,7 +47,7 @@ router.get("/getCompanyInfo", function (req, res, next) {
 });
 
 router.post("/", function (req, res, next) {
-  // #swagger.tags = ['blacklist']
+  // #swagger.tags = ['Blacklist']
   // #swagger.summary = '新建，删除，修改黑白名单用的是users/updateStatus，这个接口没用'
   /* #swagger.security = [{
                "JiangduJWT": []

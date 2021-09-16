@@ -1,17 +1,10 @@
 var express = require("express");
 var uunewid = require("uuid");
 var router = express.Router();
-const {
-  ohana
-} = require("ohana-node-orm");
+const { ohana } = require("ohana-node-orm");
 
 //创建问卷答案
-/*
-
-
-
-  } */
-router.post("/createQuestionnaire", async (req, res, next) => {
+router.post("/", async (req, res, next) => {
   // #swagger.tags = ['Questionnaire']
   // #swagger.summary = '创建questionnaire'
   /* #swagger.security = [{
@@ -22,14 +15,12 @@ router.post("/createQuestionnaire", async (req, res, next) => {
             content: {
                 "application/json": {
                     schema: {
-                        $ref: "#/definitions/recommendList_toggleNotice"
+                        $ref: "#/definitions/questionnaire"
                     }  
                 },
             }
     } */
-  const {
-    data
-  } = req.body;
+  const { data } = req.body;
   data.uuid = uunewid.v4();
   const result = await insertJsonDoc(data);
   if (result == 1) {
@@ -40,44 +31,35 @@ router.post("/createQuestionnaire", async (req, res, next) => {
 });
 
 //list问卷答案
-/**{
-	"data":{"UUID": "455bdad0-4cbb-4bc4-85b0-0c34c0e4d8c4"}
-	
-}
+/**
+ * "UUID": "455bdad0-4cbb-4bc4-85b0-0c34c0e4d8c4"
  * 问卷id
- */
-
-router.post("/getQuestionnaire", async (req, res, next) => {
+ **/
+router.get("/", async (req, res, next) => {
   // #swagger.tags = ['Questionnaire']
   // #swagger.summary = '获取questionnaire'
   /* #swagger.security = [{
                "JiangduJWT": []
   }] */
-  /*	#swagger.requestBody = {
-            required: true,
-            content: {
-                "application/json": {
-                    schema: {
-                        $ref: "#/definitions/questionnaire_get_update"
-                    }  
-                },
-            }
-    } */
-  const {
-    data
-  } = req.body;
-  const result = await getJsonDoc(data);
+  /* #swagger.parameters['UUID'] = {
+        description: 'UUID of questionnaire',
+        required: true,
+        type: 'integer',
+} */
+  const queryData = req.query;
+  console.log(queryData);
+  const result = await getJsonDoc(queryData);
+  console.log(result);
   res.send(result);
 });
 
 //更新问卷 只能更新Answers
 /**
- * 
- * {
+{
 	"data":{"ANSWERS": {"TEST": "132", "COOL": "it works"}, "UUID": "455bdad0-4cbb-4bc4-85b0-0c34c0e4d8c4"}
 }
- */
-router.post("/updateQuestionnaire", async (req, res, next) => {
+**/
+router.put("/", async (req, res, next) => {
   // #swagger.tags = ['Questionnaire']
   // #swagger.summary = '更新questionnaire'
   /* #swagger.security = [{
@@ -88,49 +70,43 @@ router.post("/updateQuestionnaire", async (req, res, next) => {
             content: {
                 "application/json": {
                     schema: {
-                        $ref: "#/definitions/questionnaire_get_update"
+                        $ref: "#/definitions/questionnaire_update"
                     }  
                 },
             }
     } */
-  const {
-    data
-  } = req.body;
+  const { data } = req.body;
   const result = await updateJsonDoc(data);
   console.log(result);
   if (result == 1) {
-    res.sendStatus(200)
+    res.sendStatus(200);
   } else {
-    res.sendStatus(500)
+    res.sendStatus(500);
   }
 });
 
 router.post("/countQuestionnaire", async (req, res, next) => {
   // #swagger.tags = ['Questionnaire']
-  // #swagger.summary = '更新questionnaire'
+  // #swagger.summary = '计数questionnaire'
   /*	#swagger.requestBody = {
           required: true,
           content: {
               "application/json": {
                   schema: {
-                      $ref: "#/definitions/questionnaire_get_update"
+                      $ref: "#/definitions/questionnaire_countQuestionnaire"
                   }  
               },
           }
   } */
-  const {
-    data
-  } = req.body;
+  const { data } = req.body;
   const result = await countQuestionnaire(data);
-  res.send(result)
-
+  res.send(result);
   // if (result == 1) {
   //   res.send(result)
   // } else {
   //   res.sendStatus(500)
   // }
 });
-
 
 /*
  *删除问卷id
@@ -142,6 +118,16 @@ router.delete("/", async (req, res, next) => {
   /* #swagger.security = [{
                "JiangduJWT": []
   }] */
+  /*	#swagger.requestBody = {
+          required: true,
+          content: {
+              "application/json": {
+                  schema: {
+                      $ref: "#/definitions/questionnaire_delete"
+                  }  
+              },
+          }
+  } */
   const { data } = req.body;
   const result = await deleteJsonDoc(data);
 
@@ -162,8 +148,7 @@ async function insertJsonDoc(data) {
 }
 async function getJsonDoc(data) {
   const histo = new ohana("SAP_JIANGDU_FREQUENTLY_USED_ENTERPRISES");
-  var stringText =
-    "select * from  QUESTIONNAIRES where UUID = '" + data.UUID + "'";
+  var stringText = "select * from  QUESTIONNAIRES where UUID = '" + data.UUID + "'";
   console.log(stringText);
   const result = await histo.raw(stringText);
   return {
