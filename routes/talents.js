@@ -20,15 +20,19 @@ router.post("/get", function (req, res, next) {
   }] */
   const { data } = req.body;
   const user = new ohana(tableName); // new ohana('table_name');
-  if (!data) {
+  console.log(data);
+  if (!data||!data.data.searchString) {
     user.find().then((result) => {
       res.send(result);
     });
   } else {
-    console.log(data);
-    user.find(data).then((result) => {
-      res.send(result);
-    });
+   user.raw(
+      'SELECT  * FROM "'+tableName+'" where "TALENT_NAME" LIKE \'%' +
+        data.data.searchString +
+        "%'"
+    ).then((result)=>{
+      res.send(result)
+    })
   }
 });
 /**

@@ -32,7 +32,7 @@ router.get("/", function (req, res, next) {
       res.send(result);
     });
   } else {
-    console.log(data);
+    //console.log(data);
     user.find(data).then((result) => {
       res.send(result);
     });

@@ -159,6 +159,7 @@ router.post("/deleteTags", function (req, res, next) {
             }
     } */
   const { data } = req.body;
+  console.log(data);
   deletaPolicyTag(data)
     .then((result) => {
       if (result == 1) {
@@ -309,14 +310,15 @@ async function insertPolicyData(data) {
 
 async function deletaPolicyTag(data) {
   const policyTag = new ohana(tagTableName); // new ohana('table_name');
+  const sqlText= "delete from " +
+  tagTableName +
+  " where POLICY_ID_POLICY_ID = '" +
+  data.POLICY_ID_POLICY_ID +
+  "' and TAG_ID_TAG_ID = '" +
+  data.TAG_ID_TAG_ID +
+  "'";
   const result = await policyTag.raw(
-    "delete from " +
-      tagTableName +
-      "where POLICY_ID_POLICY_ID = '" +
-      data.POLICY_ID_POLICY_ID +
-      "' and TAG_ID_TAG_ID = '" +
-      data.TAG_ID_TAG_ID +
-      "'"
+    sqlText
   );
   return result;
 }
