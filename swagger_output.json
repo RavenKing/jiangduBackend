@@ -1294,6 +1294,33 @@
         ],
         "summary": "获取tech",
         "description": "",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {},
+        "security": [
+          {
+            "JiangduJWT": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Tech"
+        ],
+        "summary": "增加tech",
+        "description": "",
         "parameters": [],
         "responses": {},
         "security": [
@@ -1306,7 +1333,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/definitions/tech"
+                "$ref": "#/definitions/tech_add_update"
               }
             }
           }
@@ -1355,32 +1382,6 @@
             "application/json": {
               "schema": {
                 "$ref": "#/definitions/tech_delete"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/techs/add": {
-      "post": {
-        "tags": [
-          "Tech"
-        ],
-        "summary": "增加tech",
-        "description": "",
-        "parameters": [],
-        "responses": {},
-        "security": [
-          {
-            "JiangduJWT": []
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/definitions/tech_add_update"
               }
             }
           }
@@ -1456,7 +1457,7 @@
       }
     },
     "/api/techs/deleteTags": {
-      "post": {
+      "delete": {
         "tags": [
           "Tech"
         ],

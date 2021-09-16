@@ -24,28 +24,11 @@ function checkPriority(req, levelData) {
 }
 /* GET users listing. */
 router.get("/", function (req, res, next) {
-  // const p_check=checkPriority(req,constants.LEVEL1);
-  // if(p_check==constants.UNAUTHORIZED)
-  // {
-  //   res.sendStatus(401);
-  //   return;
-  // }
-
   // #swagger.tags = ['Tech']
   // #swagger.summary = '获取tech'
   /* #swagger.security = [{
                "JiangduJWT": []
   }] */
-  /*	#swagger.requestBody = {
-            required: true,
-            content: {
-                "application/json": {
-                    schema: {
-                        $ref: "#/definitions/tech"
-                    }  
-                },
-            }
-    } */
   const { data } = req.body;
   const user = new ohana(tableName); // new ohana('table_name');
   if (!data) {
@@ -60,7 +43,7 @@ router.get("/", function (req, res, next) {
   }
 });
 
-router.post("/add", function (req, res, next) {
+router.post("/", function (req, res, next) {
   // #swagger.tags = ['Tech']
   // #swagger.summary = '增加tech'
   /* #swagger.security = [{
@@ -278,7 +261,7 @@ router.post("/addTags", function (req, res, next) {
     });
 });
 
-router.post("/deleteTags", function (req, res, next) {
+router.delete("/deleteTags", function (req, res, next) {
   // #swagger.tags = ['Tech']
   // #swagger.summary = '删除标签'
   /* #swagger.security = [{
