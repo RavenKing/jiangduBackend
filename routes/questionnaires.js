@@ -32,7 +32,7 @@ router.post("/", async (req, res, next) => {
 
 //list问卷答案
 /**
- * "UUID": "455bdad0-4cbb-4bc4-85b0-0c34c0e4d8c4"
+ * "USER_ID": "455bdad0-4cbb-4bc4-85b0-0c34c0e4d8c4"
  * 问卷id
  **/
 router.get("/", async (req, res, next) => {
@@ -41,8 +41,8 @@ router.get("/", async (req, res, next) => {
   /* #swagger.security = [{
                "JiangduJWT": []
   }] */
-  /* #swagger.parameters['UUID'] = {
-        description: 'UUID of questionnaire',
+  /* #swagger.parameters['USER_ID'] = {
+        description: 'the USER_ID',
         required: true,
         type: 'integer',
 } */
@@ -85,7 +85,7 @@ router.put("/", async (req, res, next) => {
   }
 });
 
-router.post("/countQuestionnaire", async (req, res, next) => {
+router.post("/count", async (req, res, next) => {
   // #swagger.tags = ['Questionnaire']
   // #swagger.summary = '计数questionnaire'
   /*	#swagger.requestBody = {

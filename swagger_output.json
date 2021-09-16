@@ -1288,7 +1288,7 @@
       }
     },
     "/api/techs/": {
-      "post": {
+      "get": {
         "tags": [
           "Tech"
         ],
@@ -1514,8 +1514,8 @@
         "description": "",
         "parameters": [
           {
-            "name": "UUID",
-            "description": "UUID of questionnaire",
+            "name": "USER_ID",
+            "description": "the USER_ID",
             "required": true,
             "type": "integer",
             "in": "query"
@@ -1577,7 +1577,7 @@
         }
       }
     },
-    "/api/questionnaires/countQuestionnaire": {
+    "/api/questionnaires/count": {
       "post": {
         "tags": [
           "Questionnaire"
@@ -3181,13 +3181,13 @@
         }
       }
     },
-    "countQuestionnaire": {
+    "questionnaire_countQuestionnaire": {
       "type": "object",
       "properties": {
         "data": {
           "type": "object",
           "properties": {
-            "UUID": {
+            "USER_ID": {
               "type": "string",
               "example": "455bdad0-4cbb-4bc4-85b0-0c34c0e4d8c4"
             }

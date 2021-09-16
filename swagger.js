@@ -470,9 +470,9 @@ const doc = {
         UUID: "455bdad0-4cbb-4bc4-85b0-0c34c0e4d8c4",
       },
     },
-    countQuestionnaire: {
+    questionnaire_countQuestionnaire: {
       data: {
-        UUID: "455bdad0-4cbb-4bc4-85b0-0c34c0e4d8c4",
+        USER_ID: "455bdad0-4cbb-4bc4-85b0-0c34c0e4d8c4",
       },
     },
   },

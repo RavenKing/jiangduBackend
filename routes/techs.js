@@ -23,7 +23,7 @@ function checkPriority(req, levelData) {
   console.log(req.user);
 }
 /* GET users listing. */
-router.post("/", function (req, res, next) {
+router.get("/", function (req, res, next) {
   // const p_check=checkPriority(req,constants.LEVEL1);
   // if(p_check==constants.UNAUTHORIZED)
   // {
