@@ -7,10 +7,6 @@ const tableName = "SAP_JIANGDU_TECH_INNOS";
 const tagTableName = "SAP_JIANGDU_TAG_TECHS";
 const { ohana } = require("ohana-node-orm");
 
-/**
- *
- *
- */
 function checkData(res, data) {
   if (data == null) {
     res.send(500);
@@ -30,7 +26,7 @@ router.get("/", function (req, res, next) {
                "JiangduJWT": []
   }] */
   const { data } = req.body;
-  const user = new ohana(tableName); // new ohana('table_name');
+  const user = new ohana(tableName); 
   if (!data) {
     user.find().then((result) => {
       res.send(result);
@@ -79,7 +75,7 @@ router.post("/", function (req, res, next) {
 });
 
 async function insertData(body) {
-  const user = new ohana(tableName); // new ohana('table_name');
+  const user = new ohana(tableName);
   const result = await user.insert(body);
   return result;
 }
@@ -94,7 +90,7 @@ router.post("/search", function (req, res, next) {
                "JiangduJWT": []
   }] */
   const queryData = req.query;
-  const user = new ohana(tableName); // new ohana('table_name');
+  const user = new ohana(tableName);
   if (queryData == null) {
     user.find().then((result) => {
       res.send(result);
@@ -176,7 +172,7 @@ router.delete("/", function (req, res, next) {
 
 async function updateTech(body) {
   // console.log(body)
-  const policy = new ohana(tableName); // new ohana('table_name');
+  const policy = new ohana(tableName); 
   const result = await policy.update(
     {
       TECH_ID: body.TECH_ID,

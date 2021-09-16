@@ -45,7 +45,7 @@ app.use(expressJwt({
   secret: PRIVITE_KEY,
   algorithms: ['HS256']
 }).unless({
-  path: ['/api/assets', '/api/fins', '/api/recommendLists', '/api/users/login', '/api/users/register', '/api/tags', '/api/talents', '/api/historical','/api/blackLists'] //添加不需要验证的路由
+  path: ['/api/techs','/api/assets', '/api/fins', '/api/recommendLists', '/api/users/login', '/api/users/register', '/api/tags', '/api/talents', '/api/historical','/api/blackLists'] //添加不需要验证的路由
 }))
 
 app.use('/', indexRouter);
