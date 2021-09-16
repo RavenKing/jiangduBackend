@@ -27,7 +27,11 @@ router.post("/", function (req, res, next) {
                 },
             }
     } */
-  const { data } = req.body;
+  let { data } = req.body;
+  if(data==undefined)
+  {
+    data={}
+  }
   getPolicy(data)
     .then((result) => {
       //console.log(result);
@@ -247,8 +251,8 @@ router.delete("/", function (req, res, next) {
 async function getPolicy(condition) {
   let result = [];
   const policy = new ohana("SAP_JIANGDU_POLICYS"); // new ohana('table_name');
-
-  if (!condition.searchString) {
+  console.log(condition); 
+  if (!condition||!condition.searchString) {
     //    const result = await policy.find(["POLICY_ID", "POLICY_TITLE", "CREATED_AT", "UPDATED_AT"]);
     result = await policy.raw(
       'SELECT "POLICY_ID",  "POLICY_TITLE", "CREATED_AT", "UPDATED_AT" FROM "SAP_JIANGDU_POLICYS"'
