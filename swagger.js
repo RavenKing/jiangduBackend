@@ -108,7 +108,7 @@ const doc = {
       data: { STATUS: "INITIAL" },
     },
     user_search: { data: {} },
-    policy: { data: {}, token: "4836f6e1-2e8b-4b45-b903-9cf88d990901" },
+    policy: { data: {} },
     policy_add: {
       data: {
         POLICY_ID: "",
@@ -119,7 +119,6 @@ const doc = {
         POLICY_URL: " ",
         USER_USER_ID: "2200",
       },
-      token: "4836f6e1-2e8b-4b45-b903-9cf88d990901",
     },
     policy_update: {
       data: {
@@ -144,14 +143,12 @@ const doc = {
         POLICY_ID_POLICY_ID: "2cd03b48-0a25-11ec-96a4-342eb7e2a2ec",
         TAG_ID_TAG_ID: "3af9ddba-0a25-11ec-be60-90ccdf01187c",
       },
-      token: "4836f6e1-2e8b-4b45-b903-9cf88d990901",
     },
     policy_deleteTags: {
       data: {
         POLICY_ID_POLICY_ID: "2cd03b48-0a25-11ec-96a4-342eb7e2a2ec",
         TAG_ID_TAG_ID: "3af9ddba-0a25-11ec-be60-90ccdf01187c",
       },
-      token: "4836f6e1-2e8b-4b45-b903-9cf88d990901",
     },
     tag_add: {
       data: {
@@ -165,7 +162,6 @@ const doc = {
         UPDATED_AT: "2021-09-08T09:12:12.624Z",
         USER_ID_USER_ID: "2200",
       },
-      token: "4836f6e1-2e8b-4b45-b903-9cf88d990901",
     },
     tag_delete: {
       data: {
@@ -236,7 +232,7 @@ const doc = {
         STATUS: "",
       },
     },
-    historical: { token: "2c59a359-77a0-4b66-9d66-02089946a04c" },
+    historical: {data:{}},
     fin_get: { data: { LOAN_TYPE: "" } },
     fin_add: {
       data: {
@@ -269,7 +265,6 @@ const doc = {
         PRODUCT_TYPE: "",
         LOAN_TYPE: "",
       },
-      token: "2c59a359-77a0-4b66-9d66-02089946a04c",
     },
     fin_update: {
       data: {
@@ -315,21 +310,18 @@ const doc = {
       data: {
         FIN_ID: "ac61b1b3-0c60-11ec-a492-90ccdf01187c",
       },
-      token: "2c59a359-77a0-4b66-9d66-02089946a04c",
     },
     fin_addTags: {
       data: {
         FIN_ID_FIN_ID: "ac61b1b3-0c60-11ec-a492-90ccdf01187c",
         TAG_ID_TAG_ID: "15cefa4b-0c63-11ec-9ac5-342eb7e2a2ec",
       },
-      token: "2c59a359-77a0-4b66-9d66-02089946a04c",
     },
     fin_deleteTags: {
       data: {
         FIN_ID_FIN_ID: "ac61b1b3-0c60-11ec-a492-90ccdf01187c",
         TAG_ID_TAG_ID: "15cefa4b-0c63-11ec-9ac5-342eb7e2a2ec",
       },
-      token: "2c59a359-77a0-4b66-9d66-02089946a04c",
     },
     fin_updateStatus: {
       data: {
@@ -338,7 +330,7 @@ const doc = {
         USER_ID: "",
       },
     },
-    asset: { data: {}, token: "2c59a359-77a0-4b66-9d66-02089946a04c" },
+    asset: { data: {} },
     asset_add_update: {
       data: {
         ASSET_ID: "ad52d74e-0ede-11ec-b9ca-342eb7e2a2ec",
@@ -359,13 +351,11 @@ const doc = {
         originalIndex: 0,
         tags: [],
       },
-      token: "2c59a359-77a0-4b66-9d66-02089946a04c",
     },
     asset_tag: {
       data: {
         ASSET_ID: "ad52d74e-0ede-11ec-b9ca-342eb7e2a2ec",
       },
-      token: "2c59a359-77a0-4b66-9d66-02089946a04c",
     },
     asset_delete: {
       data: {
@@ -443,20 +433,17 @@ const doc = {
         type: "fin",
         TECH_ID: "ad52d74d-0ede-11ec-8613-342eb7e2a2ec",
       },
-      token: "2c59a359-77a0-4b66-9d66-02089946a04c",
     },
     tech_tag: {
       data: {
         TECH_ID: "ad52d74e-0ede-11ec-b9ca-342eb7e2a2ec",
       },
-      token: "2c59a359-77a0-4b66-9d66-02089946a04c",
     },
     tech_tag_add_delete: {
       data: {
         TECH_ID_TECH_ID: "ad52d74e-0ede-11ec-b9ca-342eb7e2a2ec",
         TAG_ID_TAG_ID: "15cefa4b-0c63-11ec-9ac5-342eb7e2a2ec",
       },
-      token: "2c59a359-77a0-4b66-9d66-02089946a04c",
     },
     questionnaire: { data: { TEST: "132", COOL: "it works" } },
     questionnaire_update: {
