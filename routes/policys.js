@@ -12,11 +12,10 @@ const tagTableName = "SAP_JIANGDU_TAG_POLICYS";
 router.post("/", function (req, res, next) {
   // #swagger.tags = ['Policy']
   // #swagger.summary = '获取policy'
+  // #swagger.description = '获取政策列表or搜索'
   /* #swagger.security = [{
                "JiangduJWT": []
   }] */
-  // #swagger.description = '获取政策列表'
-
   /*	#swagger.requestBody = {
             required: true,
             content: {
@@ -26,11 +25,10 @@ router.post("/", function (req, res, next) {
                     }    
                 },
             }
-    } */
+  } */
   let { data } = req.body;
-  if(data==undefined)
-  {
-    data={}
+  if (data == undefined) {
+    data = {};
   }
   getPolicy(data)
     .then((result) => {
@@ -252,8 +250,8 @@ router.delete("/", function (req, res, next) {
 async function getPolicy(condition) {
   let result = [];
   const policy = new ohana("SAP_JIANGDU_POLICYS"); // new ohana('table_name');
-  console.log(condition); 
-  if (!condition||!condition.searchString) {
+  console.log(condition);
+  if (!condition || !condition.searchString) {
     //    const result = await policy.find(["POLICY_ID", "POLICY_TITLE", "CREATED_AT", "UPDATED_AT"]);
     result = await policy.raw(
       'SELECT "POLICY_ID",  "POLICY_TITLE", "CREATED_AT", "UPDATED_AT" FROM "SAP_JIANGDU_POLICYS"'
@@ -310,16 +308,15 @@ async function insertPolicyData(data) {
 
 async function deletaPolicyTag(data) {
   const policyTag = new ohana(tagTableName); // new ohana('table_name');
-  const sqlText= "delete from " +
-  tagTableName +
-  " where POLICY_ID_POLICY_ID = '" +
-  data.POLICY_ID_POLICY_ID +
-  "' and TAG_ID_TAG_ID = '" +
-  data.TAG_ID_TAG_ID +
-  "'";
-  const result = await policyTag.raw(
-    sqlText
-  );
+  const sqlText =
+    "delete from " +
+    tagTableName +
+    " where POLICY_ID_POLICY_ID = '" +
+    data.POLICY_ID_POLICY_ID +
+    "' and TAG_ID_TAG_ID = '" +
+    data.TAG_ID_TAG_ID +
+    "'";
+  const result = await policyTag.raw(sqlText);
   return result;
 }
 

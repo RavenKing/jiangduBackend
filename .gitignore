@@ -6,3 +6,4 @@ default-*.json
 gen/
 node_modules/
 target/
+package-lock.json

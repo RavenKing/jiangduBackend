@@ -213,7 +213,7 @@
           "Policy"
         ],
         "summary": "获取policy",
-        "description": "获取政策列表",
+        "description": "获取政策列表or搜索",
         "parameters": [],
         "responses": {},
         "security": [
@@ -486,44 +486,27 @@
           "Talent"
         ],
         "summary": "获取talent",
-        "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {},
-        "security": [
-          {
-            "JiangduJWT": []
-          }
-        ]
-      }
-    },
-    "/api/talents/": {
-      "get": {
-        "tags": [
-          "Talent"
-        ],
-        "summary": "获取talent",
-        "description": "",
+        "description": "获取人才列表or搜索",
         "parameters": [],
         "responses": {},
         "security": [
           {
             "JiangduJWT": []
           }
-        ]
-      },
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/talent_get"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/talents/": {
       "put": {
         "tags": [
           "Talent"
@@ -1767,11 +1750,11 @@
           "properties": {
             "USER_NAME": {
               "type": "string",
-              "example": "kevin"
+              "example": "youhaoyouhao"
             },
             "PASSWORD": {
               "type": "string",
-              "example": "123"
+              "example": "youhaoyouhao"
             }
           }
         }
@@ -2101,6 +2084,20 @@
             "TAG_CATEGORY": {
               "type": "string",
               "example": "ewfwff"
+            }
+          }
+        }
+      }
+    },
+    "talent_get": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "NAME": {
+              "type": "string",
+              "example": "周"
             }
           }
         }

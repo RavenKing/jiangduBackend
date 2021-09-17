@@ -87,8 +87,8 @@ const doc = {
     },
     user_login: {
       data: {
-        USER_NAME: "kevin",
-        PASSWORD: "123",
+        USER_NAME: "youhaoyouhao",
+        PASSWORD: "youhaoyouhao",
       },
     },
     user_register: {
@@ -185,6 +185,9 @@ const doc = {
         TAG_CATEGORY: "ewfwff",
       },
     },
+    talent_get: {
+      data: { NAME: "周" },
+    },
     talent_update: {
       data: {
         TALENT_ID: "13f9fcb8-0a36-11ec-85eb-90ccdf01187c",
@@ -232,7 +235,7 @@ const doc = {
         STATUS: "",
       },
     },
-    historical: {data:{}},
+    historical: { data: {} },
     fin_get: { data: { LOAN_TYPE: "" } },
     fin_add: {
       data: {

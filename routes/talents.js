@@ -3,51 +3,42 @@ var uunewid = require("uuid");
 var router = express.Router();
 const { ohana } = require("ohana-node-orm");
 const tableName = "SAP_JIANGDU_TALENTS";
-/** */
+
 function checkData(res, data) {
   if (data == null) {
     res.send(500);
   }
 }
-/**
- * get filter talents
- */
+
 router.post("/get", function (req, res, next) {
   // #swagger.tags = ['Talent']
   // #swagger.summary = '获取talent'
+  // #swagger.description = '获取人才列表or搜索'
   /* #swagger.security = [{
                "JiangduJWT": []
   }] */
-  const { data } = req.body;
-  const user = new ohana(tableName); // new ohana('table_name');
-  console.log(data);
-  if (!data||!data.data.searchString) {
-    user.find().then((result) => {
-      res.send(result);
-    });
-  } else {
-   user.raw(
-      'SELECT  * FROM "'+tableName+'" where "TALENT_NAME" LIKE \'%' +
-        data.data.searchString +
-        "%'"
-    ).then((result)=>{
-      res.send(result)
-    })
+  /*	#swagger.requestBody = {
+              required: true,
+              content: {
+                  "application/json": {
+                      schema: {
+                          $ref: "#/definitions/talent_get"
+                      }  
+                  },
+              }
+      } */
+  let { data } = req.body;
+  if (data == undefined) {
+    data = {};
   }
-});
-/**
- * find all Talents
- */
-router.get("/", function (req, res, next) {
-  // #swagger.tags = ['Talent']
-  // #swagger.summary = '获取talent'
-  /* #swagger.security = [{
-               "JiangduJWT": []
-  }] */
-  const t_Talent = new ohana(tableName); // new ohana('table_name');
-  t_Talent.find().then((result) => {
-    res.send(result);
-  });
+  getTalent(data)
+    .then((result) => {
+      console.log(result);
+      res.send(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 /**update Talent  */
@@ -249,6 +240,22 @@ router.delete("/", function (req, res, next) {
       console.log(err);
     });
 });
+async function getTalent(condition) {
+  console.log("condition:" + condition);
+  let result = [];
+  const t_Talent = new ohana(tableName);
+  console.log(condition);
+  if (!condition || !condition.NAME) {
+    result = await t_Talent.raw('SELECT * FROM "SAP_JIANGDU_TALENTS"');
+  } else {
+    result = await t_Talent.raw(
+      'SELECT  * FROM "SAP_JIANGDU_TALENTS" where "TALENT_NAME" LIKE \'%' +
+        condition.NAME +
+        "%'"
+    );
+  }
+  return result;
+}
 
 async function insertData(body) {
   const t_Talent = new ohana(tableName); // new ohana('table_name');
