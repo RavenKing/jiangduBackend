@@ -22,6 +22,7 @@ router.post("/", async (req, res, next) => {
     } */
   const { data } = req.body;
   data.uuid = uunewid.v4();
+  console.log(data)
   const result = await insertJsonDoc(data);
   if (result == 1) {
     res.sendStatus(200);
@@ -46,6 +47,7 @@ router.get("/", async (req, res, next) => {
         required: true,
         type: 'integer',
 } */
+
   const queryData = req.query;
   console.log(queryData);
   const result = await getJsonDoc(queryData);
@@ -137,8 +139,19 @@ router.delete("/", async (req, res, next) => {
     res.sendStatus(500);
   }
 });
+
+async function checkDuplicateDate(data,conn)
+{
+  console.log(data);
+  const stringText = "delete from  QUESTIONNAIRES where USER_ID = '"+data.USER_ID +"' and ASSESSMENT_NAME= '"+data.ASSESSMENT_NAME + "'"
+  const result = await conn.raw(stringText);
+  console.log(result);
+
+}
 async function insertJsonDoc(data) {
   const histo = new ohana("SAP_JIANGDU_FREQUENTLY_USED_ENTERPRISES");
+  const waitDelete= await checkDuplicateDate(data,histo);
+  console.log(waitDelete)
   var json = JSON.stringify(data); // {"type":"Fiat","model":"500","color":"White"}为了去掉"符合HANA json 插入的格式
   var unquoted = json.replace(/"([^"]+)":/g, "$1:");
   let resultText = unquoted.replace(new RegExp('"', "g"), "'");
